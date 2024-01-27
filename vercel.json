@@ -1,6 +1,6 @@
 {
     "version": 2,
     "github": {
-      "defaultBranch": "release/webshinelearning/frontend/FY2024-Q1-sprint1"
+      "defaultBranch": "develop"
     }
   }
