@@ -1,6 +1,8 @@
 {
     "version": 2,
+    "alias": "dev-webshinelearning.work.gd",
     "github": {
-      "defaultBranch": "develop"
+        "autoAlias": true,
+        "defaultBranch": "release/webshinelearning/frontend/FY2024-Q1-sprint1"
     }
-  }
+}
