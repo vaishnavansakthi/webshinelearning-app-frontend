@@ -1,1 +1,1 @@
-# Webshinelearning app frontend
+# Webshinelearning app frontend code
