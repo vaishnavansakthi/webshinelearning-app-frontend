@@ -53,11 +53,11 @@
     "*.js": [
       "prettier --write",
       "eslint --fix",
-      "git add"
+      "git add ."
     ],
     "*.css": [
       "stylelint --fix",
-      "git add"
+      "git add ."
     ]
   }
 }
