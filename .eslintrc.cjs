@@ -36,6 +36,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "@typescript-eslint/no-unused-vars": "off",
+    "react/react-in-jsx-scope": "off",
     "no-undef": "off",
     "import/no-unresolved": 0,
     "linebreak-style": ["error", "windows"],
