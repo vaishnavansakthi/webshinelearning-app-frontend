@@ -1,1 +1,1 @@
-# Contributing to React
+# Contributing to ReactJs
