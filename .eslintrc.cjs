@@ -37,22 +37,12 @@ module.exports = {
     ],
     "@typescript-eslint/no-unused-vars": "off",
     "no-undef": "off",
-    "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "linebreak-style": ["error", "windows"],
     "indent": "off",
     "object-curly-spacing": "off",
     "no-tabs": 0,
     "max-len": 0,
-    "require-jsdoc": ["error", {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": true,
-        "ArrowFunctionExpression": true,
-        "FunctionExpression": true
-      }
-    }],
     "no-empty": [0, "allow-empty-functions", "allow-empty-catch"],
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/naming-convention": ["off"],

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 
 /**
@@ -6,7 +6,7 @@ import './App.css'
  * @returns {React.Component} App component
  */
 function App() {
-  const [greet] = useState('Everyone!')
+  const [greet] = React.useState('Everyone!')
 
   return (
     <>
