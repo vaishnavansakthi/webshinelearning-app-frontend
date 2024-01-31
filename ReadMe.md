@@ -1,4 +1,4 @@
-# Webshinelearning app
+# Webshinelearning app portal
 
 ## Creating a Branch
 Please use the below link to create your branch
