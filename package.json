@@ -19,12 +19,8 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
     "jsdoc": "^4.0.2",
-    "pug": "^2.0.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "requires": "^1.0.2",
-    "via": "^0.0.1",
-    "vue-docgen-api": "^3.26.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
