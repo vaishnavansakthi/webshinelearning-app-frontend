@@ -1,15 +1,7 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: [
-    "eslint:recommended",
-    'plugin:react/recommended',
-    'plugin:import/recommended',
-    'plugin:jsx-a11y/recommended',
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    'eslint-config-prettier',
-  ],
+  extends: [],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -52,5 +44,6 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "no-mixed-spaces-and-tabs": 0,
     "camelcase": 0,
+    "linebreak-style": "off"
   },
 };
