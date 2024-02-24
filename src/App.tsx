@@ -10,6 +10,7 @@ function App() {
 
   return (
     <>
+      <h1 className="text-3xl font-bold underline text-red-400">Hello world!</h1>
       <h1>Hello {greet}, Project Yet to start. Webshine learning portal!</h1>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad excepturi esse distinctio labore obcaecati suscipit
