@@ -7,6 +7,11 @@ const meta = {
     parameters: {
         layout: 'centered'
     },
+    argTypes: {
+        textColor: {
+            control: 'text'
+        }
+    },
     tags: ['autodocs']
 } satisfies Meta<typeof Button>
 
@@ -64,6 +69,7 @@ export const Outlined: Story = {
         size: 'large',
         text: 'Outlined',
         varient: 'outline',
+        textColor: 'text-black'
     }
 }
 

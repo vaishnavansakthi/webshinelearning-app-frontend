@@ -20,12 +20,13 @@ function App() {
         maiores!
       </p>
       <LinkText color="green" size="large" href="https://www.youtube.com/watch?v=HbSjyU2vf6Y" text="Click to views" />
+      <br /><br />
       <Button
-        text="vaishnavan"
-        varient="outline"
+        text="Register Now"
+        varient="contained"
         color="secondary"
         size="large"
-        className={`underline disabled:bg-gray-400`}
+        textColor="text-white"
       />
     </>
   )
