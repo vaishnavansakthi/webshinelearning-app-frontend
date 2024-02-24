@@ -1,5 +1,7 @@
 import React from "react"
 import "./App.css"
+import { LinkText } from "./components/linktext/LinkText"
+import Button from "./components/button/Button"
 
 /**
  * Creating App Component
@@ -17,6 +19,14 @@ function App() {
         repellendus, odio aliquid in voluptates, animi, quae itaque cumque aspernatur provident maxime officiis mollitia
         maiores!
       </p>
+      <LinkText color="green" size="large" href="https://www.youtube.com/watch?v=HbSjyU2vf6Y" text="Click to views" />
+      <Button
+        text="vaishnavan"
+        varient="outline"
+        color="secondary"
+        size="large"
+        className={`underline disabled:bg-gray-400`}
+      />
     </>
   )
 }
