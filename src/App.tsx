@@ -1,7 +1,7 @@
 import React from "react"
 import "./App.css"
-import { LinkText } from "./components/linktext/LinkText"
-import Button from "./components/button/Button"
+import { LinkText } from "./components/atoms/linktext/LinkText"
+import Button from "./components/atoms/button/Button"
 
 /**
  * Creating App Component
@@ -21,13 +21,18 @@ function App() {
       </p>
       <LinkText color="green" size="large" href="https://www.youtube.com/watch?v=HbSjyU2vf6Y" text="Click to views" />
       <br /><br />
+      {/* 
+      facebook - M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z
+       */}
       <Button
-        text="Register Now"
+        text="Sign in with Facebook"
         varient="contained"
-        color="secondary"
+        color="primary"
         size="large"
+        icon="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
         textColor="text-white"
       />
+      <p className="p-10 capitalize font-extrabold ">Test tailwindcss</p>
     </>
   )
 }

@@ -1,6 +1,6 @@
-import { IButtonProps } from "../../types/button"
+import { IButtonProps } from "../../../types/button"
 
-const Button = ({ text, color, size, disabled, varient, textColor="text-white" }: IButtonProps) => {
+const Button = ({ text, color, size, disabled, varient, textColor = "text-white", icon }: IButtonProps) => {
   return (
     <>
       <button
@@ -18,10 +18,19 @@ const Button = ({ text, color, size, disabled, varient, textColor="text-white" }
         }
          ${varient === "contained" ? "p-4 border-[1px] rounded-md" : varient === "outline" ? "p-4 border-[1px] border-black rounded-md" : ""}
          ${size === "large" ? "text-lg p-4" : size === "medium" ? "text-md p-2" : "text-sm p-1"}
-         ${textColor} focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center
+         ${textColor} font-medium rounded-lg text-base px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center
         `}
         disabled={disabled}
       >
+        {icon && <svg
+          className="w-4 h-4 me-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 17"
+        >
+          <path fill-rule="evenodd" d={icon} clip-rule="evenodd" />
+        </svg>}
         {text}
       </button>
     </>
