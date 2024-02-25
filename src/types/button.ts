@@ -21,10 +21,21 @@ interface IButtonProps {
      */
     text?: string;
     /**
+     * className to extend the styling
+     */
+    className?: string;
+    /**
      * Adding the color of the text
      */
     textColor?: string;
-    icon?: string;
+    /**
+     * add icon to the button
+     */
+    icon?: any;
+    /**
+     * background color
+     */
+    bgColor?: string;
     /**
      * Event Action
      * @returns void
