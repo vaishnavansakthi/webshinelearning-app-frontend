@@ -1,0 +1,24 @@
+import { Meta, StoryObj } from "@storybook/react"
+import Label from "./Label"
+
+const meta = {
+  title: "atoms/Label",
+  component: Label,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+} satisfies Meta<typeof Label>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const LabelText: Story = {
+    args: {
+        text: 'Username',
+        htmlFor: 'Username'
+    }
+}
+
+
