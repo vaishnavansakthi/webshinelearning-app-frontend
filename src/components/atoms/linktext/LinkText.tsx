@@ -1,3 +1,4 @@
+import React from "react"
 import { ILinkText } from "../../../types/linktext"
 
 export const LinkText = ({ text = "vaishnavan", size = "medium", color, href }: ILinkText) => {
