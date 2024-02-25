@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.23.3",
+    "@rollup/plugin-typescript": "^8.3.3",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
