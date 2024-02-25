@@ -1,3 +1,4 @@
+import React from "react"
 import { IButtonProps } from "../../../types/button"
 
 const Button = ({ text, color, size, disabled, varient, textColor = "text-white", icon }: IButtonProps) => {
