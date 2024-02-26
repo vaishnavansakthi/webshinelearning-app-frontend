@@ -1,5 +1,7 @@
-import { Button, Label, LinkText } from "../../atoms"
-import { InputBlock } from "../../moleclues"
+import Button from "../../atoms/Button/Button"
+import Label from "../../atoms/Label/Label"
+import LinkText from "../../atoms/linktext/LinkText"
+import InputBlock from "../../moleclues/InputBlock/InputBlock"
 
 const Login = () => {
   return (
