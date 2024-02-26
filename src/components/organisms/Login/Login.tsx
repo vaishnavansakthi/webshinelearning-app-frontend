@@ -1,9 +1,12 @@
 import { Button, Label, LinkText } from "../../atoms"
 import { InputBlock } from "../../moleclues"
+import Footer from "../Footer/Footer"
+import Header from "../Header/Header"
 
 const Login = () => {
   return (
     <>
+      <Header />
       <section className="">
         <div className="flex flex-col items-center justify-center mx-auto md:max-h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
@@ -45,6 +48,7 @@ const Login = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

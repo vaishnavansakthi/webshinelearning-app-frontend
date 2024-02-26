@@ -1,9 +1,11 @@
 import { Button, Label, LinkText } from "../../atoms"
 import { InputBlock } from "../../moleclues"
+import Header from "../Header/Header"
 
 const SignUp = () => {
   return (
     <>
+      <Header />
       <section className="">
         <div className="flex flex-col items-center justify-center mx-auto md:max-h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
@@ -38,8 +40,8 @@ const SignUp = () => {
                 </div>
                 <Button text="Sign Up" color="primary" className="tracking-wide leading-normal" size="medium" />
                 <p className="text-sm font-light text-gray-500">
-                  Don’t have an account yet?{" "}
-                  <LinkText href="/" text="Sign In" className="tracking-wide leading-normal" />
+                Already have an account?{" "}
+                  <LinkText href="/" text="Login" className="tracking-wide leading-normal" />
                 </p>
               </form>
             </div>
