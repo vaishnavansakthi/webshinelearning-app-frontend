@@ -1,6 +1,6 @@
-import Button from "../../atoms/Button/Button"
-import Label from "../../atoms/Label/Label"
-import LinkText from "../../atoms/linktext/LinkText"
+import Button from "../../atoms/Button/Button.tsx"
+import Label from "../../atoms/Label/Label.tsx"
+import LinkText from "../../atoms/linktext/LinkText.tsx"
 import InputBlock from "../../moleclues/InputBlock/InputBlock"
 
 const SignUp = () => {
