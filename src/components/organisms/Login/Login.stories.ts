@@ -4,7 +4,6 @@ import Login from './Login'
 const meta = {
     title: 'organisms/Login',
     component: Login,
-    tags:['autodocs']
 } satisfies Meta<typeof Login>
 
 export default meta
