@@ -1,3 +1,4 @@
+import { DropdownMenu } from "../../moleclues"
 import { useRef, useState } from "react"
 
 const Header = () => {
@@ -31,11 +32,14 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white mb-10 w-full">
-        <nav className=" flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <header className="bg-white mb-10 border bottom-3 border-gray-100">
+        <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
             <a href="/" className="-m-1.5 p-1.5">
-              <span className="text-black text-lg"><span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>alents.</span>
+              <span className="text-black text-lg">
+                <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
+                alents.
+              </span>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -61,7 +65,7 @@ const Header = () => {
             <div className="relative">
               <button
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "product" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
                 aria-expanded={activeDropdown === "product"}
                 onMouseEnter={() => handleMouseEnter("product")}
                 onMouseLeave={handleMouseLeave}
@@ -81,6 +85,50 @@ const Header = () => {
                 </svg>
               </button>
               {activeDropdown === "product" && (
+                <DropdownMenu
+                  description="Get a better understanding of your traffic"
+                  paths={[
+                    {
+                      d: "M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z",
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                    },
+                    {
+                      d: "M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z",
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                    },
+                  ]}
+                  title="Analytics"
+                  onMouseEnter={handleDropdownMouseEnter}
+                  onMouseLeave={handleDropdownMouseLeave}
+                />
+              )}
+            </div>
+
+            <div className="relative">
+              <button
+                type="button"
+                className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "product" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
+                aria-expanded={activeDropdown === "features"}
+                onMouseEnter={() => handleMouseEnter("features")}
+                onMouseLeave={handleMouseLeave}
+              >
+                Features
+                <svg
+                  className="h-5 w-5 flex-none text-gray-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+              {activeDropdown === "features" && (
                 <div
                   onMouseEnter={handleDropdownMouseEnter}
                   onMouseLeave={handleDropdownMouseLeave}
@@ -192,31 +240,6 @@ const Header = () => {
                         <p className="mt-1 text-gray-600">Connect with third-party tools</p>
                       </div>
                     </div>
-                    <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <svg
-                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                          />
-                        </svg>
-                      </div>
-                      <div className="flex-auto">
-                        <a href="#" className="block font-semibold text-gray-900">
-                          Automations
-                          <span className="absolute inset-0"></span>
-                        </a>
-                        <p className="mt-1 text-gray-600">Build strategic funnels that will convert</p>
-                      </div>
-                    </div>
                   </div>
                   <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                     <a
@@ -259,10 +282,6 @@ const Header = () => {
                 </div>
               )}
             </div>
-
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Features
-            </a>
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
               Marketplace
             </a>
@@ -282,7 +301,10 @@ const Header = () => {
             <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
-                <span className="text-black text-lg"><span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>alents.</span>
+                  <span className="text-black text-lg">
+                    <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
+                    alents.
+                  </span>
                 </a>
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
                   <span className="sr-only">Close menu</span>
