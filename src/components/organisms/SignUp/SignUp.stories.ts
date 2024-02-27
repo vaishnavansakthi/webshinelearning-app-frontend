@@ -4,7 +4,6 @@ import SignUp from './SignUp'
 const meta = {
     title: 'organisms/SignUp',
     component: SignUp,
-    tags:['autodocs']
 } satisfies Meta<typeof SignUp>
 
 export default meta
