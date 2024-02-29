@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component renders a button with provided text 1`] = `
+<button
+  className="
+        bg-blue-500 hover:bg-blue-600
+         
+         text-sm p-1
+         text-white w-full font-medium text-lg rounded-lg px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center tracking-wide text-black
+        "
+  disabled={true}
+>
+  Click me
+</button>
+`;

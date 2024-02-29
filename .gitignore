@@ -14,6 +14,7 @@ docs
 dist-ssr
 *.local
 storybook-static
+coverage
 
 # Editor directories and files
 .vscode/*

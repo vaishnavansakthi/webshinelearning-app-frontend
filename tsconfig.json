@@ -8,11 +8,12 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-   "types": [],
+   "types": ["jest"],
     "baseUrl": "./src",
     "paths": {
       "*": ["*", "*.tsx"]
     },
+    "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "Bundler",
