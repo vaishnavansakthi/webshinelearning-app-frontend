@@ -290,10 +290,14 @@ const Header = () => {
             </a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/signup" className="text-sm font-semibold leading-6 text-gray-900">
-              Sign Up <span aria-hidden="true">&rarr;</span>
+            <a href="/signup" className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out">
+              Sign Up
+            </a>
+            <a href="/" className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900">
+              Login
             </a>
           </div>
+          
         </nav>
         {isMobileMenuOpen && (
           <div className="lg:hidden" role="dialog" aria-modal="true">

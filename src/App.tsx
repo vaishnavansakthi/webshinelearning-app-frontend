@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-// import "./App.css"
-import { Login, SignUp } from "./components/organisms"
+import { Login, SignUp, ForgotPassword, ResetPassword } from "./components/organisms"
 import { Layout } from "./components/templates"
 
 function App() {
@@ -10,6 +9,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </Layout>
     </Router>
