@@ -7,3 +7,4 @@ describe('Button component', () => {
     expect(tree).toMatchSnapshot();
   });
 });
+  

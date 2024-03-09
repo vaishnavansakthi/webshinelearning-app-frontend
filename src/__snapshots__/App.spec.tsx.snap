@@ -133,21 +133,22 @@ exports[`Renders the main page 1`] = `
         className="hidden lg:flex lg:flex-1 lg:justify-end"
       >
         <a
-          className="text-sm font-semibold leading-6 text-gray-900"
+          className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
           href="/signup"
         >
-          Sign Up 
-          <span
-            aria-hidden="true"
-          >
-            →
-          </span>
+          Sign Up
+        </a>
+        <a
+          className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900"
+          href="/"
+        >
+          Login
         </a>
       </div>
     </nav>
   </header>,
   <section
-    className=""
+    className="min-h-[72vh]"
   >
     <div
       className="flex flex-col items-center justify-center"
@@ -288,8 +289,8 @@ exports[`Renders the main page 1`] = `
                 </div>
               </div>
               <a
-                className="text-sm font-medium text-primary-600 hover:underline text-white"
-                href="#"
+                className="text-sm font-medium text-primary-600 hover:underline text-blue-400"
+                href="/forgot-password"
               >
                 Forgot password?
               </a>

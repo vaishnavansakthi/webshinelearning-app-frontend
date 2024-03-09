@@ -109,7 +109,7 @@ const Header = () => {
             <div className="relative">
               <button
                 type="button"
-                className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "product" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
+                className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "features" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
                 aria-expanded={activeDropdown === "features"}
                 onMouseEnter={() => handleMouseEnter("features")}
                 onMouseLeave={handleMouseLeave}
