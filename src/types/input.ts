@@ -23,6 +23,16 @@ interface IInputProps {
      * onChange event handling
      */
     onChange?: () => void;
+    /**
+     * isError to check error
+     */
+    isError?: boolean;
+    /**
+     * errorMessage is to load errormeassage
+     */
+    errorMessage?: any;
+
+    name?: string;
 }
 
 export type {
