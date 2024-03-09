@@ -22,9 +22,11 @@ interface IInputProps {
     /**
      * onChange event handling
      */
-    onChange?: () => void;
+    onChange?: any;
 
-    name: string;
+    name?: string;
+
+    value?: string;
 }
 
 export type {

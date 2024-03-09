@@ -35,6 +35,7 @@ const ResetPassword = () => {
       })
       .then((res: any) => {
         console.log(res)
+        sessionStorage.removeItem('userEmail')
         navigate("/")
       }).catch((err: any) => {
         console.log(err)

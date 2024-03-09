@@ -53,7 +53,6 @@ const SendOtp = () => {
                     type="text"
                     value={digit}
                     onChange={(e: any) => handleChange(index, e.target.value)}
-                    maxLength={1}
                     className={`w-full h-full flex flex-col items-center justify-center text-center px-2 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-500`}
                   />
                 </div>

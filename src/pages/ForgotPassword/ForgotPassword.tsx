@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('')
   const navigate = useNavigate()
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
   }
 
