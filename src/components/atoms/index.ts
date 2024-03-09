@@ -1,4 +1,4 @@
-import Button from "./Button/Button";
+import Button from "./button/Button";
 import Input from "./Input/Input";
 import Label from "./Label/Label";
 import LinkText from "./linktext/LinkText";
