@@ -1,7 +1,7 @@
-import { Button, LinkText } from "../../atoms"
-import { InputBlock } from "../../moleclues"
+import { Button, LinkText } from "../../components/atoms"
+import { InputBlock } from "../../components/moleclues"
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -9,17 +9,10 @@ const ResetPassword = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <form className="space-y-4 md:space-y-6" action="#">
               <InputBlock
-                text="Enter New Password"
-                htmlFor="newPassword"
-                type="password"
-                placeholder="At least 8 digits"
-                className="text-gray-400"
-              />
-              <InputBlock
-                text="Confirm Password"
-                htmlFor="confirmPassword"
-                type="password"
-                placeholder="••••••••"
+                text="Enter Email Address"
+                htmlFor="email"
+                type="email"
+                placeholder="name@company.com"
                 className="text-gray-400"
               />
               <div className="flex items-center justify-between">
@@ -29,7 +22,7 @@ const ResetPassword = () => {
                   </div>
                 </div>
               </div>
-              <Button text="Reset" color="primary" className="tracking-wide leading-normal" size="medium" />
+              <Button text="Send" color="primary" className="tracking-wide leading-normal" size="medium" />
             </form>
           </div>
         </div>
@@ -38,4 +31,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default ForgotPassword
