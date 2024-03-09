@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Login from './Login'
 
 const meta = {
-    title: 'organisms/Login',
+    title: 'pages/Login',
     component: Login,
 } satisfies Meta<typeof Login>
 

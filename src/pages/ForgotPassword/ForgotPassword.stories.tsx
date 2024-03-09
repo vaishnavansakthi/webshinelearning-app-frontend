@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import ForgotPassword from './ForgotPassword'
 
 const meta = {
-    title: 'organisms/ForgotPassword',
+    title: 'pages/ForgotPassword',
     component: ForgotPassword,
 } satisfies Meta<typeof ForgotPassword>
 

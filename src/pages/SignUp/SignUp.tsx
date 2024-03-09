@@ -1,5 +1,5 @@
-import { Button, Label, LinkText } from "../../atoms"
-import { InputBlock } from "../../moleclues"
+import { Button, Label, LinkText } from "../../components/atoms"
+import { InputBlock } from "../../components/moleclues"
 
 const SignUp = () => {
   return (

@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { Login, SignUp, ForgotPassword, ResetPassword } from "./components/organisms"
+import { ForgotPassword, ResetPassword, Login, SignUp, SendOtp } from "./pages"
 import { Layout } from "./components/templates"
 import { useEffect } from "react"
-import axios from "axios"
+import axios from "axios";
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-otp" element={<SendOtp />} />
         </Routes>
       </Layout>
     </Router>

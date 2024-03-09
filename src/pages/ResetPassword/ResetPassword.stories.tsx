@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import ResetPassword from './ResetPassword'
 
 const meta = {
-    title: 'organisms/ResetPassword',
+    title: 'pages/ResetPassword',
     component: ResetPassword,
 } satisfies Meta<typeof ResetPassword>
 
