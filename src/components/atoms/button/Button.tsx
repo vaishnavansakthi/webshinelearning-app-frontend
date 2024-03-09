@@ -1,6 +1,6 @@
 import { IButtonProps } from "../../../types/button"
 
-const Button = ({ text, color, size, disabled, varient, textColor = "text-white", icon, className, bgColor }: IButtonProps) => {
+const Button = ({ text, color, size, disabled, varient, textColor = "text-white", icon, className, bgColor, type }: IButtonProps) => {
   return (
     <>
       <button
@@ -20,6 +20,7 @@ const Button = ({ text, color, size, disabled, varient, textColor = "text-white"
          ${textColor} w-full font-medium text-lg rounded-lg px-6 py-2.5 text-center md:mr-5 mb-3 md:mb-0 inline-flex items-center justify-center tracking-wide ${className}
         `}
         disabled={disabled}
+        type={type}
       >
         {icon && icon}
         {text}

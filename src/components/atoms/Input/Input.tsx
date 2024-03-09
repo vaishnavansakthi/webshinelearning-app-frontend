@@ -1,6 +1,6 @@
 import { IInputProps } from "../../../types/input"
 
-const Input = ({ type, placeholder, disabled, onChange, className }: IInputProps) => {
+const Input = ({ type, placeholder, disabled, onChange, className, name }: IInputProps) => {
   return (
     <div className="mb-5  flex justify-center">
       <input
@@ -9,6 +9,7 @@ const Input = ({ type, placeholder, disabled, onChange, className }: IInputProps
         placeholder={placeholder}
         disabled={disabled}
         onChange={onChange}
+        name={name}
         style={{ display: 'inline-block', verticalAlign: 'top', borderRadius: '5px' }} 
       />
     </div>
