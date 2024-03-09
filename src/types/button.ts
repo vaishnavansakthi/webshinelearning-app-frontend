@@ -41,6 +41,8 @@ interface IButtonProps {
      * @returns void
      */
     onClick?: () => void;
+
+    type: "submit" | "reset" | "button" | undefined;
   }
 
   export type {
