@@ -23,8 +23,7 @@ const SendOtp = () => {
         'x-api-key': `${import.meta.env.VITE_X_API_Key}`
       }
     })
-    .then((res: any) => {
-      console.log(res)
+    .then(() => {
       navigate("/reset-password")
     }).catch((err: any) => {
       console.log(err)
