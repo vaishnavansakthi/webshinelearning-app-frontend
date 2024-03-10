@@ -1,10 +1,18 @@
+import { useNavigate } from "react-router-dom"
 import { DropdownMenu } from "../../moleclues"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const timeoutRef: React.MutableRefObject<any> = useRef(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [myToken, setMyToken] = useState(localStorage.getItem("userData"))
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setMyToken(localStorage.getItem("userData"))
+  }, [])
 
   const handleMouseEnter = (dropdown: any) => {
     setActiveDropdown(dropdown)
@@ -12,7 +20,6 @@ const Header = () => {
   }
 
   const handleMouseLeave = () => {
-    // Delay hiding the dropdown by 300 milliseconds
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null)
     }, 300)
@@ -28,6 +35,12 @@ const Header = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData")
+    setMyToken(null)
+    navigate("/")
   }
 
   return (
@@ -289,15 +302,43 @@ const Header = () => {
               Company
             </a>
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/signup" className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out">
-              Sign Up
-            </a>
-            <a href="/" className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900">
-              Login
-            </a>
-          </div>
-          
+          {myToken !== null ? (
+            <>
+              <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href="/profile" className="mr-5">
+                  <img
+                    className="w-12 h-12 p-[2px] rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                    src="https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=1024x1024&w=is&k=20&c=8mgK2Kq73o8DIjazvLmEGkhx2p_7P5r3mvpbIM6q5cA="
+                    alt="Bordered avatar"
+                  />
+                </a>
+                <a
+                  href="/"
+                  onClick={handleLogout}
+                  className="text-sm border border-1 rounded-sm border-black px-5 py-2 ml-3 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                >
+                  Logout
+                </a>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a
+                  href="/signup"
+                  className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                >
+                  Sign Up
+                </a>
+                <a
+                  href="/"
+                  className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900"
+                >
+                  Login
+                </a>
+              </div>
+            </>
+          )}
         </nav>
         {isMobileMenuOpen && (
           <div className="lg:hidden" role="dialog" aria-modal="true">

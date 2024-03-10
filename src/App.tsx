@@ -1,32 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { ForgotPassword, ResetPassword, Login, SignUp, SendOtp } from "./pages"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { ForgotPassword, ResetPassword, Login, SignUp, SendOtp, AdminDashboard, Profile } from "./pages"
 import { Layout } from "./components/templates"
-import { useEffect } from "react"
-import axios from "axios";
 
 function App() {
-
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/user`, {
-      headers: {
-        'x-api-key': `${import.meta.env.VITE_X_API_Key}`,
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2ZTYxYTZkLWRmM2UtNGQwOC1iMTViLTc4YjExOTA4OThkMyIsInVzZXJuYW1lIjoidmFpc2huYXZhbiIsImVtYWlsIjoidmFpc2huYXZhbm01QGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwOTczOTMzOH0._XBLzmyVkWXh69xisi1rNmN6LavIDuq-Y4A0xgSU6Xs'
-      }
-      ,
-    }).then((res: any) => {
-      console.log(res.data)
-    })
-  }, [])
+  const myToken: string = localStorage.getItem("userData")!
+  console.log(myToken)
 
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/verify-otp" element={<SendOtp />} />
+          <Route path="/" element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <Login />} />
+          <Route path="/signup" element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <SignUp />} />
+          <Route
+            path="/forgot-password"
+            element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <ForgotPassword />}
+          />
+          <Route
+            path="/reset-password"
+            element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <ResetPassword />}
+          />
+          <Route path="/verify-otp" element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <SendOtp />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={myToken !== null ? <Navigate to={"/admin-dashboard"} /> : <Login />} />
         </Routes>
       </Layout>
     </Router>

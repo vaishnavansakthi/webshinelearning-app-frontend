@@ -44,6 +44,7 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "no-mixed-spaces-and-tabs": 0,
     "camelcase": 0,
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "react-refresh/only-export-components": 0,
   },
 };

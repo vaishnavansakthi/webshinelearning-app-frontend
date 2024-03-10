@@ -35,11 +35,12 @@ const Login = () => {
       }
     })
     .then((res: any) => {
+      localStorage.setItem('userData', JSON.stringify(res.data));
       console.log(res.data)
-      sessionStorage.setItem('userData', JSON.stringify(res.data));
       setLoginData(initialValues)
       if(res.data.user.isActivate){
-        navigate("/signup")
+        navigate("/admin-dashboard")
+        window.location.reload()
       }else{
         console.log("admin will activate your profile ASAP")
       }
