@@ -31,11 +31,15 @@ const SignUp = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault()
     console.log(signUpData)
-    axios.post('https://webshinelearning-app-backend.vercel.app/auth/register', signUpData)
+    axios.post('https://webshinelearning-app-backend.vercel.app/auth/register', signUpData, {
+      headers: {
+        'x-api-key': `${import.meta.env.VITE_X_API_Key}`
+      }
+    })
     .then((res: any) => {
       console.log(res)
       setSignUpData(initialValues)
-      navigate("/")
+      navigate("/admin-dashboard")
     }).catch((err: any) => {
       console.log(err)
     })
