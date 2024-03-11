@@ -3,12 +3,13 @@ import axios from "axios"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { useEffect, useState } from "react"
 import { Button } from "../../components/atoms"
+import { decryptData } from "../../utils/security"
 
 const AdminDashboard = () => {
   const [userData, setUserData] = useState([])
 
-  const myToken: string = localStorage.getItem("userData")!
-  const token = JSON.parse(myToken).access_token
+  const myToken: any = decryptData('userData', 'object')
+  const token = myToken.access_token
 
   useEffect(() => {
     axios
@@ -19,7 +20,6 @@ const AdminDashboard = () => {
         },
       })
       .then((res: any) => {
-        console.log(res.data)
         setUserData(res.data)
       })
   }, [])

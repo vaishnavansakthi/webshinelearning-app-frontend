@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router-dom"
 import { DropdownMenu } from "../../moleclues"
 import { useEffect, useRef, useState } from "react"
+import { decryptData } from "../../../utils/security"
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const timeoutRef: React.MutableRefObject<any> = useRef(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [myToken, setMyToken] = useState(localStorage.getItem("userData"))
+  const [myToken, setMyToken] = useState(decryptData('userData', 'object'))
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    setMyToken(localStorage.getItem("userData"))
+    setMyToken(decryptData('userData', 'object'))
   }, [])
 
   const handleMouseEnter = (dropdown: any) => {

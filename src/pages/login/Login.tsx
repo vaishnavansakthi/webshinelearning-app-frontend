@@ -3,6 +3,7 @@ import { Button, Label, LinkText } from "../../components/atoms"
 import { InputBlock } from "../../components/moleclues"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { encryptData } from "../../utils/security"
 
 const initialValues = {
   email: '',
@@ -28,15 +29,13 @@ const Login = () => {
 
   const handleSubmit = (event: any): void => {
     event.preventDefault()
-    console.log(loginData)
     axios.post('https://webshinelearning-app-backend.vercel.app/auth/login', loginData, {
       headers: {
         'x-api-key': `${import.meta.env.VITE_X_API_Key}`
       }
     })
     .then((res: any) => {
-      localStorage.setItem('userData', JSON.stringify(res.data));
-      console.log(res.data)
+      encryptData(res.data, 'userData', 'object')
       setLoginData(initialValues)
       if(res.data.user.isActivate){
         navigate("/admin-dashboard")

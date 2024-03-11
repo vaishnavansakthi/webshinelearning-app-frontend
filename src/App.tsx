@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { ForgotPassword, ResetPassword, Login, SignUp, SendOtp, AdminDashboard, Profile } from "./pages"
 import { Layout } from "./components/templates"
+import { decryptData } from "./utils/security"
 
 function App() {
-  const myToken: string = localStorage.getItem("userData")!
-  console.log(myToken)
+  const myToken = decryptData('userData', 'object')
 
   return (
     <Router>

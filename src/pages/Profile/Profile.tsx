@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react"
 import withProtectedRoute from "../../hoc/ProductedRoute"
+import { decryptData } from "../../utils/security"
 
 const Profile = () => {
-    const [profileData, setProfileData] = useState<any>({});
+  const [profileData, setProfileData] = useState<any>({})
 
-    useEffect(() => {
-      const userDataString: any | null = localStorage.getItem("userData");
-      if (userDataString !== null) {
-        try {
-          const myToken: any = JSON.parse(userDataString);
-          console.log("myToken:", myToken);
-          setProfileData(myToken);
-        } catch (error) {
-          console.error("Error parsing user data:", error);
-        }
-      } else {
-        console.log("No user data found in localStorage");
+  useEffect(() => {
+    const userDataString: any | null = decryptData("userData", null)
+    if (userDataString !== null) {
+      try {
+        const myToken: any = JSON.parse(userDataString)
+        setProfileData(myToken)
+      } catch (error) {
+        console.error("Error parsing user data:", error)
       }
-    }, []);
+    } else {
+      console.log("No user data found in localStorage")
+    }
+  }, [])
   return (
     <>
       <div className="p-10">
