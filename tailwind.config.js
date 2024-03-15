@@ -7,6 +7,11 @@ export default {
         primary: "#3490dc",
         secondary: "#ffed4a",
       },
+      extend: {
+        outline: {
+          'red-400': ['2px', 'solid', '#FC8181'],
+        },
+      }
     },
   },
   plugins: [],

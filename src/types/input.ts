@@ -24,9 +24,11 @@ interface IInputProps {
      */
     onChange?: any;
 
-    name?: string;
+    name?: any;
 
     value?: string;
+
+    isErrors?: boolean;
 }
 
 export type {

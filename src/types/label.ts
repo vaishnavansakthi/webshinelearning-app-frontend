@@ -2,7 +2,7 @@ interface ILabelProps {
     /**
      * Label text
      */
-    text: string;
+    text?: string;
     /**
      * htmFor accessbility
      */
@@ -10,7 +10,7 @@ interface ILabelProps {
     /**
      * className to extend css
      */
-    className?: string;
+    labelClassName?: string;
 }
 
 export type {

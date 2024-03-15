@@ -1,6 +1,5 @@
 
 import { Meta, StoryObj } from '@storybook/react'
-import { BrowserRouter } from 'react-router-dom'
 import Login from './Login'
 
 const meta = {

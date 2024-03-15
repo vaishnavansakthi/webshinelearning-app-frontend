@@ -4,6 +4,7 @@ import Label from "./Label/Label";
 import LinkText from "./linktext/LinkText";
 import DropContent from "./DropContent/DropContent";
 import SvgIcon from "./SvgIcon/SvgIcon";
+import Alert from "./Alert/Alert";
 
 export {
     Button,
@@ -11,5 +12,6 @@ export {
     Label,
     LinkText,
     DropContent,
-    SvgIcon
+    SvgIcon,
+    Alert
 }
