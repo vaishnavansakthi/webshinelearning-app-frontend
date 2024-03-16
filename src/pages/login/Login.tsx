@@ -7,7 +7,6 @@ import { useState } from "react"
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
 import { encryptData } from "../../utils/security"
-import { ThreeDots } from 'react-loader-spinner';
 
 type User = {
   email: string
