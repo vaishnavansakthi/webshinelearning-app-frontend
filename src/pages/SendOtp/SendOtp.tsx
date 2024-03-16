@@ -72,7 +72,7 @@ const SendOtp = () => {
 
   return (
     <div className="relative flex flex-col justify-center overflow-hidden py-10">
-      <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl max-[600px]:w-[365px] mx-auto w-full max-w-lg rounded-2xl">
+      <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl max-[600px]:w-[300px] mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
             <div className="font-semibold text-3xl">
@@ -86,7 +86,7 @@ const SendOtp = () => {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-row items-center justify-evenly mx-auto w-full">
               {otpDigits.map((digit, index) => (
-                <div key={index} className="w-16 h-16 max-[600px]:w-12 max-[600px]:h-12">
+                <div key={index} className="w-16 h-16 max-[600px]:w-10 max-[600px]:h-10">
                   <input
                     type="text"
                     value={digit}
@@ -105,7 +105,7 @@ const SendOtp = () => {
                   color="primary"
                   text="Next"
                   type="submit"
-                  className={`flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-500 hover:bg-blue-600 border-none text-white text-sm shadow-sm`}
+                  className={`flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-500 hover:bg-blue-600 border-none text-white text-xl shadow-sm`}
                 />
               </div>
 

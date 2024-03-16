@@ -21,37 +21,6 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  // const handleChange = (event: any): void => {
-  //   const { name, value } = event.target
-
-  //   setLoginData((prev: any) => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // }
-
-  // const handleSubmit = (event: any): void => {
-  //   event.preventDefault()
-  //   axios.post('https://webshinelearning-app-backend.vercel.app/auth/login', loginData, {
-  //     headers: {
-  //       'x-api-key': `${import.meta.env.VITE_X_API_Key}`
-  //     }
-  //   })
-  //   .then((res: any) => {
-  //     encryptData(res.data, 'userData', 'object')
-  //     setLoginData(initialValues)
-  //     if(res.data.user.isActivate){
-  //       navigate("/admin-dashboard")
-  //       window.location.reload()
-  //     }else{
-  //       console.log("admin will activate your profile ASAP")
-  //     }
-
-  //   }).catch((err: any) => {
-  //     console.log(err)
-  //   })
-  // }
-
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
     axios
       .post("https://webshinelearning-app-backend.vercel.app/auth/login", values, {
