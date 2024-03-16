@@ -7,6 +7,7 @@ import { useState } from "react"
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
 import { encryptData } from "../../utils/security"
+import { loginUsers } from "../../services/login.services"
 
 type User = {
   email: string
@@ -24,22 +25,30 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
+
     setLoading(true)
-    axios
-      .post("https://webshinelearning-app-backend.vercel.app/auth/login", values, {
-        headers: {
-          "x-api-key": `${import.meta.env.VITE_X_API_Key}`,
-        },
-      })
-      .then((res) => {
+    // axios
+    //   .post("https://webshinelearning-app-backend.vercel.app/auth/login", values, {
+    //     headers: {
+    //       "x-api-key": `${import.meta.env.VITE_X_API_Key}`,
+    //     },
+    //   })
+    const res = loginUsers(values)
+    // const data = res.then((data) => data)
+    res.then((d) => {
+      console.log(d)
+    })
+    res.then((res: any) => {
         setLoading(false)
         formikHelpers.resetForm()
-        if (res.data.user.isActivate) {
-          encryptData(res.data, 'userData', 'object')
+        if (res.user.isActivate) {
+          encryptData(res, "userData", "object")
           navigate("/admin-dashboard")
           window.location.reload()
         } else {
-          setsMessage(`Welcome, ${res.data.user.username}! Your profile awaits for activation by our diligent admin team. Stay tuned!`)
+          setsMessage(
+            `Welcome, ${res.user.username}! Your profile awaits for activation by our diligent admin team. Stay tuned!`,
+          )
         }
       })
       .catch((err: any) => {
