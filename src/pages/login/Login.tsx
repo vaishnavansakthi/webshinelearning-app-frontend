@@ -7,6 +7,7 @@ import { useState } from "react"
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
 import { encryptData } from "../../utils/security"
+import { ThreeDots } from 'react-loader-spinner';
 
 type User = {
   email: string
@@ -18,11 +19,13 @@ const initialValues: User = {
   password: "",
 }
 const Login = () => {
+  const [loading, setLoading] = useState(false)
   const [message, setsMessage] = useState("")
 
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
+    setLoading(true)
     axios
       .post("https://webshinelearning-app-backend.vercel.app/auth/login", values, {
         headers: {
@@ -30,6 +33,7 @@ const Login = () => {
         },
       })
       .then((res) => {
+        setLoading(false)
         formikHelpers.resetForm()
         if (res.data.user.isActivate) {
           encryptData(res.data, 'userData', 'object')
@@ -42,6 +46,7 @@ const Login = () => {
       .catch((err: any) => {
         console.log(err)
         setsMessage(err.response.data.message)
+        setLoading(false)
       })
   }
 
@@ -141,6 +146,7 @@ const Login = () => {
                       color="primary"
                       className="tracking-wide leading-normal"
                       size="medium"
+                      loading={loading}
                     />
                     <p className="text-sm font-light text-gray-500">
                       Don’t have an account yet?{" "}
