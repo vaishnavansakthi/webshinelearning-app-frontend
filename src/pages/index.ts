@@ -5,6 +5,7 @@ import Login from "./Login/Login";
 import SendOtp from "./SendOtp/SendOtp";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import Profile from "./Profile/Profile";
+import NotFound from "./NotFound/NotFound";
 
 export {
     ForgotPassword,
@@ -13,5 +14,6 @@ export {
     Login,
     SendOtp,
     AdminDashboard,
-    Profile
+    Profile,
+    NotFound
 }

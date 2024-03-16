@@ -10,6 +10,7 @@ const AdminDashboard = () => {
 
   const myToken: any = decryptData('userData', 'object')
   const token = myToken.access_token
+  console.log(myToken)
 
   useEffect(() => {
     axios

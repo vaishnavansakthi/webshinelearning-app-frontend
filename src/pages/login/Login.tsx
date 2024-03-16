@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
+import { encryptData } from "../../utils/security"
 
 type User = {
   email: string
@@ -31,6 +32,7 @@ const Login = () => {
       .then((res) => {
         formikHelpers.resetForm()
         if (res.data.user.isActivate) {
+          encryptData(res.data, 'userData', 'object')
           navigate("/admin-dashboard")
           window.location.reload()
         } else {

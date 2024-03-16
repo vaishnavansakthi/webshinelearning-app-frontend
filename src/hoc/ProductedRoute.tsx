@@ -11,7 +11,7 @@ const withProtectedRoute = <P extends any>(Component: ComponentType): React.FC<P
       const allowedRoutes = ["login", "signup", "forgot-password", "reset-password", "verfy-otp"]
       const currentRoute = window.location.pathname.split("/")[1]
       if (allowedRoutes.includes(currentRoute)) {
-        return <Navigate to="/Admin-dashboard" />
+        return <Navigate to="/admin-dashboard" />
       }
       return <Component />
     } else {
