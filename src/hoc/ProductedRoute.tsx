@@ -15,7 +15,7 @@ const withProtectedRoute = <P extends any>(Component: ComponentType): React.FC<P
       }
       return <Component />
     } else {
-      return <Navigate to="/login" />
+      return <Navigate to="/" />
     }
   }
 
