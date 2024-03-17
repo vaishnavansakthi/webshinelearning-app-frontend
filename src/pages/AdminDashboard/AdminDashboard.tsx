@@ -225,7 +225,7 @@ const AdminDashboard = () => {
               </tr>
             </tbody>
           </table>
-          <div className="h-full flex flex-col items-end justify-center mt-[-25px] sm:py-10">
+          <div className="mt-5">
             <div className="flex justify-center align-middle">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
