@@ -27,7 +27,7 @@ const Profile = () => {
             {" "}
             <div className="relative">
               {" "}
-              <div className="w-48 h-48 max-[600px]:w-40 max-[600px]:h-40 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+              <div className="w-48 h-48 max-[600px]:w-40 max-[600px]:h-40 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-blue-400">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" viewBox="0 0 20 20" fill="currentColor">
                   {" "}
                   <path
@@ -55,7 +55,7 @@ const Profile = () => {
               writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove
               structure. An artist of considerable range.
             </p>{" "}
-            <button className="text-indigo-500 py-2 px-4  font-medium mt-4"> Show more</button>{" "}
+            <button className="text-blue-400 py-2 px-4  font-medium mt-4"> Show more</button>{" "}
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import axios from "axios"
 import { Formik, Form, FormikProps, FormikHelpers } from "formik"
 import { Alert, Button, Label, LinkText } from "../../components/atoms"
 import { InputBlock } from "../../components/moleclues"
@@ -27,14 +26,7 @@ const Login = () => {
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
 
     setLoading(true)
-    // axios
-    //   .post("https://webshinelearning-app-backend.vercel.app/auth/login", values, {
-    //     headers: {
-    //       "x-api-key": `${import.meta.env.VITE_X_API_Key}`,
-    //     },
-    //   })
     const res = loginUsers(values)
-    // const data = res.then((data) => data)
     res.then((d) => {
       console.log(d)
     })
