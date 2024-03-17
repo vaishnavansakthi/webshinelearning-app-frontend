@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, FormikProps, FormikHelpers } from "formik";
 import { CgDanger } from "react-icons/cg";
 
@@ -126,9 +126,9 @@ const SignUp = () => {
                           <Label text="Remember me" htmlFor="remember" labelClassName="text-gray-400" />
                         </div>
                       </div>
-                      <a href="#" className="text-sm font-medium text-primary-600 hover:underline text-white">
+                      <Link to="#" className="text-sm font-medium text-primary-600 hover:underline text-white">
                         Forgot password?
-                      </a>
+                      </Link>
                     </div>
                     <Button
                       type={"submit"}

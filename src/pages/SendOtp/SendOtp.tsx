@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react"
 import { Alert, Button } from "../../components/atoms"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const SendOtp = () => {
   const [otpDigits, setOtpDigits] = useState(new Array(6).fill(""))
@@ -111,14 +111,14 @@ const SendOtp = () => {
 
               <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
                 <p>Didn't receive code?</p>{" "}
-                <a
+                <Link
                   className="flex flex-row items-center text-blue-600"
-                  href="/"
+                  to="/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Resend
-                </a>
+                </Link>
               </div>
             </div>
           </form>

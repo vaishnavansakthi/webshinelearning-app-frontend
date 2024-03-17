@@ -1,7 +1,7 @@
 import { Formik, Form, FormikProps, FormikHelpers } from "formik"
 import { Alert, Button, Label, LinkText } from "../../components/atoms"
 import { InputBlock } from "../../components/moleclues"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
@@ -20,6 +20,7 @@ const initialValues: User = {
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [message, setsMessage] = useState("")
+  const [alertColor, setAlertColor] = useState("");
 
   const navigate = useNavigate()
 
@@ -41,12 +42,14 @@ const Login = () => {
           setsMessage(
             `Welcome, ${res.user.username}! Your profile awaits for activation by our diligent admin team. Stay tuned!`,
           )
+          setAlertColor("bg-green-500")
         }
       })
       .catch((err: any) => {
         console.log(err)
         setsMessage(err.response.data.message)
         setLoading(false)
+        setAlertColor("bg-red-400 rounded-sm")
       })
   }
 
@@ -87,7 +90,7 @@ const Login = () => {
               <p className="mx-4 text-gray-400">or</p>
               <hr className="border-t border-gray-300 flex-grow" />
             </div>
-            {message && <Alert message={message} />}
+            {message && <Alert message={message} bgColor={alertColor} />}
             <Formik initialValues={initialValues} validationSchema={loginalidationSchema} onSubmit={handleSubmit}>
               {(formikProps: FormikProps<any>) => {
                 const { errors, touched }: any = formikProps
@@ -133,12 +136,12 @@ const Login = () => {
                           <Label text="Remember me" htmlFor="remember" labelClassName="text-gray-400" />
                         </div>
                       </div>
-                      <a
-                        href="/forgot-password"
+                      <Link
+                        to="/forgot-password"
                         className="text-sm font-medium text-primary-600 hover:underline text-blue-400"
                       >
                         Forgot password?
-                      </a>
+                      </Link>
                     </div>
                     <Button
                       type="submit"

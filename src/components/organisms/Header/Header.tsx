@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { DropdownMenu } from "../../moleclues"
 import { useEffect, useRef, useState } from "react"
 import { decryptData } from "../../../utils/security"
@@ -42,6 +42,7 @@ const Header = () => {
     localStorage.removeItem("userData")
     setMyToken(null)
     navigate("/")
+    window.location.reload()
   }
 
   return (
@@ -49,12 +50,12 @@ const Header = () => {
       <header className="bg-white mb-10 border bottom-3 border-gray-100">
         <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="text-black text-lg">
                 <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                 alents.
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -173,10 +174,10 @@ const Header = () => {
                           </svg>
                         </div>
                         <div className="flex-auto">
-                          <a href="#" className="block font-semibold text-gray-900">
+                          <Link to="#" className="block font-semibold text-gray-900">
                             Analytics
                             <span className="absolute inset-0"></span>
-                          </a>
+                          </Link>
                           <p className="mt-1 text-gray-600">Get a better understanding of your traffic</p>
                         </div>
                       </div>
@@ -198,10 +199,10 @@ const Header = () => {
                           </svg>
                         </div>
                         <div className="flex-auto">
-                          <a href="#" className="block font-semibold text-gray-900">
+                          <Link to="#" className="block font-semibold text-gray-900">
                             Engagement
                             <span className="absolute inset-0"></span>
-                          </a>
+                          </Link>
                           <p className="mt-1 text-gray-600">Speak directly to your customers</p>
                         </div>
                       </div>
@@ -223,10 +224,10 @@ const Header = () => {
                           </svg>
                         </div>
                         <div className="flex-auto">
-                          <a href="#" className="block font-semibold text-gray-900">
+                          <Link to="#" className="block font-semibold text-gray-900">
                             Security
                             <span className="absolute inset-0"></span>
-                          </a>
+                          </Link>
                           <p className="mt-1 text-gray-600">Your customers’ data will be safe and secure</p>
                         </div>
                       </div>
@@ -248,17 +249,17 @@ const Header = () => {
                           </svg>
                         </div>
                         <div className="flex-auto">
-                          <a href="#" className="block font-semibold text-gray-900">
+                          <Link to="#" className="block font-semibold text-gray-900">
                             Integrations
                             <span className="absolute inset-0"></span>
-                          </a>
+                          </Link>
                           <p className="mt-1 text-gray-600">Connect with third-party tools</p>
                         </div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                      <a
-                        href="#"
+                      <Link
+                        to="#"
                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                       >
                         <svg
@@ -274,9 +275,9 @@ const Header = () => {
                           />
                         </svg>
                         Watch demo
-                      </a>
-                      <a
-                        href="#"
+                      </Link>
+                      <Link
+                        to="#"
                         className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                       >
                         <svg
@@ -292,53 +293,53 @@ const Header = () => {
                           />
                         </svg>
                         Contact sales
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 )}
               </div>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link to="#" className="text-sm font-semibold leading-6 text-gray-900">
                 Marketplace
-              </a>
-              <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+              </Link>
+              <Link to="#" className="text-sm font-semibold leading-6 text-gray-900">
                 Company
-              </a>
+              </Link>
             </div>
           )}
           {myToken !== null ? (
             <>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="/profile" className="mr-5">
+                <Link to="/profile" className="mr-5">
                   <img
                     className="w-12 h-12 p-[2px] rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                     src="https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=1024x1024&w=is&k=20&c=8mgK2Kq73o8DIjazvLmEGkhx2p_7P5r3mvpbIM6q5cA="
                     alt="Bordered avatar"
                   />
-                </a>
-                <a
-                  href="/"
+                </Link>
+                <Link
+                  to="/"
                   onClick={handleLogout}
                   className="text-sm border border-1 rounded-sm border-black px-5 py-2 ml-3 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
                 >
                   Logout
-                </a>
+                </Link>
               </div>
             </>
           ) : (
             <>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a
-                  href="/signup"
+                <Link
+                  to="/signup"
                   className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
                 >
                   Sign Up
-                </a>
-                <a
-                  href="/"
+                </Link>
+                <Link
+                  to="/"
                   className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </>
           )}
@@ -348,12 +349,12 @@ const Header = () => {
             <div className="fixed inset-0 z-10"></div>
             <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
-                <a href="#" className="-m-1.5 p-1.5">
+                <Link to="#" className="-m-1.5 p-1.5">
                   <span className="text-black text-lg">
                     <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                     alents.
                   </span>
-                </a>
+                </Link>
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
                   <span className="sr-only">Close menu</span>
                   <svg
@@ -392,105 +393,105 @@ const Header = () => {
                         </button>
                         {activeDropdown === "product" && (
                           <div className="mt-2 space-y-2" id="disclosure-1">
-                            <a
-                              href="#"
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Analytics
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Engagement
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Security
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Integrations
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Automations
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Watch demo
-                            </a>
-                            <a
-                              href="#"
+                            </Link>
+                            <Link
+                              to="#"
                               className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                             >
                               Contact sales
-                            </a>
+                            </Link>
                           </div>
                         )}
                       </div>
-                      <a
-                        href="#"
+                      <Link
+                        to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Features
-                      </a>
-                      <a
-                        href="#"
+                      </Link>
+                      <Link
+                        to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Marketplace
-                      </a>
-                      <a
-                        href="#"
+                      </Link>
+                      <Link
+                        to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Company
-                      </a>
+                      </Link>
                     </div>
                   )}
 
                   {myToken !== null ? (
                     <>
                       <div>
-                      <a
-                          href="/profile"
+                      <Link
+                          to="/profile"
                           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
                         >
                           Profile
-                        </a>
-                        <a
-                          href="/"
+                        </Link>
+                        <Link
+                          to="/"
                           onClick={handleLogout}
                           className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
                         >
                           Logout
-                        </a>
+                        </Link>
                       </div>
                     </>
                   ) : (
                     <>
                       <div className="py-6">
-                        <a
-                          href="/signup"
+                        <Link
+                          to="/signup"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         >
                           Sign Up
-                        </a>
-                        <a
-                          href="/"
+                        </Link>
+                        <Link
+                          to="/"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         >
                           Login
-                        </a>
+                        </Link>
                       </div>
                     </>
                   )}

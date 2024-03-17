@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import notFound from '../../assets/undraw_page_not_found_re_e9o6.svg'
 
 const NotFound = () => {
@@ -10,12 +11,12 @@ const NotFound = () => {
             Sorry we couldn't find the page you're looking for
           </p>
 
-          <a
-            href="/admin-dashboard"
+          <Link
+            to="/admin-dashboard"
             className="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-lg focus:outline-none bg-blue-600 active:bg-red-600 hover:bg-red-700"
           >
             back to homepage
-          </a>
+          </Link>
         </div>
         <div className="w-full lg:flex lg:justify-end lg:w-1/2 mx-5 my-12">
           <img
