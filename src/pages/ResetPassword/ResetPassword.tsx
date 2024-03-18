@@ -55,7 +55,7 @@ const ResetPassword = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
+        <div className="w-full bg-white dark:bg-[#404040] dark:border-none rounded-lg shadow dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             {message && <Alert message={message} />}
             <Formik
@@ -95,7 +95,7 @@ const ResetPassword = () => {
                       })}
                     <div className="flex items-center justify-between">
                       <div className="flex items-start">
-                        <div className="text-sm">
+                        <div className="text-sm dark:text-[#ffffff]">
                           Back to <LinkText href="/" text="Login" className="tracking-wide leading-normal" />
                         </div>
                       </div>

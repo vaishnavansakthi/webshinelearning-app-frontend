@@ -13,7 +13,7 @@ const Input = ({ type, placeholder, disabled, className, name, value, isErrors }
       type={showPassword ? 'text' : type} 
       className={`rounded-lg ${
         type === 'checkbox' && 'w-4 h-4 border border-blue-400 rounded bg-gray-50 focus:ring-3 outline-none dark:bg-gray-700 dark:border-gray-600'
-      } bg-gray-50 border max-[630px]:w-[295px] w-[380px] text-[16px] rounded-none text-gray-900 text-sm p-2.5 disabled:bg-gray-300 disabled:cursor-not-allowed ${className}`}
+      } bg-gray-50 border max-[630px]:w-[295px] w-[380px] dark:text-[#ffffff] dark:border text-[16px] rounded-none dark:outline-black text-gray-900 text-sm p-2.5 dark:bg-[#282828] dark:border-black focus:dark:border-black disabled:bg-gray-300 disabled:cursor-not-allowed ${className}`}
       placeholder={placeholder}
       disabled={disabled}
       style={{ display: 'inline-block', verticalAlign: 'top', borderRadius: '5px' }}

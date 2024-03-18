@@ -14,7 +14,7 @@ const DropdownMenu = ({
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+      className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl dark:text-white dark:bg-[#404040] bg-white shadow-lg ring-1 ring-gray-900/5"
     >
       {Array(5)
         .fill(0)

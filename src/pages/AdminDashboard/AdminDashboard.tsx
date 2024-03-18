@@ -198,10 +198,10 @@ const AdminDashboard = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="bg-white dark:bg-[#404040] dark:text-[#ffffff]">
               {currentRows?.map((data: any, index: number) => (
                 <tr key={index}>
-                  <td className="py-9 px-3 text-base font-normal flex items-center justify-center h-full border-t">
+                  <td className="py-9 px-3 text-base font-normal flex items-center justify-center h-full border-t dark:border-black">
                     <input
                       type="checkbox"
                       className="h-4 w-4 cursor-pointer"
@@ -209,19 +209,19 @@ const AdminDashboard = () => {
                       onChange={() => toggleSelectRow(data.id)}
                     />
                   </td>
-                  <td className="py-2 px-3 font-normal text-base border-t whitespace-nowrap capitalize">
+                  <td className="py-2 px-3 font-normal text-base border-t dark:border-black whitespace-nowrap capitalize">
                     {data?.username}
                   </td>
-                  <td className="py-2 px-3 font-normal text-base border-t whitespace-nowrap">{data?.email}</td>
-                  <td className="py-2 px-3 text-base font-normal border-t whitespace-nowrap">{data?.mobileNumber}</td>
-                  <td className="py-2 px-3 text-base font-normal border-t min-w-[250px] capitalize">{data?.role}</td>
-                  <td className="py-5 px-4 text-base font-normal border-t">
+                  <td className="py-2 px-3 font-normal text-base border-t dark:border-black whitespace-nowrap">{data?.email}</td>
+                  <td className="py-2 px-3 text-base font-normal border-t dark:border-black whitespace-nowrap">{data?.mobileNumber}</td>
+                  <td className="py-2 px-3 text-base font-normal border-t dark:border-black min-w-[250px] capitalize">{data?.role}</td>
+                  <td className="py-5 px-4 text-base font-normal border-t dark:border-black">
                     {data.isActivate ? "Member" : "Activate"}
                   </td>
                 </tr>
               ))}
               <tr>
-                <td colSpan={6} className="border-t"></td>
+                <td colSpan={6} className="border-t dark:border-black"></td>
               </tr>
             </tbody>
           </table>
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
               >
                 Previous
               </button>
-              <span className="mx-4 mt-2 text-gray-700">
+              <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff]">
                 Page {currentPage} of {totalPages}
               </span>
               <button

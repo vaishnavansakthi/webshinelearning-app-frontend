@@ -72,10 +72,10 @@ const SendOtp = () => {
 
   return (
     <div className="relative flex flex-col justify-center overflow-hidden py-10">
-      <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl max-[600px]:w-[300px] mx-auto w-full max-w-lg rounded-2xl">
+      <div className="relative bg-white dark:bg-[#404040] px-6 pt-10 pb-9 shadow-xl max-[600px]:w-[300px] mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <div className="font-semibold text-3xl">
+            <div className="font-semibold text-3xl dark:text-[#ffffff]">
               <p>OTP Verify</p>
             </div>
             <div className="flex flex-row text-sm font-medium text-gray-400">
@@ -91,7 +91,7 @@ const SendOtp = () => {
                     type="text"
                     value={digit}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(index, e.target.value)}
-                    className={`w-full h-full flex flex-col items-center justify-center text-center px-2 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-500`}
+                    className={`w-full h-full flex flex-col items-center justify-center text-center px-2 outline-none rounded-xl border border-gray-200 dark:border-gray-600 text-lg dark:text-[#ffffff] bg-white dark:bg-[#404040] focus:bg-gray-50 focus:ring-1 ring-blue-500`}
                     maxLength={1}
                     ref={(input) => (inputRefs.current[index] = input)}
                   />
@@ -109,7 +109,7 @@ const SendOtp = () => {
                 />
               </div>
 
-              <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
+              <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500 dark:text-[#ffffff]">
                 <p>Didn't receive code?</p>{" "}
                 <Link
                   className="flex flex-row items-center text-blue-600"

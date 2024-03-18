@@ -32,6 +32,7 @@
     "react-icons": "^5.0.1",
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.22.1",
+    "react-toggle-dark-mode": "^1.1.1",
     "requires": "^1.0.2",
     "storybook": "^7.6.17",
     "yup": "^1.4.0"

@@ -56,12 +56,13 @@ const Login = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
+        <div className="w-full bg-white dark:bg-[#404040] rounded-lg shadow border-none dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <Button
               type="button"
               text="Sign in with Google"
               bgColor="bg-white"
+              className="dark:bg-[#181818] dark:border dark:border-black"
               icon={
                 <svg className="w-4 h-4 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="google">
                   <path
@@ -86,9 +87,9 @@ const Login = () => {
               varient="outline"
             />
             <div className="flex items-center justify-center my-6">
-              <hr className="border-t border-gray-300 flex-grow" />
+              <hr className="border-t border-gray-300 dark:border-[#121212] flex-grow" />
               <p className="mx-4 text-gray-400">or</p>
-              <hr className="border-t border-gray-300 flex-grow" />
+              <hr className="border-t border-gray-300 dark:border-[#121212] flex-grow" />
             </div>
             {message && <Alert message={message} bgColor={alertColor} />}
             <Formik initialValues={initialValues} validationSchema={loginalidationSchema} onSubmit={handleSubmit}>
@@ -151,7 +152,7 @@ const Login = () => {
                       size="medium"
                       loading={loading}
                     />
-                    <p className="text-sm font-light text-gray-500">
+                    <p className="text-sm font-light dark:text-[#ffffff] text-gray-500">
                       Don’t have an account yet?{" "}
                       <LinkText href="/signup" text="Sign Up" className="tracking-wide leading-normal" />
                     </p>

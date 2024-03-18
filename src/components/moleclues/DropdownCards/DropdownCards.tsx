@@ -5,7 +5,7 @@ const DropdownCards = ({ className, dropClassName, paths, title, description }: 
   return (
     <>
       <div
-        className={`group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 ${dropClassName}`}
+        className={`group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 dark:hover:bg-[#181818] hover:bg-gray-50 ${dropClassName}`}
       >
         <SvgIcon className={className} paths={paths} />
         <DropContent title={title} description={description} />

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { DropdownMenu } from "../../moleclues"
 import { useEffect, useRef, useState } from "react"
 import { decryptData } from "../../../utils/security"
+import { Switcher } from "../../atoms"
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null)
@@ -47,11 +48,11 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white mb-10 border bottom-3 border-gray-100">
+      <header className="bg-white dark:bg-[#181818] mb-10 bottom-3">
         <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
             <Link to="/" className="-m-1.5 p-1.5">
-              <span className="text-black text-lg">
+              <span className="text-black dark:text-[#ffffff] text-lg">
                 <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                 alents.
               </span>
@@ -65,7 +66,7 @@ const Header = () => {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className="h-6 w-6"
+                className="h-6 w-6 dark:text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
@@ -81,7 +82,7 @@ const Header = () => {
               <div className="relative">
                 <button
                   type="button"
-                  className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "product" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
+                  className={`flex items-center gap-x-1 text-sm dark:text-[#ffffff] font-semibold leading-6 ${activeDropdown === "product" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
                   aria-expanded={activeDropdown === "product"}
                   onMouseEnter={() => handleMouseEnter("product")}
                   onMouseLeave={handleMouseLeave}
@@ -118,6 +119,7 @@ const Header = () => {
                     title="Analytics"
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
+                    className=""
                   />
                 )}
               </div>
@@ -125,13 +127,13 @@ const Header = () => {
               <div className="relative">
                 <button
                   type="button"
-                  className={`flex items-center gap-x-1 text-sm font-semibold leading-6 ${activeDropdown === "features" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
+                  className={`flex items-center gap-x-1 text-sm dark:text-[#ffffff] font-semibold leading-6 ${activeDropdown === "features" ? "text-blue-500 drop-shadow-md text-[16px]" : "text-gray-900"} `}
                   aria-expanded={activeDropdown === "features"}
                   onMouseEnter={() => handleMouseEnter("features")}
                   onMouseLeave={handleMouseLeave}
                 >
                   Features
-                  <svg
+                  {/* <svg
                     className="h-5 w-5 flex-none text-gray-400"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -142,9 +144,9 @@ const Header = () => {
                       d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
                       clip-rule="evenodd"
                     />
-                  </svg>
+                  </svg> */}
                 </button>
-                {activeDropdown === "features" && (
+                {/* {activeDropdown === "features" && (
                   <div
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
@@ -174,7 +176,7 @@ const Header = () => {
                           </svg>
                         </div>
                         <div className="flex-auto">
-                          <Link to="#" className="block font-semibold text-gray-900">
+                          <Link to="#" className="block font-semibold  text-gray-900">
                             Analytics
                             <span className="absolute inset-0"></span>
                           </Link>
@@ -296,12 +298,12 @@ const Header = () => {
                       </Link>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
-              <Link to="#" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
                 Marketplace
               </Link>
-              <Link to="#" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
                 Company
               </Link>
             </div>
@@ -319,27 +321,33 @@ const Header = () => {
                 <Link
                   to="/"
                   onClick={handleLogout}
-                  className="text-sm border border-1 rounded-sm border-black px-5 py-2 ml-3 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                  className="text-sm border border-1 rounded-sm border-black dark:border-white px-5 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
                 >
                   Logout
                 </Link>
+                <span className="ml-4 mt-2">
+                  <Switcher />
+                </span>
               </div>
             </>
           ) : (
             <>
-              <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center justify-center">
                 <Link
                   to="/signup"
-                  className="text-sm border border-1 rounded-sm border-black px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                  className="text-sm border border-1 rounded-sm border-black dark:border-white dark:text-white px-5 py-2 font-semibold leading-6 text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
                 >
                   Sign Up
                 </Link>
                 <Link
                   to="/"
-                  className="text-sm ml-2 border border-none border-black px-5 py-2 font-semibold leading-6 text-gray-900"
+                  className="text-sm ml-2 border border-none border-black dark:text-white px-5 py-2 font-semibold leading-6 text-gray-900"
                 >
                   Login
                 </Link>
+                <span className="">
+                  <Switcher />
+                </span>
               </div>
             </>
           )}
@@ -347,10 +355,10 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden" role="dialog" aria-modal="true">
             <div className="fixed inset-0 z-10"></div>
-            <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-[#404040] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
                 <Link to="#" className="-m-1.5 p-1.5">
-                  <span className="text-black text-lg">
+                  <span className="text-black text-lg dark:text-[#ffffff]">
                     <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                     alents.
                   </span>
@@ -358,7 +366,7 @@ const Header = () => {
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
                   <span className="sr-only">Close menu</span>
                   <svg
-                    className="h-6 w-6"
+                    className="h-6 w-6 dark:text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
@@ -376,7 +384,7 @@ const Header = () => {
                       <div className="-mx-3">
                         <button
                           type="button"
-                          className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          className="flex w-full items-center justify-between dark:text-[#ffffff] rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 dark:hover:bg-[#121212] hover:bg-gray-50"
                           aria-controls="disclosure-1"
                           aria-expanded={activeDropdown === "product"}
                           onMouseEnter={() => handleMouseEnter("product")}
@@ -395,43 +403,43 @@ const Header = () => {
                           <div className="mt-2 space-y-2" id="disclosure-1">
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Analytics
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Engagement
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Security
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Integrations
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Automations
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Watch demo
                             </Link>
                             <Link
                               to="#"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50"
                             >
                               Contact sales
                             </Link>
@@ -440,19 +448,19 @@ const Header = () => {
                       </div>
                       <Link
                         to="#"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Features
                       </Link>
                       <Link
                         to="#"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Marketplace
                       </Link>
                       <Link
                         to="#"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
                       >
                         Company
                       </Link>
@@ -462,19 +470,22 @@ const Header = () => {
                   {myToken !== null ? (
                     <>
                       <div>
-                      <Link
+                        <Link
                           to="/profile"
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] hover:bg-gray-50 text-left"
                         >
                           Profile
                         </Link>
                         <Link
                           to="/"
                           onClick={handleLogout}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-left"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] hover:bg-gray-50 text-left"
                         >
                           Logout
                         </Link>
+                        <span className="">
+                          <Switcher />
+                        </span>
                       </div>
                     </>
                   ) : (
@@ -482,16 +493,19 @@ const Header = () => {
                       <div className="py-6">
                         <Link
                           to="/signup"
-                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
                         >
                           Sign Up
                         </Link>
                         <Link
                           to="/"
-                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
                         >
                           Login
                         </Link>
+                        <span className="">
+                          <Switcher />
+                        </span>
                       </div>
                     </>
                   )}
