@@ -31,7 +31,7 @@ const SignUp = () => {
       headers: {
         'x-api-key': `${import.meta.env.VITE_X_API_Key}`
       }
-    })
+    })  
     .then(() => {
       formikHelpers.resetForm()
       navigate("/admin-dashboard")
@@ -43,7 +43,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mx-auto sm:p-2 max-w-[340px] sm:max-w-md md:max-h-screen lg:py-0">
+      <div className="flex flex-col items-center justify-center">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <Button
