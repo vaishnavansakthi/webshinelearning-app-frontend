@@ -77,23 +77,21 @@ const Header = () => {
           {myToken !== null ? (
             <>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <span className="mr-6 mt-2">
+                  <Switcher />
+                </span>
                 <Link to="/profile" className="mr-5">
-                  <img
-                    className="w-12 h-12 p-[2px] rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                    src="https://media.istockphoto.com/id/1476170969/photo/portrait-of-young-man-ready-for-job-business-concept.jpg?s=1024x1024&w=is&k=20&c=8mgK2Kq73o8DIjazvLmEGkhx2p_7P5r3mvpbIM6q5cA="
-                    alt="Bordered avatar"
-                  />
+                  <span className="inline-block w-12 h-12 p-2 rounded-full ring-2 ring-gray-300 capitalize dark:ring-gray-500 dark:text-white font-semibold text-2xl text-center">
+                    {myToken.user.username.charAt(0)}
+                  </span>
                 </Link>
                 <Link
                   to="/"
                   onClick={handleLogout}
-                  className="text-sm border border-1 rounded-sm border-black dark:border-white px-5 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                  className="border border-1 rounded-sm mt-1 border-black dark:border-white px-5 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
                 >
                   Logout
                 </Link>
-                <span className="ml-4 mt-2">
-                  <Switcher />
-                </span>
               </div>
             </>
           ) : (
@@ -147,7 +145,10 @@ const Header = () => {
                 <div className="-my-6 divide-y divide-gray-500/10">
                   {myToken !== null && (
                     <div className="space-y-2 py-6">
-                      <Link to="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left">
+                      <Link
+                        to="#"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                      >
                         Attendence
                       </Link>
                       <Link
@@ -205,12 +206,14 @@ const Header = () => {
                         <Link
                           to="/signup"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={toggleMobileMenu}
                         >
                           Sign Up
                         </Link>
                         <Link
                           to="/"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={toggleMobileMenu}
                         >
                           Login
                         </Link>
