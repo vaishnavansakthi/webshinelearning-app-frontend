@@ -1,6 +1,5 @@
 const Modal = ({
   title,
-  handleCloseModal,
   children
 }: {
   title: string

@@ -134,7 +134,7 @@ console.log("userData", userData)
             }}
             onSubmit={handleSubmit}
           >
-            {(formikProps) => (
+            {() => (
               <Form className="mt-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {profileFormSchema.map((form, index) => (
