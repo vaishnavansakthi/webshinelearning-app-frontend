@@ -1,7 +1,9 @@
 const Dashboard = () => {
     return(
         <>
-         <h1>Dashboard</h1>
+            <div className="text-center dark:text-white text-2xl">
+                <h1>Welcome to WebshineTalents</h1>
+            </div>
         </>
     )
 }
