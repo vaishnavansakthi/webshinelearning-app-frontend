@@ -1,5 +1,5 @@
 import React from "react";
-import { Login, SignUp, ForgotPassword, ResetPassword, SendOtp, AdminDashboard, Profile } from "../pages";
+import { Login, SignUp, ForgotPassword, ResetPassword, SendOtp, Profile } from "../pages";
 
 interface IRoutesTypes {
     path: string;
@@ -12,41 +12,36 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/",
     component: Login,
-    navigate: '/admin-dashboard',
+    navigate: '/dashboard',
     private: false 
   },
   {
     path: "/signup",
     component: SignUp,
-    navigate: '/admin-dashboard',
+    navigate: '/dashboard',
     private: false
   },
   {
     path: "/forgot-password",
-    navigate: '/admin-dashboard',
+    navigate: '/dashboard',
     component: ForgotPassword,
     private: false
   },
   {
     path: "/reset-password",
     component: ResetPassword,
-    navigate: '/admin-dashboard',
+    navigate: '/dashboard',
     private: false
   },
   {
     path: "/verify-otp",
     component: SendOtp,
-    navigate: '/admin-dashboard',
+    navigate: '/dashboard',
     private: false
-  },
-  {
-    path: "/admin-dashboard",
-    component: AdminDashboard,
-    private: true 
   },
   {
     path: "/profile",
     component: Profile,
     private: true
-  },
+  }
 ];

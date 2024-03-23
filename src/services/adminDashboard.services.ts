@@ -10,7 +10,18 @@ async function getAllUserData() {
   }
 }
 
+async function getUserData(id: string) {
+  try {
+    const response = await axiosInstance.get(`/user/${id}`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 
 export {
-    getAllUserData
+    getAllUserData,
+    getUserData
 }

@@ -20,23 +20,24 @@ const initialValues: User = {
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const [message, setsMessage] = useState("")
-  const [alertColor, setAlertColor] = useState("");
+  const [alertColor, setAlertColor] = useState("")
 
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
-
     setLoading(true)
     const res = loginUsers(values)
     res.then((d) => {
       console.log(d)
     })
-    res.then((res: any) => {
+    res
+      .then((res: any) => {
         setLoading(false)
         formikHelpers.resetForm()
+        console.log(res.user)
         if (res.user.isActivate) {
           encryptData(res, "userData", "object")
-          navigate("/admin-dashboard")
+          navigate("/dashboard")
           window.location.reload()
         } else {
           setsMessage(

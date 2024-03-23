@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import { NotFound } from "./pages"
+import { AdminDashboard, Dashboard, NotFound } from "./pages"
 import { Layout } from "./components/templates"
 import { decryptData } from "./utils/security"
 import { routes } from "./common/routes"
@@ -12,7 +12,8 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          {routes.map((route, index) => {
+        <Route path="/dashboard" element={myToken?.user?.role === "admin" ? <AdminDashboard /> : <Dashboard />} />
+          {routes && routes.map((route, index) => {
             const element = route.navigate ? (
               myToken !== null && !route.private ? (
                 <Navigate to={`${route.navigate}`} />
