@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { FaPlusCircle } from "react-icons/fa"
 import dayjs from "dayjs"
 
 const Table = ({
@@ -7,13 +6,13 @@ const Table = ({
   columns,
   handleEdit,
   handleDelete,
-  create,
+  children,
 }: {
   data?: any
   columns?: any
   handleEdit?: any
   handleDelete?: any
-  create?: boolean
+  children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const rowsPerPage = 4
@@ -37,23 +36,7 @@ const Table = ({
       {" "}
       {/* Center the table horizontally */}
       <div className="relative overflow-x-auto">
-        {create && (
-          <div className="flex items-end justify-end flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
-            <div>
-             
-              <button
-                id="dropdownActionButton"
-                data-dropdown-toggle="dropdownAction"
-                className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                type="button"
-              >
-                <span className="sr-only">Mark Attendance</span>
-                <FaPlusCircle className="mr-2" />
-                Mark Attendance
-              </button>
-            </div>
-          </div>
-        )}
+        {children}
         <table className="text-left font-inter border-separate border-spacing-y-0 border dark:border-black">
           <thead className="bg-blue-400 dark:bg-gray-700 rounded-lg text-base text-white font-semibold w-full">
             <tr>
@@ -77,18 +60,40 @@ const Table = ({
                   >
                     {column.field === "actions" ? (
                       <div>
-                        <button
-                          className="px-4 py-2 border dark:border-gray-50 border-gray-500  mr-2 rounded-md"
-                          onClick={() => handleEdit(rowData.id)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="px-4 py-2 border dark:border-gray-50 border-gray-500 rounded-md"
-                          onClick={() => handleDelete(rowData.id)}
-                        >
-                          Delete
-                        </button>
+                        {column.enable === "delete" ? (
+                          <>
+                            <button
+                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                              onClick={() => handleDelete(rowData.id)}
+                            >
+                              Delete
+                            </button>
+                          </>
+                        ) : column.enable === "edit" ? (
+                          <>
+                            <button
+                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                              onClick={() => handleEdit(rowData.id)}
+                            >
+                              Edit
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                              onClick={() => handleEdit(rowData.id)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                              onClick={() => handleDelete(rowData.id)}
+                            >
+                              Delete
+                            </button>
+                          </>
+                        )}
                       </div>
                     ) : column.label === "Date" && rowData[column.field] !== null ? (
                       dayjs(rowData[column.field]).format("MMM D, YYYY")

@@ -3,8 +3,8 @@ const Modal = ({
   children
 }: {
   title: string
-  handleCloseModal: (event: React.MouseEvent<HTMLButtonElement>) => void,
-  children: React.ReactNode
+  handleCloseModal?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  children?: React.ReactNode
 }) => {
   return (
     <>
