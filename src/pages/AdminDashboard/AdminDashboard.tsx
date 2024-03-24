@@ -12,7 +12,6 @@ const AdminDashboard = () => {
     { label: 'Mobile Number', field: 'mobileNumber' },
     { label: 'Role', field: 'role' },
     { label: 'Status', field: 'isActivate', trueValue: 'Member', falseValue: 'Activate' },
-    { label: 'Action', field: 'actions' },
   ];
 
   useEffect(() => {
@@ -25,6 +24,10 @@ const AdminDashboard = () => {
       console.log(error)
     }
   }, [])
+
+  const handleDelete = (id: string) => {
+    console.log(id)
+  }
 
   return (
     <div className="h-full flex flex-col items-center justify-center py-4 sm:py-10 gap-12">
