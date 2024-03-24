@@ -60,7 +60,7 @@ const Header = () => {
               <Link to="/attendance" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
                 Attendance
               </Link>
-              <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
+              <Link to="/tasks" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
                 Tasks
               </Link>
               <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
@@ -148,30 +148,35 @@ const Header = () => {
                       <Link
                         to="/attendance"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                        onClick={toggleMobileMenu}
                       >
                         Attendance
                       </Link>
                       <Link
-                        to="#"
+                        to="/tasks"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                        onClick={toggleMobileMenu}
                       >
                         Tasks
                       </Link>
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                        onClick={toggleMobileMenu}
                       >
                         Query
                       </Link>
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                        onClick={toggleMobileMenu}
                       >
                         Leaderboard
                       </Link>
                       <Link
                         to="#"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
+                        onClick={toggleMobileMenu}
                       >
                         Task Tracker
                       </Link>

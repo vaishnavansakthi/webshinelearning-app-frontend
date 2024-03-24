@@ -32,10 +32,10 @@ const Table = ({
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center px-24 max-sm:px-4">
       {" "}
       {/* Center the table horizontally */}
-      <div className="relative overflow-x-auto">
+      <div className="relative overflow-x-auto m-auto">
         {children}
         <table className="text-left font-inter border-separate border-spacing-y-0 border dark:border-black">
           <thead className="bg-blue-400 dark:bg-gray-700 rounded-lg text-base text-white font-semibold w-full">
@@ -57,13 +57,14 @@ const Table = ({
                   <td
                     key={colIndex}
                     className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap capitalize max-sm:text-[12px] max-sm:py-1 max-sm:px-1"
+                    style={{ whiteSpace: "pre-line" }}
                   >
                     {column.field === "actions" ? (
                       <div>
                         {column.enable === "delete" ? (
                           <>
                             <button
-                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                              className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
                               onClick={() => handleDelete(rowData.id)}
                             >
                               Delete
@@ -72,7 +73,7 @@ const Table = ({
                         ) : column.enable === "edit" ? (
                           <>
                             <button
-                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                              className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
                               onClick={() => handleEdit(rowData.id)}
                             >
                               Edit
@@ -81,13 +82,13 @@ const Table = ({
                         ) : (
                           <>
                             <button
-                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                              className=" w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
                               onClick={() => handleEdit(rowData.id)}
                             >
                               Edit
                             </button>
                             <button
-                              className="px-4 py-2 max-sm:px-1 max-sm:py-1 border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                              className="mt-2 w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
                               onClick={() => handleDelete(rowData.id)}
                             >
                               Delete
@@ -95,7 +96,8 @@ const Table = ({
                           </>
                         )}
                       </div>
-                    ) : column.label === "Date" && rowData[column.field] !== null ? (
+                    ) : (column.label === "Uploaded On" || column.label === "Date") &&
+                      rowData[column.field] !== null ? (
                       dayjs(rowData[column.field]).format("MMM D, YYYY")
                     ) : typeof rowData[column.field] === "boolean" ? (
                       rowData[column.field] ? (
@@ -103,6 +105,16 @@ const Table = ({
                       ) : (
                         column.falseValue
                       )
+                    ) : rowData[column.field].startsWith("https://") ? (
+                      <a
+                        className="lowercase underline hover:text-blue-300"
+                        href={rowData[column.field]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ maxWidth: "50px", whiteSpace: "pre-wrap" }}
+                      >
+                        {rowData[column.field]}
+                      </a>
                     ) : (
                       rowData[column.field]
                     )}
@@ -115,27 +127,29 @@ const Table = ({
             </tr>
           </tbody>
         </table>
-        <div className="mt-5">
-          <div className="flex justify-center align-middle">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="mr-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white rounded-md max-sm:text-[12px]"
-            >
-              Previous
-            </button>
-            <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[12px]">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="ml-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white rounded-md max-sm:text-[12px]"
-            >
-              Next
-            </button>
+        {data.length > 4 && (
+          <div className="mt-5">
+            <div className="flex justify-center align-middle">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="mr-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white rounded-md max-sm:text-[12px]"
+              >
+                Previous
+              </button>
+              <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[12px]">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="ml-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white rounded-md max-sm:text-[12px]"
+              >
+                Next
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
