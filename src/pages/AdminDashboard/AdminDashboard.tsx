@@ -25,44 +25,8 @@ const AdminDashboard = () => {
     }
   }, [])
 
-  const handleDelete = (id: string) => {
-    console.log(id)
-  }
-
   return (
-    <div className="h-full flex flex-col items-center justify-center py-4 sm:py-10 gap-12">
-      {/* Dashboard card */}
-      <div className="flex items-center justify-center gap-4 flex-wrap">
-        <div className="border border-gray-300 dark:text-white w-[300px] h-[150px] rounded-md shadow-md">
-          <div>
-            <h1 className="text-center text-[20px] p-3">Registered</h1>
-          </div>
-          <div className="text-center">
-            <span className="text-[50px]">12</span>
-          </div>
-        </div>
-        <div className="border border-gray-300 dark:text-white w-[300px] h-[150px] rounded-md shadow-md">
-          <div>
-            <h1 className="text-center text-[20px] p-3">Users</h1>
-          </div>
-          <div className="text-center">
-            <span className="text-[50px]">8</span>
-          </div>
-        </div>
-        <div className="border border-gray-300 dark:text-white w-[300px] h-[150px] rounded-md shadow-md">
-          <div>
-            <h1 className="text-center text-[20px] p-3">Admin</h1>
-          </div>
-          <div className="text-center">
-            <span className="text-[50px]">2</span>
-          </div>
-        </div>
-      </div>
-      {/* Dashboard card */}
-      {/* Users need to activate */}
       <Table columns={columns} data={userData} handleDelete={() => {}} handleEdit={() => {}} />
-     
-    </div>
   )
 }
 

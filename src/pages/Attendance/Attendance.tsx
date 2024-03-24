@@ -29,27 +29,9 @@ const Attendance = () => {
       })
   }, [])
 
-  const handleMarkAttendance = () => {
-    // Logic to handle marking attendance
-    console.log("Mark Attendance clicked")
-  }
-
   return (
     <>
-      <div className="flex justify-end mb-3 w-full max-w-[1200px] max-sm:max-w-xl">
-        <button
-          onClick={handleMarkAttendance}
-          className="px-4 py-2 bg-blue-400 max-sm:text-[14px] max-sm:px-1 max-sm:py-1 mr-2 text-white rounded-md"
-        >
-          <div className="flex items-center justify-center">
-            <div>
-              <FaPlus className="mr-2" />
-            </div>
-            <div> Mark Attendance</div>
-          </div>
-        </button>
-      </div>
-      <Table columns={columns} data={attendanceData} />
+      <Table columns={columns} data={attendanceData} create={true} />
     </>
   )
 }
