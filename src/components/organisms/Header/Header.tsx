@@ -57,8 +57,8 @@ const Header = () => {
           </div>
           {myToken && myToken?.user?.role !== "admin" && (
             <div className="hidden lg:flex lg:gap-x-12">
-              <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
-                Attendence
+              <Link to="/attendance" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
+                Attendance
               </Link>
               <Link to="#" className="text-sm font-semibold dark:text-[#ffffff] leading-6 text-gray-900">
                 Tasks
@@ -146,10 +146,10 @@ const Header = () => {
                   {myToken !== null && (
                     <div className="space-y-2 py-6">
                       <Link
-                        to="#"
+                        to="/attendance"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
                       >
-                        Attendence
+                        Attendance
                       </Link>
                       <Link
                         to="#"

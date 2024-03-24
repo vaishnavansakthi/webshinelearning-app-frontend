@@ -13,7 +13,6 @@ const Profile = () => {
   const [profileData, setProfileData] = useState<any>({})
   const [userData, setUserData] = useState<any>()
   const [showModal, setShowModal] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const mytoken = JSON.parse(decryptData("userData", null))

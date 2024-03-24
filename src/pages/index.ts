@@ -7,6 +7,7 @@ import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import Profile from "./Profile/Profile";
 import NotFound from "./NotFound/NotFound";
 import Dashboard from "./Dashboard/Dashboard";
+import Attendance from "./Attendance/Attendance";
 
 export {
     ForgotPassword,
@@ -17,5 +18,6 @@ export {
     AdminDashboard,
     Profile,
     NotFound,
-    Dashboard
+    Dashboard,
+    Attendance
 }
