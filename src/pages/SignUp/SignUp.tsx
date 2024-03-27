@@ -1,21 +1,21 @@
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form, FormikProps, FormikHelpers } from "formik";
-import { CgDanger } from "react-icons/cg";
+import axios from "axios"
+import { Link, useNavigate } from "react-router-dom"
+import { Formik, Form, FormikProps, FormikHelpers } from "formik"
+import { CgDanger } from "react-icons/cg"
 
-import { Alert, Button, Label, LinkText } from "../../components/atoms";
-import { InputBlock } from "../../components/moleclues";
-import { signupFormSchema, signupValidationSchema } from "../../schema/signupFormSchema";
-import { useState } from "react";
+import { Alert, Button, Label, LinkText } from "../../components/atoms"
+import { InputBlock } from "../../components/moleclues"
+import { signupFormSchema, signupValidationSchema } from "../../schema/signupFormSchema"
+import { useState } from "react"
 
 type User = {
-  username: string;
-  email: string;
-  password: string;
-  mobileNumber: string;
+  username: string
+  email: string
+  password: string
+  mobileNumber: string
 }
 
-const initialValues: User  = {
+const initialValues: User = {
   username: "",
   email: "",
   password: "",
@@ -23,22 +23,30 @@ const initialValues: User  = {
 }
 
 const SignUp = () => {
-  const [message, setsMessage] = useState("");
+  const [message, setsMessage] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [alertColor, setAlertColor] = useState("")
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
-      axios.post('https://webshinelearning-app-backend.vercel.app/auth/register', values, {
-      headers: {
-        'x-api-key': `${import.meta.env.VITE_X_API_Key}`
-      }
-    })  
-    .then(() => {
-      formikHelpers.resetForm()
-      navigate("/admin-dashboard")
-    }).catch((err: any) => {
-      console.log(err)
-      setsMessage(err.response.data.message)
-    })
+    setLoading(true)
+    axios
+      .post("https://webshinelearning-app-backend.vercel.app/auth/register", values, {
+        headers: {
+          "x-api-key": `${import.meta.env.VITE_X_API_Key}`,
+        },
+      })
+      .then(() => {
+        setLoading(false)
+        formikHelpers.resetForm()
+        navigate("/admin-dashboard")
+      })
+      .catch((err: any) => {
+        setLoading(false)
+        console.log(err)
+        setsMessage(err.response.data.message)
+        setAlertColor("bg-red-400 rounded-sm")
+      })
   }
 
   return (
@@ -79,14 +87,10 @@ const SignUp = () => {
               <p className="mx-4 text-gray-400">or</p>
               <hr className="border-t border-gray-300 dark:border-[#121212] flex-grow" />
             </div>
-            {message &&  <Alert message={message} />}
-            <Formik
-              initialValues={initialValues}
-              validationSchema={signupValidationSchema}
-              onSubmit={handleSubmit}
-            >
+            {message && <Alert message={message} bgColor={alertColor} />}
+            <Formik initialValues={initialValues} validationSchema={signupValidationSchema} onSubmit={handleSubmit}>
               {(formikProps: FormikProps<any>) => {
-                const { errors, touched }: any = formikProps;
+                const { errors, touched }: any = formikProps
                 return (
                   <Form className="space-y-4 md:space-y-6">
                     {Array.isArray(signupFormSchema) &&
@@ -101,7 +105,9 @@ const SignUp = () => {
                               type={form.type}
                               placeholder={form.placeholder}
                               labelClassName={`${hasError ? "text-red-400" : ""}`}
-                              className={form.className + " " + `${hasError ? "outline outline-red-400" : "outline-blue-500"}`}
+                              className={
+                                form.className + " " + `${hasError ? "outline outline-red-400" : "outline-blue-500"}`
+                              }
                               isErrors={hasError}
                             />
                             {errors?.[form.name] && touched?.[form.name] ? (
@@ -137,6 +143,7 @@ const SignUp = () => {
                       color="primary"
                       className="tracking-wide leading-normal"
                       size="medium"
+                      loading={loading}
                     />
                     <p className="text-sm font-light dark:text-[#ffffff] text-gray-500">
                       Already have an account?{" "}

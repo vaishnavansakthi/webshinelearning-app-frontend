@@ -22,8 +22,8 @@ export const AlertSuccess: Story = {
 }
 
 export const AlertFailure: Story = {
-    args: {
-      message: "Get a better understanding of your traffic",
-      bgColor: "bg-red-300",
-    },
-  }
+  args: {
+    message: "Get a better understanding of your traffic",
+    bgColor: "bg-red-300",
+  },
+}
