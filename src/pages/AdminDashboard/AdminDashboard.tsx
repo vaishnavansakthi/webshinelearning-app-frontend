@@ -2,7 +2,7 @@
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { useEffect, useState } from "react"
 import Table from '../../components/moleclues/Table/Table'
-import { getAllUserData } from "../../services/adminDashboard.services"
+import { activateUser, getAllUserData } from "../../services/adminDashboard.services"
 
 const AdminDashboard = () => {
   const [userData, setUserData] = useState<any>([])
@@ -16,17 +16,34 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     try {
-      const res = getAllUserData()
-      res.then((data) => {
-        setUserData(data)
-      })
+      fetchUserData()
     } catch (error) {
       console.log(error)
     }
   }, [])
 
+  const fetchUserData = async () => {
+    const data = await getAllUserData()
+    setUserData(data)
+  }
+
+  const handleStatus = (id: string) => {
+    const selectedUser = userData.find((user: any) => user.id === id)
+
+    console.log(selectedUser)
+    const data = {
+      isEnable: !selectedUser.isActivate
+    }
+    const res = activateUser(selectedUser.id, data)
+    fetchUserData()
+    res.then(() => {
+      console.log(userData)
+     console.log("status updated")
+    })
+  }
+
   return (
-      <Table columns={columns} data={userData} handleDelete={() => {}} handleEdit={() => {}} />
+      <Table columns={columns} data={userData} handleStatus={handleStatus} handleDelete={() => {}} handleEdit={() => {}} />
   )
 }
 

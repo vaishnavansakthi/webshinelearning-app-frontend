@@ -1,25 +1,32 @@
 import { useState, useEffect } from "react"
 import dayjs from "dayjs"
+import { decryptData } from "../../../utils/security"
 
 const Table = ({
   data,
   columns,
   handleEdit,
   handleDelete,
+  handleStatus,
   children,
 }: {
   data?: any
   columns?: any
   handleEdit?: any
-  handleDelete?: any
+  handleDelete?: any,
+  handleStatus?: any
   children?: React.ReactNode
 }) => {
-  const [currentPage, setCurrentPage] = useState(1)
-  const rowsPerPage = 4
+  const [currentPage, setCurrentPage] = useState(() => {
+    return parseInt(localStorage.getItem("currentPage") || "1");
+  });
+  const rowsPerPage = 6
 
   useEffect(() => {
-    // Fetch data or any other initialization logic
-  }, [])
+    localStorage.setItem("currentPage", currentPage.toString());
+  }, [currentPage]);
+
+
 
   const totalPages = Math.ceil(data.length / rowsPerPage)
 
@@ -56,7 +63,7 @@ const Table = ({
                 {columns.map((column: any, colIndex: number) => (
                   <td
                     key={colIndex}
-                    className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap capitalize max-sm:text-[12px] max-sm:py-1 max-sm:px-1"
+                    className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap max-sm:text-[12px] max-sm:py-1 max-sm:px-1"
                     style={{ whiteSpace: "pre-line" }}
                   >
                     {column.field === "actions" ? (
@@ -101,11 +108,14 @@ const Table = ({
                       dayjs(rowData[column.field]).format("MMM D, YYYY")
                     ) : typeof rowData[column.field] === "boolean" ? (
                       rowData[column.field] ? (
-                        column.trueValue
+                        <button onClick={() => handleStatus(rowData.id)} className="border border-gray-300 px-3 py-2 rounded-md">{column.trueValue}</button>
+                        
                       ) : (
-                        column.falseValue
+                        <button onClick={() => handleStatus(rowData.id)} className="border border-gray-300 px-3 py-2 rounded-md">{column.falseValue}</button>
                       )
-                    ) : rowData[column.field].startsWith("https://") ? (
+                    ) : 
+                    
+                    rowData[column.field].startsWith("https://") ? (
                       <a
                         className="lowercase underline hover:text-blue-300"
                         href={rowData[column.field]}
