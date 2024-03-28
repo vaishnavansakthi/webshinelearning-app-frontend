@@ -5,7 +5,6 @@ import { deleteUserAttendance, getUserAttendance, markAttendance } from "../../s
 import { decryptData } from "../../utils/security"
 import { attendanceFormSchema } from "../../schema/attendanceFormSchema"
 import { Field, Formik, ErrorMessage, Form } from "formik"
-import { FaPlusCircle } from "react-icons/fa"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
 
