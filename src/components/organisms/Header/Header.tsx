@@ -74,8 +74,8 @@ const Header = () => {
               <Link to="/tasks" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "tasks" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
                 Tasks
               </Link>
-              <Link to="#" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
-                Query
+              <Link to="/studyplan" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "studyplan" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+                Study Plan
               </Link>
               <Link to="#" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
                 Leaderboard
@@ -171,11 +171,11 @@ const Header = () => {
                         Tasks
                       </Link>
                       <Link
-                        to="#"
+                        to="/studyplan"
                         className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
                         onClick={toggleMobileMenu}
                       >
-                        Query
+                        Study Plan
                       </Link>
                       <Link
                         to="#"

@@ -9,6 +9,7 @@ import NotFound from "./NotFound/NotFound";
 import Dashboard from "./Dashboard/Dashboard";
 import Attendance from "./Attendance/Attendance";
 import Task from "./Task/Task";
+import StudyPlan from "./StudyPlan/StudyPlan";
 
 export {
   ForgotPassword,
@@ -22,4 +23,5 @@ export {
   Dashboard,
   Attendance,
   Task,
+  StudyPlan
 }

@@ -5,7 +5,6 @@ import { createTask, deleteUserTask, getUserTaks, updateUserTask } from "../../s
 import { decryptData } from "../../utils/security"
 import { taskFormSchema } from "../../schema/taskFormSchema"
 import { Field, Formik, ErrorMessage, Form } from "formik"
-import { FaPlusCircle } from "react-icons/fa"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
 import { taskValidationSchema } from "../../schema/taskFormSchema"
@@ -114,21 +113,45 @@ const Task = () => {
   return (
     <>
       <Table columns={columns} data={taskData} handleDelete={handleDelete} handleEdit={handleEdit}>
-        <div className="flex items-end justify-end flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
-          <div>
-            <button
-              id="dropdownActionButton"
-              data-dropdown-toggle="dropdownAction"
-              className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              type="button"
-              onClick={handleModal}
-            >
-              <span className="sr-only">Add taks</span>
-              <FaPlusCircle className="mr-2" />
-              Add Tasks
-            </button>
+        <section className="relative container overflow-x-auto m-auto flex items-center justify-center">
+          <div className="flex items-center justify-between flex-wrap max-sm:justify-center p-6">
+            <div>
+              <div className="flex items-center gap-x-3">
+                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Tasks</h2>
+
+                <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                  {taskData.length}
+                </span>
+              </div>
+
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Every task completion will be rewarded</p>
+            </div>
+
+            <div className="flex items-center mt-4 gap-x-3 px-7 py-1">
+              <button
+                onClick={handleModal}
+                className="flex items-center justify-center px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+                <span>Add Tasks</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
       </Table>
       {isModal && (
         <Modal title={editingTaskId ? "Update Task" : "Add task"}>

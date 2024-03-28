@@ -14,7 +14,7 @@ const Attendance = () => {
   const { setIsLoading } = useContext(loaderContext)
   const [isModal, setisModal] = useState(false)
   const [isAttendanceModal, setisAttendanceModal] = useState(false)
-  const [isDeleteModal, setIsDeleteModal] = useState(false) 
+  const [isDeleteModal, setIsDeleteModal] = useState(false)
   const [attendanceIdToDelete, setAttendanceIdToDelete] = useState("")
   const columns = [
     { label: "Title", field: "title" },
@@ -48,8 +48,8 @@ const Attendance = () => {
   const handleSubmit = (values: any) => {
     setisModal(false)
     const isAlreadyMarked = attendanceData.some((attendance: any) => {
-      const currentDate = new Date().toISOString().split("T")[0] 
-      const attendanceDate = new Date(attendance.createdAt).toISOString().split("T")[0] 
+      const currentDate = new Date().toISOString().split("T")[0]
+      const attendanceDate = new Date(attendance.createdAt).toISOString().split("T")[0]
       return attendanceDate === currentDate
     })
 
@@ -77,7 +77,7 @@ const Attendance = () => {
 
   const handleDelete = (id: string) => {
     setIsDeleteModal(true)
-    setAttendanceIdToDelete(id) 
+    setAttendanceIdToDelete(id)
   }
 
   const handleConfirmDelete = (id: string) => {
@@ -95,22 +95,46 @@ const Attendance = () => {
 
   return (
     <>
-      <Table columns={columns} data={attendanceData} handleDelete={handleDelete}>
-        <div className="flex items-end justify-end flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4">
-          <div>
-            <button
-              id="dropdownActionButton"
-              data-dropdown-toggle="dropdownAction"
-              className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-              type="button"
-              onClick={handleModal}
-            >
-              <span className="sr-only">Mark Attendance</span>
-              <FaPlusCircle className="mr-2" />
-              Mark Attendance
-            </button>
+      <Table columns={columns} data={attendanceData ?? []} handleDelete={handleDelete}>
+        <section className="relative container overflow-x-auto m-auto flex items-center justify-around">
+          <div className="flex items-center justify-around flex-wrap max-sm:justify-center p-6">
+            <div>
+              <div className="flex items-center gap-x-3">
+                <h2 className="text-lg font-medium text-gray-800 dark:text-white">Attendance</h2>
+
+                <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                  {(attendanceData.length / 8) * 100} %
+                </span>
+              </div>
+
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Please atten session on regular basis</p>
+            </div>
+
+            <div className="flex items-center mt-4 gap-x-3 px-7 py-1">
+              <button
+                onClick={handleModal}
+                className="flex items-center justify-center px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+                <span>Mark Attendance</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
       </Table>
       {isDeleteModal && (
         <Modal title="">
