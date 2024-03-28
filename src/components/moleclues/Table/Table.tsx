@@ -74,7 +74,7 @@ const Table = ({
                           {column.enable === "delete" ? (
                             <>
                               <button
-                                className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                                className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-red-700 dark:hover:border-black border-gray-500 rounded-md"
                                 onClick={() => handleDelete(rowData.id)}
                               >
                                 Delete
@@ -98,7 +98,7 @@ const Table = ({
                                 Edit
                               </button>
                               <button
-                                className="mt-2 w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500 rounded-md"
+                                className="mt-2 w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-red-700 dark:hover:border-black border-gray-500 rounded-md"
                                 onClick={() => handleDelete(rowData.id)}
                               >
                                 Delete

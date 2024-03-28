@@ -231,7 +231,7 @@ const Attendance = () => {
                     <div key={index}>
                       <label
                         htmlFor={form.name}
-                        className="block text-sm max-[600px]:text-left font-medium text-gray-700"
+                        className="block text-sm max-[600px]:text-left font-medium text-gray-700 dark:text-white"
                       >
                         {form.label}
                       </label>

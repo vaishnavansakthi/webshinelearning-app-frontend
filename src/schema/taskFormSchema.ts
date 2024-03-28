@@ -1,3 +1,5 @@
+import * as Yup from "yup"
+
 export const taskFormSchema = [
     {
         name: "title",
@@ -24,3 +26,9 @@ export const taskFormSchema = [
         className: "text-gray-400",
     }
 ]
+
+export const taskValidationSchema = Yup.object().shape({
+    title: Yup.string().required("Title is required"),
+    githubUrl: Yup.string().required("Github URL is required"),
+    deployedUrl: Yup.string().required("Deployed URL is required"),
+})

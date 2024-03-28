@@ -8,6 +8,7 @@ import { Field, Formik, ErrorMessage, Form } from "formik"
 import { FaPlusCircle } from "react-icons/fa"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
+import { taskValidationSchema } from "../../schema/taskFormSchema"
 
 const Task = () => {
   const [taskData, setTaskData] = useState<any>([])
@@ -131,7 +132,7 @@ const Task = () => {
       </Table>
       {isModal && (
         <Modal title={editingTaskId ? "Update Task" : "Add task"}>
-          <Formik initialValues={initialFormValues} onSubmit={handleSubmit}>
+          <Formik initialValues={initialFormValues} validationSchema={taskValidationSchema} onSubmit={handleSubmit}>
             {() => (
               <Form className="mt-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -139,7 +140,7 @@ const Task = () => {
                     <div key={index}>
                       <label
                         htmlFor={form.name}
-                        className="block text-sm max-[600px]:text-left font-medium text-gray-700"
+                        className="block text-sm max-[600px]:text-left font-medium text-gray-700 dark:text-white"
                       >
                         {form.label}
                       </label>
