@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import Table from "../../components/moleclues/Table/Table"
 import { createTask, deleteUserTask, getUserTaks, updateUserTask } from "../../services/task.services"
@@ -7,12 +7,20 @@ import { taskFormSchema } from "../../schema/taskFormSchema"
 import { Field, Formik, ErrorMessage, Form } from "formik"
 import { FaPlusCircle } from "react-icons/fa"
 import { Modal } from "../../components/moleclues"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const Task = () => {
   const [taskData, setTaskData] = useState<any>([])
-  const [isModal, setisModal] = useState(false)
+  const [isModal, setisModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
-  const [initialFormValues, setInitialFormValues] = useState<any>(null)
+  const [initialFormValues, setInitialFormValues] = useState<any>({
+    title: "",
+    githubUrl: "",
+    deployedUrl: "",
+  })
+
+  const { setIsLoading } = useContext(loaderContext)
+
   const columns = [
     { label: "Title", field: "title" },
     { label: "Github URL", field: "githubUrl" },
@@ -24,12 +32,13 @@ const Task = () => {
   const myToken = JSON.parse(decryptData("userData", null))
 
   useEffect(() => {
+    setIsLoading(true)
     const res = getUserTaks(myToken.user.id)
     console.log(myToken.user.id)
     res
       .then((data: any) => {
         setTaskData(data)
-        console.log(data)
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
@@ -44,7 +53,7 @@ const Task = () => {
     if (editingTaskId) {
       const updatedTaskData = taskData.map((task: any) => {
         if (task.id === editingTaskId) {
-          return { ...task, ...values } 
+          return { ...task, ...values }
         }
         return task
       })
@@ -69,6 +78,12 @@ const Task = () => {
 
   const handleCloseModal = () => {
     setisModal(false)
+    setInitialFormValues({
+      title: "",
+      githubUrl: "",
+      deployedUrl: "",
+    })
+    setEditingTaskId(null)
   }
 
   const handleDelete = (id: string) => {
@@ -115,17 +130,8 @@ const Task = () => {
         </div>
       </Table>
       {isModal && (
-        <Modal title={editingTaskId ? "Update Task":"Add task"}>
-          <Formik
-            initialValues={
-              initialFormValues || {
-                title: "",
-                githubUrl: "",
-                deployedUrl: "",
-              }
-            }
-            onSubmit={handleSubmit}
-          >
+        <Modal title={editingTaskId ? "Update Task" : "Add task"}>
+          <Formik initialValues={initialFormValues} onSubmit={handleSubmit}>
             {() => (
               <Form className="mt-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -174,7 +180,7 @@ const Task = () => {
                 </div>
                 <div className="flex justify-end items-end mt-5">
                   <button type="submit" className="bg-blue-500 text-white hover:bg-blue-600 px-5 py-2 rounded-md">
-                    {editingTaskId ? "Update": "Add"}
+                    {editingTaskId ? "Update" : "Add"}
                   </button>
                   <button
                     type="button"

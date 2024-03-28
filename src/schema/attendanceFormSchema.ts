@@ -27,12 +27,4 @@ export const attendanceFormSchema = [
         required: true,
         className: "text-gray-400",
     },
-    {
-        name: "date",
-        label: "Date",
-        type: "date",
-        placeholder: "Enter date",
-        required: true,
-        className: "text-gray-400",
-    }
 ]

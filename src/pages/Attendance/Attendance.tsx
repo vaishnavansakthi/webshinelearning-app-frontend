@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import Table from "../../components/moleclues/Table/Table"
 import { deleteUserAttendance, getUserAttendance, markAttendance } from "../../services/attendance.services"
@@ -7,27 +7,31 @@ import { attendanceFormSchema } from "../../schema/attendanceFormSchema"
 import { Field, Formik, ErrorMessage, Form } from "formik"
 import { FaPlusCircle } from "react-icons/fa"
 import { Modal } from "../../components/moleclues"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState<any>([])
+  const { setIsLoading } = useContext(loaderContext)
   const [isModal, setisModal] = useState(false)
   const columns = [
     { label: "Title", field: "title" },
     { label: "Comment", field: "desc" },
     { label: "Status", field: "status" },
-    { label: "Date", field: "date" },
+    { label: "Date", field: "createdAt" },
     { label: "Actions", field: "actions", enable: "delete" },
   ]
-
   const myToken = JSON.parse(decryptData("userData", null))
 
+  console.log(attendanceData, "attendanceData")
+
   useEffect(() => {
+    setIsLoading(true)
     const res = getUserAttendance(myToken.user.id)
     console.log(myToken.user.id)
     res
       .then((data: any) => {
         setAttendanceData(data)
-        console.log(data)
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
@@ -39,6 +43,17 @@ const Attendance = () => {
   }
 
   const handleSubmit = (values: any) => {
+    const isAlreadyMarked = attendanceData.some((attendance: any) => {
+      const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+      const attendanceDate = new Date(attendance.createdAt).toISOString().split('T')[0]; // Get attendance date in YYYY-MM-DD format
+      return attendanceDate === currentDate;
+    });
+  
+    // If attendance for the current date already exists, return without marking attendance
+    if (isAlreadyMarked) {
+      alert("You have already marked attendance for today.");
+      return;
+    }
     const res = markAttendance(myToken.user.id, values)
     res
       .then((data) => {
@@ -87,7 +102,7 @@ const Attendance = () => {
               title: "",
               desc: "",
               status: "",
-              date: "",
+              date: null,
             }}
             onSubmit={handleSubmit}
           >

@@ -59,7 +59,7 @@ const Login = () => {
       <div className="flex flex-col items-center justify-center">
         <div className="w-full bg-white dark:bg-[#404040] rounded-lg shadow border-none dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <Button
+            {/* <Button
               type="button"
               text="Sign in with Google"
               bgColor="bg-white"
@@ -91,7 +91,7 @@ const Login = () => {
               <hr className="border-t border-gray-300 dark:border-[#121212] flex-grow" />
               <p className="mx-4 text-gray-400">or</p>
               <hr className="border-t border-gray-300 dark:border-[#121212] flex-grow" />
-            </div>
+            </div> */}
             {message && <Alert message={message} bgColor={alertColor} />}
             <Formik initialValues={initialValues} validationSchema={loginalidationSchema} onSubmit={handleSubmit}>
               {(formikProps: FormikProps<any>) => {
