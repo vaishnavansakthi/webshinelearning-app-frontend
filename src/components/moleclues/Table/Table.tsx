@@ -19,13 +19,13 @@ const Table = ({
   children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(() => {
-    return parseInt(localStorage.getItem("currentPage") || "1")
+    return parseInt(sessionStorage.getItem("currentPage") || "1")
   })
   const { isLoading } = useContext(loaderContext)
   const rowsPerPage = 6
 
   useEffect(() => {
-    localStorage.setItem("currentPage", currentPage.toString())
+    sessionStorage.setItem("currentPage", currentPage.toString())
   }, [currentPage])
 
   const totalPages = Math.ceil(data.length / rowsPerPage)

@@ -13,6 +13,9 @@ const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState<any>([])
   const { setIsLoading } = useContext(loaderContext)
   const [isModal, setisModal] = useState(false)
+  const [isAttendanceModal, setisAttendanceModal] = useState(false)
+  const [isDeleteModal, setIsDeleteModal] = useState(false) 
+  const [attendanceIdToDelete, setAttendanceIdToDelete] = useState("")
   const columns = [
     { label: "Title", field: "title" },
     { label: "Comment", field: "desc" },
@@ -43,17 +46,18 @@ const Attendance = () => {
   }
 
   const handleSubmit = (values: any) => {
+    setisModal(false)
     const isAlreadyMarked = attendanceData.some((attendance: any) => {
-      const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
-      const attendanceDate = new Date(attendance.createdAt).toISOString().split('T')[0]; // Get attendance date in YYYY-MM-DD format
-      return attendanceDate === currentDate;
-    });
-  
-    // If attendance for the current date already exists, return without marking attendance
+      const currentDate = new Date().toISOString().split("T")[0] 
+      const attendanceDate = new Date(attendance.createdAt).toISOString().split("T")[0] 
+      return attendanceDate === currentDate
+    })
+
     if (isAlreadyMarked) {
-      alert("You have already marked attendance for today.");
-      return;
+      setisAttendanceModal(true)
+      return
     }
+    setisAttendanceModal(false)
     const res = markAttendance(myToken.user.id, values)
     res
       .then((data) => {
@@ -67,13 +71,26 @@ const Attendance = () => {
 
   const handleCloseModal = () => {
     setisModal(false)
+    setisAttendanceModal(false)
+    setIsDeleteModal(false)
   }
 
   const handleDelete = (id: string) => {
+    setIsDeleteModal(true)
+    setAttendanceIdToDelete(id) 
+  }
+
+  const handleConfirmDelete = (id: string) => {
+    setIsDeleteModal(true)
     const res = deleteUserAttendance(id)
-    res.then(() => {
-      setAttendanceData(attendanceData.filter((item: any) => item.id !== id))
-    })
+    res
+      .then(() => {
+        setAttendanceData(attendanceData.filter((item: any) => item.id !== id))
+        setIsDeleteModal(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -95,6 +112,107 @@ const Attendance = () => {
           </div>
         </div>
       </Table>
+      {isDeleteModal && (
+        <Modal title="">
+          <div className="relative p-4 w-full max-w-md max-h-full">
+            <div className="relative bg-white rounded-lg border-none dark:bg-[#404040] border border-[#404040]">
+              <button
+                type="button"
+                className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:text-white"
+                data-modal-hide="popup-modal"
+              >
+                <span className="sr-only">Close modal</span>
+              </button>
+              <div className="p-4 md:p-5 text-center">
+                <svg
+                  className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                  Are you sure you want to delete this attendance entry?
+                </h3>
+                <button
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                  onClick={() => handleConfirmDelete(attendanceIdToDelete)}
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  onClick={handleCloseModal}
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {isAttendanceModal && (
+        <Modal title="">
+          <div className="relative p-4 w-full max-w-md max-h-full">
+            <div className="relative bg-white rounded-lg border-none dark:bg-[#404040] border border-[#404040]">
+              <button
+                type="button"
+                className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:text-white"
+                data-modal-hide="popup-modal"
+              >
+                <span className="sr-only">Close modal</span>
+              </button>
+              <div className="p-4 md:p-5 text-center">
+                <svg
+                  className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                  You have already marked attendance for today.
+                </h3>
+                {/* <button
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                >
+                  Yes, I'm sure
+                </button> */}
+                <button
+                  onClick={handleCloseModal}
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
       {isModal && (
         <Modal title="Mark Attendance">
           <Formik
