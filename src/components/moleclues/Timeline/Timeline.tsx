@@ -38,8 +38,8 @@ const Timeline = ({
           <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
             {contentData?.map((content: { topic: string; content: string }, contentIndex: number) => {
               return (
-                <dl key={contentIndex}>
-                  <dt>{content?.topic}</dt>
+                <dl className="my-5" key={contentIndex}>
+                  <dt className="font-bold">{content?.topic}</dt>
                   <dd>- {content?.content}</dd>
                 </dl>
               )
