@@ -1,7 +1,9 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import dayjs from "dayjs"
 import { loaderContext } from "../../../context/LoaderProvider"
+import { FaLongArrowAltLeft, FaLongArrowAltRight, FaRegEdit,  } from "react-icons/fa"
+import { MdDelete } from "react-icons/md";
 
 const Table = ({
   data,
@@ -18,15 +20,9 @@ const Table = ({
   handleStatus?: any
   children?: React.ReactNode
 }) => {
-  const [currentPage, setCurrentPage] = useState(() => {
-    return parseInt(sessionStorage.getItem("currentPage") || "1")
-  })
+  const [currentPage, setCurrentPage] = useState(1)
   const { isLoading } = useContext(loaderContext)
   const rowsPerPage = 6
-
-  useEffect(() => {
-    sessionStorage.setItem("currentPage", currentPage.toString())
-  }, [currentPage])
 
   const totalPages = Math.ceil(data.length / rowsPerPage)
 
@@ -77,34 +73,33 @@ const Table = ({
                             {column.enable === "delete" ? (
                               <>
                                 <button
-                                  className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-red-700 dark:hover:border-black border-gray-500 rounded-md"
+                                  className="rounded-md"
                                   onClick={() => handleDelete(rowData.id)}
                                 >
-                                  Delete
+                                  <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
                                 </button>
                               </>
                             ) : column.enable === "edit" ? (
                               <>
                                 <button
-                                  className="w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                                  className="mr-2 rounded-md"
                                   onClick={() => handleEdit(rowData.id)}
                                 >
-                                  Edit
+                                  <FaRegEdit className="text-green-400 hover:text-green-500" size="22px" color="green" />
                                 </button>
                               </>
                             ) : (
                               <>
                                 <button
-                                  className=" w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-gray-700 dark:hover:border-black border-gray-500  mr-2 rounded-md"
+                                  className="mr-2 rounded-md"
                                   onClick={() => handleEdit(rowData.id)}
                                 >
-                                  Edit
+                                  <FaRegEdit className="text-green-400 hover:text-green-500" size="22px" />
                                 </button>
                                 <button
-                                  className="mt-2 w-[80px] h-[35px] border dark:border-gray-50 dark:hover:bg-red-700 dark:hover:border-black border-gray-500 rounded-md"
                                   onClick={() => handleDelete(rowData.id)}
                                 >
-                                  Delete
+                                  <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
                                 </button>
                               </>
                             )}
@@ -151,26 +146,34 @@ const Table = ({
               </tbody>
             </table>
           )}
-          {data.length > 4 && (
+          {data.length > rowsPerPage && (
             <div className="mt-5">
-              <div className="flex justify-center align-middle">
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="mr-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]"
-                >
-                  Previous
-                </button>
+              <div className="flex justify-between align-middle">
                 <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
                   Page {currentPage} of {totalPages}
                 </span>
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="ml-2 px-4 py-2 bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]"
-                >
-                  Next
-                </button>
+                <div className="flex">
+                  <div className="flex mr-2 px-4 py-2  items-center bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
+                    <FaLongArrowAltLeft />
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-2"
+                    >
+                      Previous
+                    </button>
+                  </div>
+                  <div className="flex ml-2 px-4 py-1 items-center align-middle bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-2"
+                    >
+                      Next
+                    </button>
+                    <FaLongArrowAltRight />
+                  </div>
+                </div>
               </div>
             </div>
           )}

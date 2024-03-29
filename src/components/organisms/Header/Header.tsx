@@ -2,20 +2,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { decryptData } from "../../../utils/security"
 import { Switcher } from "../../atoms"
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [myToken, setMyToken] = useState(decryptData("userData", "object"))
-  const [urlPath, setUrlPath] = useState<string>("");
+  const [urlPath, setUrlPath] = useState<string>("")
 
-  const location = useLocation();
-  let currentPath = location.pathname;
+  const location = useLocation()
+  let currentPath = location.pathname
 
   useEffect(() => {
-    if(currentPath.startsWith("/")){
-      currentPath = currentPath.substring(1);
+    if (currentPath.startsWith("/")) {
+      currentPath = currentPath.substring(1)
     }
-    setUrlPath(currentPath);
+    setUrlPath(currentPath)
   }, [currentPath])
 
   const navigate = useNavigate()
@@ -68,19 +69,34 @@ const Header = () => {
           </div>
           {myToken && myToken?.user?.role !== "admin" && (
             <div className="hidden lg:flex lg:gap-x-12">
-              <Link to="/attendance" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "attendance" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+              <Link
+                to="/attendance"
+                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "attendance" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+              >
                 Attendance
               </Link>
-              <Link to="/tasks" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "tasks" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+              <Link
+                to="/tasks"
+                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "tasks" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+              >
                 Tasks
               </Link>
-              <Link to="/studyplan" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "studyplan" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+              <Link
+                to="/studyplan"
+                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "studyplan" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+              >
                 Study Plan
               </Link>
-              <Link to="#" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+              <Link
+                to="#"
+                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+              >
                 Leaderboard
               </Link>
-              <Link to="#" className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400": "text-gray-900"}`}>
+              <Link
+                to="#"
+                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+              >
                 Task Tracker
               </Link>
             </div>
@@ -92,17 +108,20 @@ const Header = () => {
                   <Switcher />
                 </span>
                 <Link to="/profile" className="mr-5">
-                  <span className={`inline-block w-12 h-12 p-2 rounded-full ring-2 capitalize font-semibold text-2xl text-center ${urlPath == "profile" ? "ring-blue-500 dark:ring-blue-500 shadow-md text-blue-400 dark:text-blue-400":"ring-gray-300 dark:ring-gray-500 dark:text-white" }`}>
+                  <span
+                    className={`inline-block w-12 h-12 p-2 rounded-full ring-2 capitalize font-semibold text-2xl text-center ${urlPath == "profile" ? "ring-blue-500 dark:ring-blue-500 shadow-md text-blue-400 dark:text-blue-400" : "ring-gray-300 dark:ring-gray-500 dark:text-white"}`}
+                  >
                     {myToken.user.username.charAt(0)}
                   </span>
                 </Link>
-                <Link
-                  to="/"
-                  onClick={handleLogout}
-                  className="border border-1 rounded-sm mt-1 border-black dark:border-white px-5 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
-                >
-                  Logout
-                </Link>
+                <div onClick={handleLogout} className="flex cursor-pointer justify-center items-center border border-1 rounded-md mt-1 border-black dark:border-white px-2 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out">
+                  <IoLogOutOutline size={"20px"} className="mr-2" />
+                  <Link
+                    to="/"
+                  >
+                    Log out
+                  </Link>
+                </div>
               </div>
             </>
           ) : (
