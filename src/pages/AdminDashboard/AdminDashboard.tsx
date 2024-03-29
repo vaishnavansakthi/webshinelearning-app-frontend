@@ -12,10 +12,11 @@ const AdminDashboard = () => {
     { label: "Email", field: "email" },
     { label: "Mobile Number", field: "mobileNumber" },
     { label: "Role", field: "role" },
-    { label: "Status", field: "isActivate", trueValue: "Member", falseValue: "Activate" },
+    { label: "Status", field: "isActivate", trueValue: "Deactivate", falseValue: "Activate" },
   ]
   const [isActivateModal, setisActivateModal] = useState(false)
   const [taskIdToActivate, settaskIdToActivate] = useState("")
+  const [userActivate, setUserActivate] = useState<{ isActivate?: boolean }>({})
 
   useEffect(() => {
     try {
@@ -33,6 +34,9 @@ const AdminDashboard = () => {
   const handleStatus = (id: string) => {
     setisActivateModal(true)
     settaskIdToActivate(id)
+    const selectedUser = userData.find((user: any) => user.id === id)
+    setUserActivate(selectedUser)
+    console.log(selectedUser)
   }
 
   const handleClosePopModal = () => {
@@ -45,7 +49,7 @@ const AdminDashboard = () => {
     console.log("clicked delte button", id)
 
     const selectedUser = userData.find((user: any) => user.id === id)
-
+    setUserActivate(selectedUser)
     console.log(selectedUser)
     const data = {
       isEnable: !selectedUser.isActivate,
@@ -54,6 +58,7 @@ const AdminDashboard = () => {
     fetchUserData()
     res.then(() => {
       console.log(userData)
+      window.location.reload()
       console.log("status updated")
     })
     setisActivateModal(false)
@@ -96,7 +101,7 @@ const AdminDashboard = () => {
                   />
                 </svg>
                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                  Are you sure you want to activate this user?
+                  Are you sure you want to {!userActivate?.isActivate ? "Activate" : "Deactivate"} this user?
                 </h3>
                 <button
                   data-modal-hide="popup-modal"
