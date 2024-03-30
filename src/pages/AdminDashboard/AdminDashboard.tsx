@@ -1,7 +1,5 @@
 import withProtectedRoute from "../../hoc/ProductedRoute"
 
-
-
 const AdminDashboard = () => {
   return (
     <>

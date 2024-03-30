@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import { getAllTasks } from "../../services/task.services"
+import withProtectedRoute from "../../hoc/ProductedRoute"
 
 const UserTasks = () => {
   const [tasksData, setTaksData] = useState<any>([])
@@ -32,4 +33,4 @@ const UserTasks = () => {
   )
 }
 
-export default UserTasks
+export default withProtectedRoute(UserTasks)

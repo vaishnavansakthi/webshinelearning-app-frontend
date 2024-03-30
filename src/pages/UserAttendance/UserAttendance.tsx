@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getAllAttendance } from "../../services/attendance.services"
 import Table from "../../components/moleclues/Table/Table"
+import withProtectedRoute from "../../hoc/ProductedRoute"
 
 const UserAttendance = () => {
   const [attendanceData, setAttendanceData] = useState<any>([])
@@ -33,4 +34,4 @@ const UserAttendance = () => {
   )
 }
 
-export default UserAttendance
+export default withProtectedRoute(UserAttendance)
