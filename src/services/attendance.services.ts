@@ -20,6 +20,16 @@ async function getUserAttendance(id: string) {
       }
 }
 
+async function getAllAttendance() {
+  try {
+    const response = await axiosInstance.get(`/attendance`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 async function deleteUserAttendance(id: string) {   
   try {
       const response = await axiosInstance.delete(`/attendance/${id}`)
@@ -33,6 +43,7 @@ async function deleteUserAttendance(id: string) {
 
 export {
     getUserAttendance,
+    getAllAttendance,
     markAttendance,
     deleteUserAttendance
 }

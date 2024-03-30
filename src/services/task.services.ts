@@ -20,6 +20,16 @@ async function getUserTaks(id: string) {
       }
 }
 
+async function getAllTasks() {
+  try {
+    const response = await axiosInstance.get(`/tasks`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 async function deleteUserTask(id: string) {   
     try {
         const response = await axiosInstance.delete(`/tasks/${id}`)
@@ -45,5 +55,6 @@ export {
     getUserTaks,
     createTask,
     deleteUserTask,
-    updateUserTask
+    updateUserTask,
+    getAllTasks
 }

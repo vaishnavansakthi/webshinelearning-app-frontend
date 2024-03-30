@@ -1,5 +1,5 @@
 import React from "react"
-import { Login, SignUp, ForgotPassword, ResetPassword, SendOtp, Profile, Attendance, Task, StudyPlan } from "../pages"
+import { Login, SignUp, ForgotPassword, ResetPassword, SendOtp, Profile, Attendance, Task, StudyPlan, UserAttendance, UserTasks, ManageUser } from "../pages"
 
 interface IRoutesTypes {
   path: string
@@ -57,6 +57,21 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/studyplan",
     component: StudyPlan,
+    private: true,
+  },
+  {
+    path: "/manageuser",
+    component: ManageUser,
+    private: true,
+  },
+  {
+    path: "/userattendance",
+    component: UserAttendance,
+    private: true,
+  },
+  {
+    path: "/usertasks",
+    component: UserTasks,
     private: true,
   }
 ]

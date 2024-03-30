@@ -30,14 +30,20 @@ export const navHeader = [
         role: 'user'
     },
     {
-        navlink: '#',
-        navText: 'User Attendance',
+        navlink: '/manageuser',
+        navText: 'Manage User',
+        navMatch: 'manageuser',
+        role: 'admin'
+    },
+    {
+        navlink: '/userattendance',
+        navText: 'Attendance',
         navMatch: 'userattendance',
         role: 'admin'
     },
     {
-        navlink: '#',
-        navText: 'User Tasks',
+        navlink: '/usertasks',
+        navText: 'Tasks',
         navMatch: 'usertasks',
         role: 'admin'
     }
