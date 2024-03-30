@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 
 import dayjs from "dayjs"
 import withProtectedRoute from "../../hoc/ProductedRoute"
@@ -8,13 +8,17 @@ import { Field, Formik, ErrorMessage, Form } from "formik"
 import { profileFormSchema } from "../../schema/profileFormSchema"
 import { createProfile, updateProfile, getUserProfile } from "../../services/profile.services"
 import { getUserData } from "../../services/adminDashboard.services"
+import { loaderContext } from "../../context/LoaderProvider"
+import { ThreeDots } from "react-loader-spinner"
 
 const Profile = () => {
   const [profileData, setProfileData] = useState<any>({})
   const [userData, setUserData] = useState<any>()
   const [showModal, setShowModal] = useState(false)
+  const { isLoading, setIsLoading } = useContext(loaderContext)
 
   useEffect(() => {
+    setIsLoading(true)
     const mytoken = JSON.parse(decryptData("userData", null))
     getUserData(mytoken?.user?.id)
       .then((data: any) => {
@@ -27,6 +31,7 @@ const Profile = () => {
       })
       .then((profileData: any) => {
         setProfileData({ mytoken: mytoken, users: profileData })
+        setIsLoading(false)
       })
       .catch((error: any) => {
         console.error("Error fetching user data:", error)
@@ -72,6 +77,7 @@ const Profile = () => {
             ...prevProfileData,
             users: [data],
           }))
+          window.location.reload()
         })
         .catch((err) => {
           console.error("Error creating profile:", err)
@@ -87,41 +93,69 @@ const Profile = () => {
             <div className="relative">
               <div className="w-48 h-48 max-[600px]:w-40 max-[600px]:h-40 bg-indigo-100 dark:bg-[#404040] mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-blue-400">
                 <span className="w-12 h-12 p-2 rounded-full capitalize dark:text-white font-semibold text-8xl text-center flex items-center justify-center">
-                  {userData?.[0]?.username.charAt(0)}
+                  {isLoading ? (
+                    <ThreeDots
+                      visible={true}
+                      height="35"
+                      width="35"
+                      color="lightblue"
+                      radius="9"
+                      ariaLabel="three-dots-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                    />
+                  ) : (
+                    userData?.[0]?.username.charAt(0)
+                  )}
                 </span>
               </div>
             </div>
           </div>
-          <div className="mt-20 text-center border-b pb-12 max-[600px]:mt-28">
-            <h1 className="text-4xl font-medium text-gray-700 dark:text-[#ffffff] first-letter:uppercase">
-              {userData?.[0]?.username}
-            </h1>
-            <p className="font-light dark:text-[#ffffff] text-gray-600 mt-3">
-              {userData?.[0]?.email}, {userData?.[0]?.mobileNumber}
-            </p>
-            <p className="mt-2 dark:text-[#ffffff] text-gray-500">{profileData?.users?.[0]?.university}</p>
-
-            <p className="mt-2 dark:text-[#ffffff] text-gray-500">
-              {profileData?.users?.[0]?.degree} - {profileData?.users?.[0]?.fieldOfStudy}
-            </p>
-            <p className="mt-2 dark:text-[#ffffff] text-gray-500">
-              {profileData?.users?.[0]?.graduationYear && `Passed Out - ${profileData?.users?.[0]?.graduationYear}`}
-            </p>
-            <p className="mt-2 dark:text-[#ffffff] text-gray-500">
-              {" "}
-              {dayjs(profileData?.users?.[0]?.dateOfBirth).format("MMM D, YYYY")}
-            </p>
-            <div className="w-[200px] m-auto mt-1 text-sm">
-              {userData?.[0] && (
-                <button
-                  className="border border-gray-300 p-3 m-3 rounded-md hover:bg-blue-400 hover:text-white dark:text-white shadow-md"
-                  onClick={handleOpenModal}
-                >
-                  {userData?.[0]?.profile ? "Edit Profile" : "Add More Info"}
-                </button>
-              )}
+          {isLoading ? (
+             <div className=" flex justify-center mt-32 text-center border-b h-72 pb-12 max-[600px]:mt-28">
+            <ThreeDots
+              visible={true}
+              height="35"
+              width="35"
+              color="lightblue"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
             </div>
-          </div>
+          ) : (
+            <div className="mt-20 text-center border-b pb-12 max-[600px]:mt-28">
+              <h1 className="text-4xl font-medium text-gray-700 dark:text-[#ffffff] first-letter:uppercase">
+                {userData?.[0]?.username}
+              </h1>
+              <p className="font-light dark:text-[#ffffff] text-gray-600 mt-3">
+                {userData?.[0]?.email}, {userData?.[0]?.mobileNumber}
+              </p>
+              <p className="mt-2 dark:text-[#ffffff] text-gray-500">{profileData?.users?.[0]?.university}</p>
+
+              <p className="mt-2 dark:text-[#ffffff] text-gray-500">
+                {profileData?.users?.[0]?.degree} - {profileData?.users?.[0]?.fieldOfStudy}
+              </p>
+              <p className="mt-2 dark:text-[#ffffff] text-gray-500">
+                {profileData?.users?.[0]?.graduationYear && `Passed Out - ${profileData?.users?.[0]?.graduationYear}`}
+              </p>
+              <p className="mt-2 dark:text-[#ffffff] text-gray-500">
+                {" "}
+                {dayjs(profileData?.users?.[0]?.dateOfBirth).format("MMM D, YYYY")}
+              </p>
+              <div className="w-[200px] m-auto mt-1 text-sm">
+                {userData?.[0] && (
+                  <button
+                    className="border border-gray-300 dark:border-none p-3 m-3 rounded-md bg-[#3B81F6] hover:bg-blue-600 hover:text-white dark:text-white shadow-md"
+                    onClick={handleOpenModal}
+                  >
+                    {userData?.[0]?.profile ? "Edit Profile" : "Add More Info"}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
           <div className="mt-12 flex flex-col justify-center">
             <p className="text-gray-600 text-center font-light dark:text-[#ffffff] lg:px-16">
               {profileData?.users?.[0]?.description}
