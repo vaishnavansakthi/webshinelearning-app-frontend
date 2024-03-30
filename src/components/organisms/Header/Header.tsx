@@ -2,7 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { decryptData } from "../../../utils/security"
 import { Switcher } from "../../atoms"
-import { IoLogOutOutline } from "react-icons/io5";
+import { IoLogOutOutline } from "react-icons/io5"
+import { navHeader } from "../../../constant"
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -67,39 +68,47 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          {myToken && myToken?.user?.role !== "admin" && (
+          {myToken && myToken?.user?.role === "user" ? (
             <div className="hidden lg:flex lg:gap-x-12">
-              <Link
-                to="/attendance"
-                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "attendance" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-              >
-                Attendance
-              </Link>
-              <Link
-                to="/tasks"
-                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "tasks" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-              >
-                Tasks
-              </Link>
-              <Link
-                to="/studyplan"
-                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "studyplan" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-              >
-                Study Plan
-              </Link>
-              <Link
-                to="#"
-                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-              >
-                Leaderboard
-              </Link>
-              <Link
-                to="#"
-                className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == "#" ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-              >
-                Task Tracker
-              </Link>
+              {navHeader &&
+                navHeader?.map((nav: any) => {
+                  return (
+                    <>
+                      {nav.role === "user" && (
+                        <Link
+                          to={nav.navlink}
+                          key={nav.path}
+                          className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+                        >
+                          {nav.navText}
+                        </Link>
+                      )}
+                    </>
+                  )
+                })}
             </div>
+          ) : (
+            myToken &&
+            myToken?.user?.role === "admin" && (
+              <div className="hidden lg:flex lg:gap-x-12">
+                {navHeader &&
+                  navHeader?.map((nav: any) => {
+                    return (
+                      <>
+                        {nav.role === "admin" && (
+                          <Link
+                            to={nav.navlink}
+                            key={nav.path}
+                            className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+                          >
+                            {nav.navText}
+                          </Link>
+                        )}
+                      </>
+                    )
+                  })}
+              </div>
+            )
           )}
           {myToken !== null ? (
             <>
@@ -114,13 +123,12 @@ const Header = () => {
                     {myToken.user.username.charAt(0)}
                   </span>
                 </Link>
-                <div onClick={handleLogout} className="flex cursor-pointer justify-center items-center border border-1 rounded-md mt-1 border-black dark:border-white px-2 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out">
+                <div
+                  onClick={handleLogout}
+                  className="flex cursor-pointer justify-center items-center border border-1 rounded-md mt-1 border-black dark:border-white px-2 py-2 ml-3 font-semibold leading-6 dark:text-white text-gray-900 hover:bg-[#3B81F6] hover:text-white hover:border-[#3B81F6] transform duration-500 ease-in-out"
+                >
                   <IoLogOutOutline size={"20px"} className="mr-2" />
-                  <Link
-                    to="/"
-                  >
-                    Log out
-                  </Link>
+                  <Link to="/">Log out</Link>
                 </div>
               </div>
             </>
@@ -173,44 +181,49 @@ const Header = () => {
               </div>
               <div className="mt-6 flow-root">
                 <div className="-my-6 divide-y divide-gray-500/10">
-                  {myToken !== null && (
+                  {myToken && myToken?.user?.role === "user" ? (
                     <div className="space-y-2 py-6">
-                      <Link
-                        to="/attendance"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
-                        onClick={toggleMobileMenu}
-                      >
-                        Attendance
-                      </Link>
-                      <Link
-                        to="/tasks"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
-                        onClick={toggleMobileMenu}
-                      >
-                        Tasks
-                      </Link>
-                      <Link
-                        to="/studyplan"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
-                        onClick={toggleMobileMenu}
-                      >
-                        Study Plan
-                      </Link>
-                      <Link
-                        to="#"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
-                        onClick={toggleMobileMenu}
-                      >
-                        Leaderboard
-                      </Link>
-                      <Link
-                        to="#"
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 hover:bg-gray-50 text-left"
-                        onClick={toggleMobileMenu}
-                      >
-                        Task Tracker
-                      </Link>
+                      {navHeader &&
+                        navHeader?.map((nav: any) => {
+                          return (
+                            <>
+                              {nav.role === "user" && (
+                                <Link
+                                  to={nav.navlink}
+                                  key={nav.path}
+                                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 text-left  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+                                  onClick={toggleMobileMenu}
+                                >
+                                  {nav.navText}
+                                </Link>
+                              )}
+                            </>
+                          )
+                        })}
                     </div>
+                  ) : (
+                    myToken &&
+                    myToken?.user?.role === "admin" && (
+                      <div className="space-y-2 py-6">
+                        {navHeader &&
+                          navHeader?.map((nav: any) => {
+                            return (
+                              <>
+                                {nav.role === "admin" && (
+                                  <Link
+                                    to={nav.navlink}
+                                    key={nav.path}
+                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 dark:text-[#ffffff] text-gray-900 text-left  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+                                    onClick={toggleMobileMenu}
+                                  >
+                                    {nav.navText}
+                                  </Link>
+                                )}
+                              </>
+                            )
+                          })}
+                      </div>
+                    )
                   )}
 
                   {myToken !== null ? (
@@ -219,14 +232,14 @@ const Header = () => {
                         <Link
                           to="/profile"
                           onClick={toggleMobileMenu}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] hover:bg-gray-50 text-left"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] text-left"
                         >
                           Profile
                         </Link>
                         <Link
                           to="/"
                           onClick={handleLogout}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] hover:bg-gray-50 text-left"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-[#ffffff] text-left"
                         >
                           Logout
                         </Link>
@@ -240,14 +253,14 @@ const Header = () => {
                       <div className="py-6">
                         <Link
                           to="/signup"
-                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900"
                           onClick={toggleMobileMenu}
                         >
                           Sign Up
                         </Link>
                         <Link
                           to="/"
-                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900"
                           onClick={toggleMobileMenu}
                         >
                           Login
