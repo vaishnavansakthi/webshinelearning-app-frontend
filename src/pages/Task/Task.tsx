@@ -7,6 +7,7 @@ import { Field, Formik, ErrorMessage, Form } from "formik"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
 import { taskValidationSchema } from "../../schema/taskFormSchema"
+import withProtectedRoute from "../../hoc/ProductedRoute"
 
 const Task = () => {
   const [taskData, setTaskData] = useState<any>([])
@@ -292,4 +293,4 @@ const Task = () => {
   )
 }
 
-export default Task
+export default withProtectedRoute(Task)

@@ -10,4 +10,14 @@ async function getUserById(id: string) {
   }
 }
 
-export { getUserById }
+async function getAllUsers() {
+  try {
+    const response = await axiosInstance.get(`/user`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
+export { getUserById, getAllUsers }

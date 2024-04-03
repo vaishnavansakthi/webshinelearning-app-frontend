@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import dayjs from "dayjs"
 import { loaderContext } from "../../../context/LoaderProvider"
-import { FaLongArrowAltLeft, FaLongArrowAltRight, FaRegEdit } from "react-icons/fa"
+import { FaLongArrowAltLeft, FaLongArrowAltRight, FaRegEdit, FaPlusCircle } from "react-icons/fa"
 import { MdDelete } from "react-icons/md"
 
 const Table = ({
@@ -12,12 +12,14 @@ const Table = ({
   handleDelete,
   handleStatus,
   children,
+  handleModal
 }: {
   data?: any
   columns?: any
   handleEdit?: any
   handleDelete?: any
-  handleStatus?: any
+  handleStatus?: any,
+  handleModal?: any,
   children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -49,7 +51,7 @@ const Table = ({
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
   const currentRows = data.slice(indexOfFirstRow, Math.min(indexOfLastRow, data.length))
 
-  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks"];
+  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard", "/userleaderboard"];
 
   const searchData = searchQuery.length > 0 ? filteredRows : currentRows
 
@@ -107,6 +109,16 @@ const Table = ({
                                     <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
                                   </button>
                                 </>
+                              ) : column.enable === "add" ? (
+                                <>
+                                  <button className="mr-2 rounded-md" onClick={() => handleModal(rowData.id)}>
+                                    <FaPlusCircle
+                                      className="text-green-400 hover:text-green-500"
+                                      size="22px"
+                                      color="green"
+                                    />
+                                  </button>
+                                </>
                               ) : column.enable === "edit" ? (
                                 <>
                                   <button className="mr-2 rounded-md" onClick={() => handleEdit(rowData.id)}>
@@ -149,7 +161,7 @@ const Table = ({
                             )
                           ) : typeof rowData[column.field] === "object" ? (
                             rowData[column.field]?.username
-                          ) : rowData[column.field].startsWith("https://") ? (
+                          ) : typeof rowData[column?.field] === "string" && rowData[column?.field]?.startsWith("https://") ? (
                             <a
                               className="lowercase underline hover:text-blue-300"
                               href={rowData[column.field]}
@@ -159,9 +171,9 @@ const Table = ({
                             >
                               {rowData[column.field]}
                             </a>
-                          ) : (
+                          ) : rowData[column?.field] && rowData[column?.field] ? (
                             rowData[column.field]
-                          )}
+                          ): null}
                         </td>
                       ))}
                     </tr>

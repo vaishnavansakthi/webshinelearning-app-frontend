@@ -147,7 +147,7 @@ const Profile = () => {
               <div className="w-[200px] m-auto mt-1 text-sm">
                 {userData?.[0] && (
                   <button
-                    className="border border-gray-300 dark:border-none p-3 m-3 rounded-md bg-[#3B81F6] hover:bg-blue-600 hover:text-white dark:text-white shadow-md"
+                    className="border border-gray-300 dark:border-none p-3 m-3 rounded-md bg-[#3B81F6] hover:bg-blue-600 text-white hover:text-white dark:text-white shadow-md dark:hover:text-white"
                     onClick={handleOpenModal}
                   >
                     {userData?.[0]?.profile ? "Edit Profile" : "Add More Info"}

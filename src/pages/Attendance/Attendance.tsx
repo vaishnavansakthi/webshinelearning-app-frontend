@@ -7,6 +7,7 @@ import { attendanceFormSchema } from "../../schema/attendanceFormSchema"
 import { Field, Formik, ErrorMessage, Form } from "formik"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
+import withProtectedRoute from "../../hoc/ProductedRoute"
 
 const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState<any>([])
@@ -314,4 +315,4 @@ const Attendance = () => {
   )
 }
 
-export default Attendance
+export default  withProtectedRoute(Attendance)

@@ -6,6 +6,7 @@ import DropContent from "./DropContent/DropContent";
 import SvgIcon from "./SvgIcon/SvgIcon";
 import Alert from "./Alert/Alert";
 import Switcher from "./Switcher/Switcher";
+import Loader from "./Loader/Loader";
 
 export {
     Button,
@@ -15,5 +16,6 @@ export {
     DropContent,
     SvgIcon,
     Alert,
-    Switcher
+    Switcher,
+    Loader
 }

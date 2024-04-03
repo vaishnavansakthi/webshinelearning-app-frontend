@@ -1,5 +1,20 @@
 import React from "react"
-import { Login, SignUp, ForgotPassword, ResetPassword, SendOtp, Profile, Attendance, Task, StudyPlan, UserAttendance, UserTasks, ManageUser } from "../pages"
+import {
+  Login,
+  SignUp,
+  ForgotPassword,
+  ResetPassword,
+  SendOtp,
+  Profile,
+  Attendance,
+  Task,
+  StudyPlan,
+  UserAttendance,
+  UserTasks,
+  ManageUser,
+  Leaderboard,
+  UserLeaderboard,
+} from "../pages"
 
 interface IRoutesTypes {
   path: string
@@ -60,6 +75,11 @@ export const routes: IRoutesTypes[] = [
     private: true,
   },
   {
+    path: "/leaderboard",
+    component: Leaderboard,
+    private: true,
+  },
+  {
     path: "/manageuser",
     component: ManageUser,
     private: true,
@@ -73,5 +93,10 @@ export const routes: IRoutesTypes[] = [
     path: "/usertasks",
     component: UserTasks,
     private: true,
-  }
+  },
+  {
+    path: "/userleaderboard",
+    component: UserLeaderboard,
+    private: false,
+  },
 ]

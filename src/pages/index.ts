@@ -1,18 +1,23 @@
-import ForgotPassword from "./ForgotPassword/ForgotPassword";
-import ResetPassword from "./ResetPassword/ResetPassword";
-import SignUp from "./SignUp/SignUp";
-import Login from "./login/Login";
-import SendOtp from "./SendOtp/SendOtp";
-import AdminDashboard from "./AdminDashboard/AdminDashboard";
-import Profile from "./Profile/Profile";
-import NotFound from "./NotFound/NotFound";
-import Dashboard from "./Dashboard/Dashboard";
-import Attendance from "./Attendance/Attendance";
-import Task from "./Task/Task";
-import StudyPlan from "./StudyPlan/StudyPlan";
-import UserAttendance from "./UserAttendance/UserAttendance";
-import UserTasks from "./UserTasks/UserTasks";
-import ManageUser from "./ManageUser/ManageUser";
+import React from "react";
+
+const ForgotPassword = React.lazy(() => import("./ForgotPassword/ForgotPassword"));
+const ResetPassword = React.lazy(() => import("./ResetPassword/ResetPassword"));
+const SignUp = React.lazy(() => import("./SignUp/SignUp"));
+const Login = React.lazy(() => import("./login/Login"));
+const SendOtp = React.lazy(() => import("./SendOtp/SendOtp"));
+const AdminDashboard = React.lazy(() => import("./AdminDashboard/AdminDashboard"));
+const Profile = React.lazy(() => import("./Profile/Profile"));
+const NotFound = React.lazy(() => import("./NotFound/NotFound"));
+const Dashboard = React.lazy(() => import("./Dashboard/Dashboard"));
+const Attendance = React.lazy(() => import("./Attendance/Attendance"));
+const Task = React.lazy(() => import("./Task/Task"));
+const StudyPlan = React.lazy(() => import("./StudyPlan/StudyPlan"));
+const UserAttendance = React.lazy(() => import("./UserAttendance/UserAttendance"));
+const UserTasks = React.lazy(() => import("./UserTasks/UserTasks"));
+const ManageUser = React.lazy(() => import("./ManageUser/ManageUser"));
+const Leaderboard = React.lazy(() => import("./Leaderboard/Leaderboard"));
+const UserLeaderboard = React.lazy(() => import("./UserLeaderboard/UserLeaderboard"));
+
 
 export {
   ForgotPassword,
@@ -29,5 +34,7 @@ export {
   StudyPlan,
   UserAttendance,
   UserTasks,
-  ManageUser
+  ManageUser,
+  Leaderboard,
+  UserLeaderboard
 }

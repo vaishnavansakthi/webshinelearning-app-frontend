@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { studyplanData } from "../../common/studyplan"
 import Timeline from "../../components/moleclues/Timeline/Timeline"
+import withProtectedRoute from "../../hoc/ProductedRoute"
 
 const StudyPlan = () => {
   const [activeTopic, setActiveTopic] = useState(null)
@@ -75,4 +76,4 @@ const StudyPlan = () => {
   )
 }
 
-export default StudyPlan
+export default  withProtectedRoute(StudyPlan)
