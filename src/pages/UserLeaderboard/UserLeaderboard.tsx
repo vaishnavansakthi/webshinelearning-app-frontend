@@ -40,8 +40,8 @@ const UserLeaderboard = () => {
     const res = getAllUsers()
     res
       .then((res: any) => {
-        console.log(res)
-        setUserData(res)
+        const filterData = res.filter((user: any) => user.isActive || user.role !== "admin");
+        setUserData(filterData)
       })
       .catch((err) => {
         console.log(err)
@@ -144,7 +144,7 @@ const UserLeaderboard = () => {
                 <h2 className="text-lg font-medium text-gray-800 dark:text-white">Leaderboard</h2>
 
                 <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                  {}
+                {leaderboardData.length}
                 </span>
               </div>
 

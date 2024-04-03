@@ -20,6 +20,16 @@ async function getAllLeaerboardData() {
       }
 }
 
+async function getUserLeaderboard(userId: string) {
+  try {
+    const response = await axiosInstance.get(`/leaderboard/${userId}`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 async function updateLeaderboard(leaderboardId: string, values: any) {
     try {
         const response = await axiosInstance.put(`/leaderboard/${leaderboardId}`, values)
@@ -44,5 +54,6 @@ export {
     createUserLeaderboard,
     getAllLeaerboardData,
     updateLeaderboard,
-    deleteLeaderboard
+    deleteLeaderboard,
+    getUserLeaderboard
 }
