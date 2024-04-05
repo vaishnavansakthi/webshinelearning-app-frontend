@@ -1,13 +1,55 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import { BirthDayCard, DashboardBanner, DashboardTable, SessionCard } from "../../components/organisms"
 import { UserCard } from "../../components/moleclues"
 import HomeIcon from "../../assets/icons8-home-64.png"
 import { getUserById } from "../../services/user.services"
 import { decryptData } from "../../utils/security"
+import { getAllLeaerboardData } from "../../services/userLeaderboard.services"
+import { getAllTaskTracker } from "../../services/taskTracker.services"
+import { globalStateContext } from "../../context/GlobalStateProvider"
 
 const Dashboard = () => {
   const [userdata, setUserdata] = useState<any>({})
+  const [leaderboardData, setLoaderboardData] = useState([])
+  const [tasktrackerData, setTasktrackerData] = useState([])
+
+  const { points } = useContext(globalStateContext)
+
+  const leaderboardHeader = [
+    { label: "Username", value: "user.username" },
+    { label: "Suggestion", value: "suggestion" },
+    { label: "Points", value: "points" }
+  ];
+  
+  const tasktrackerHeader = [
+    { label: "Username", value: "user.username" },
+    { label: "Title", value: "title" },
+    { label: "Story Points", value: "storyPoints" },
+    { label: "Status", value: "status" },
+    { label: "Comments", value: "comments" }
+  ];
+
+  useEffect(() => {
+    const res = getAllLeaerboardData()
+    res
+      .then((res: any) => {
+        console.log(res)
+        setLoaderboardData(res)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+
+    const taskRes = getAllTaskTracker()
+    taskRes
+      .then((taskRes: any) => {
+        setTasktrackerData(taskRes)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+  }, [])
 
   useEffect(() => {
     const myToken = JSON.parse(decryptData("userData", null))
@@ -18,21 +60,21 @@ const Dashboard = () => {
     })
   }, [])
 
-  const attendancePercentage = userdata && userdata.attendance && (userdata.attendance.length / 32) * 100
+  const attendancePercentage = userdata && userdata.attendance ? Math.floor((userdata.attendance.length / 32) * 100) : 0;
 
   // Define accordion items data
   const accordionItems = [
     {
       id: 1,
-      question: "What is Flowbite?",
+      question: "What is MERN Stack?",
       answer:
-        "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+        "The MERN stack is a software development stack that comprises four main technologies: MongoDB, Express.js, React.js, and Node.js. It's commonly used for building full-stack web applications, offering a powerful combination of a NoSQL database, a server-side framework, a client-side library for user interfaces, and a runtime environment for executing JavaScript code.",
     },
     {
       id: 2,
-      question: "Is there a Figma file available?",
+      question: "What is Front end development?",
       answer:
-        "Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.",
+        "Front-end development involves building the user interface and user experience of websites and web applications using HTML, CSS, and JavaScript. It focuses on creating visually appealing and interactive elements that users interact with directly in their web browsers.",
     },
     {
       id: 3,
@@ -54,9 +96,8 @@ const Dashboard = () => {
         <div className="grid grid-cols-12 gap-6">
           <UserCard title="Attendance" subTitle="Percentage" count={attendancePercentage ?? ""} />
           <UserCard title="Tasks" subTitle="Number of tasks" count={userdata?.tasks?.length ?? ""} />
-          <UserCard title="Points" subTitle="Total points" count={400} />
+          <UserCard title="Points" subTitle="Total points" count={points} />
 
-          
           <div className="text-lg col-span-12 h-[100%] bg-white dark:bg-[#404040] text-gray-800 dark:text-gray-200 leading-relaxed mb-6 px-5 py-3 shadow-md">
             <p className="p-3">
               🚀 <b>Webshine</b> is your go-to online platform for mastering web technologies. Whether you're a beginner
@@ -80,9 +121,9 @@ const Dashboard = () => {
             </p>
           </div>
           <SessionCard />
-          <DashboardTable />
+          <DashboardTable header={leaderboardHeader} data={leaderboardData} title="Leaderboard Toppers" />
 
-          <DashboardTable />
+          <DashboardTable header={tasktrackerHeader} data={tasktrackerData} title="Task Tracker" />
           <BirthDayCard />
 
           <div className="col-span-6 max-md:col-span-12">

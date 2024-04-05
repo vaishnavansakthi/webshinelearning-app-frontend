@@ -1,16 +1,20 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { decryptData } from "../../../utils/security"
 import { Switcher } from "../../atoms"
 import { IoLogOutOutline } from "react-icons/io5"
 import { navHeader } from "../../../constant"
-import { getUserById } from "../../../services/user.services"
+import { globalStateContext } from "../../../context/GlobalStateProvider"
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [myToken, setMyToken] = useState(decryptData("userData", "object"))
   const [urlPath, setUrlPath] = useState<string>("")
-  const [points, setPoints] = useState(null);
+
+  const { points } = useContext(globalStateContext)
+
+  console.log("points: ", points)
+  
 
   const location = useLocation()
   let currentPath = location.pathname
@@ -26,20 +30,6 @@ const Header = () => {
 
   useEffect(() => {
     setMyToken(decryptData("userData", "object"))
-  }, [])
-
-  useEffect(() => {
-    console.log("myToken?.user?.id", myToken?.user?.id)
-    if(myToken?.user?.id){
-      getUserById(myToken.user.id)
-       .then((res: any) => {
-        // console.log(res?.[0]?.leaderboard?.[0]?.points ?? 0)
-          setPoints(res?.[0]?.leaderboard?.[0]?.points ?? 0)
-        })
-       .catch((err) => {
-          console.log(err)
-        })
-    }
   }, [])
 
   const toggleMobileMenu = () => {
@@ -85,7 +75,7 @@ const Header = () => {
             </button>
           </div>
           {myToken && myToken?.user?.role === "user" ? (
-            <div className="hidden lg:flex lg:gap-x-12">
+            <div className="hidden lg:flex lg:gap-x-6">
               {navHeader &&
                 navHeader?.map((nav: any) => {
                   return (
@@ -129,7 +119,7 @@ const Header = () => {
           {myToken !== null ? (
             <>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <span className="flex items-center mr-6 bg-gray-200 px-4 rounded-lg py-1 dark:text-white dark:bg-[#404040]">
+                <span className="flex items-center mr-6 px-4 rounded-lg dark:text-white">
                   <svg
                     className="w-6 h-6 mr-1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +140,7 @@ const Header = () => {
                       d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span className="text-xl font-semibold">{points ?? null}</span>
+                  <span className="text-[16px] font-semibold">{points ?? null}</span>
                 </span>
                 <Link to="/profile" className="mr-5">
                   <span
@@ -167,7 +157,7 @@ const Header = () => {
                   <Link to="/">Log out</Link>
                 </div>
               </div>
-              <span className="ml-6 mt-2">
+              <span className="ml-6 mt-2 max-lg:hidden">
                   <Switcher />
                 </span>
             </>

@@ -14,6 +14,7 @@ import {
   ManageUser,
   Leaderboard,
   UserLeaderboard,
+  TaskTracker,
 } from "../pages"
 
 interface IRoutesTypes {
@@ -77,6 +78,11 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/leaderboard",
     component: Leaderboard,
+    private: true,
+  },
+  {
+    path: "/tasktracker",
+    component: TaskTracker,
     private: true,
   },
   {

@@ -24,7 +24,7 @@ export const navHeader = [
         role: 'user'
     },
     {
-        navlink: '#',
+        navlink: '/tasktracker',
         navText: 'Task Tracker',
         navMatch: 'tasktracker',
         role: 'user'
@@ -51,6 +51,12 @@ export const navHeader = [
         navlink: '/userleaderboard',
         navText: 'Leaderboard',
         navMatch: 'userleaderboard',
+        role: 'admin'
+    },
+    {
+        navlink: '/tasktracker',
+        navText: 'Task Tracker',
+        navMatch: 'tasktracker',
         role: 'admin'
     }
 ]

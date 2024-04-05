@@ -11,8 +11,7 @@ const Leaderboard = () => {
   const leaderboardColumns = [
     { label: "Username", field: "user" },
     { label: "Suggestion", field: "suggestion" },
-    { label: "Points", field: "points" },
-    { label: "Actions", field: "actions", enable: "" },
+    { label: "Points", field: "points" }
   ]
 
   useEffect(() => {

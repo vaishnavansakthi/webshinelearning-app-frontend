@@ -17,6 +17,7 @@ const UserTasks = React.lazy(() => import("./UserTasks/UserTasks"));
 const ManageUser = React.lazy(() => import("./ManageUser/ManageUser"));
 const Leaderboard = React.lazy(() => import("./Leaderboard/Leaderboard"));
 const UserLeaderboard = React.lazy(() => import("./UserLeaderboard/UserLeaderboard"));
+const TaskTracker = React.lazy(() => import("./TaskTracker/TaskTracker"));
 
 
 export {
@@ -36,5 +37,6 @@ export {
   UserTasks,
   ManageUser,
   Leaderboard,
-  UserLeaderboard
+  UserLeaderboard,
+  TaskTracker
 }
