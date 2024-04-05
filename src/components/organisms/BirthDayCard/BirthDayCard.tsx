@@ -5,7 +5,6 @@ import { getUserData } from "../../../services/adminDashboard.services"
 function BirthDayCard() {
   const [profileData, setProfileData] = useState<any>(null)
   const [countdown, setCountdown] = useState<string>("")
-  const [daysUntilBirthday, setDaysUntilBirthday] = useState<number>(0)
   const [isBirthday, setIsBirthday] = useState<boolean>(false)
 
   const user = JSON.parse(decryptData("userData", null))
@@ -37,16 +36,12 @@ function BirthDayCard() {
 
       const diffTime = nextBirthday.getTime() - today.getTime()
 
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-
       const days = Math.floor(diffTime / (1000 * 60 * 60 * 24))
       const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
       const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60))
       if (dob.getMonth() === today.getMonth() && dob.getDate() === today.getDate()) {
         setIsBirthday(true)
       } else {
-        setDaysUntilBirthday(diffDays)
-
         setCountdown(`${days} days ${hours} hours ${minutes} minutes`)
       }
     }

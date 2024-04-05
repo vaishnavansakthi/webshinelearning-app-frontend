@@ -49,7 +49,6 @@ const UserLeaderboard = () => {
 
     getAllLeaerboardData()
       .then((res: any) => {
-        console.log(res)
         setLeaderboardData(res)
       })
       .catch((err: any) => {
@@ -68,6 +67,7 @@ const UserLeaderboard = () => {
     if (editingTaskId) {
       updateLeaderboard(editingTaskId, values)
         .then((res: any) => {
+          console.log(res)
           getAllLeaerboardData()
             .then((updatedData: any) => {
               setLeaderboardData(updatedData)
@@ -82,6 +82,7 @@ const UserLeaderboard = () => {
     } else {
       createUserLeaderboard(userId, values)
         .then((res: any) => {
+          console.log(res)
           getAllLeaerboardData()
             .then((updatedData: any) => {
               setLeaderboardData(updatedData)
