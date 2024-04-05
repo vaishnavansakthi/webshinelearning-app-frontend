@@ -10,7 +10,6 @@ import GlobalStateProvider from "./context/GlobalStateProvider"
 
 function App() {
   const myToken = decryptData("userData", "object")
-  console.log(myToken)
 
   return (
     <Router>

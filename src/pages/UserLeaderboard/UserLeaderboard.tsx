@@ -59,18 +59,15 @@ const UserLeaderboard = () => {
 
   const handleFormModal = (id: string) => {
     setisModal(true)
-    console.log(id)
     setUserId(id)
   }
 
   const handleSubmit = (values: any) => {
-    console.log(values)
     handleCloseModal()
 
     if (editingTaskId) {
       updateLeaderboard(editingTaskId, values)
         .then((res: any) => {
-          console.log(res)
           getAllLeaerboardData()
             .then((updatedData: any) => {
               setLeaderboardData(updatedData)
@@ -85,7 +82,6 @@ const UserLeaderboard = () => {
     } else {
       createUserLeaderboard(userId, values)
         .then((res: any) => {
-          console.log(res)
           getAllLeaerboardData()
             .then((updatedData: any) => {
               setLeaderboardData(updatedData)
@@ -110,7 +106,6 @@ const UserLeaderboard = () => {
   }
 
   const handleEdit = (id: string) => {
-    console.log(id)
     const leaderboardToEdit = leaderboardData.find((leaderboard: any) => leaderboard.id === id)
 
     if (leaderboardToEdit) {

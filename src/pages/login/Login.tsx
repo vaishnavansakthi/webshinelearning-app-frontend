@@ -34,7 +34,6 @@ const Login = () => {
       .then((res: any) => {
         setLoading(false)
         formikHelpers.resetForm()
-        console.log(res.user)
         if (res.user.isActivate) {
           encryptData(res, "userData", "object")
           navigate("/dashboard")

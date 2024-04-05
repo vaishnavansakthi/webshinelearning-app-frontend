@@ -36,7 +36,6 @@ const ManageUser = () => {
     settaskIdToActivate(id)
     const selectedUser = userData.find((user: any) => user.id === id)
     setUserActivate(selectedUser)
-    console.log(selectedUser)
   }
 
   const handleClosePopModal = () => {
@@ -45,19 +44,15 @@ const ManageUser = () => {
 
   const handleConfirmActivate = (id: string) => {
     setisActivateModal(true)
-    console.log("clicked userData", userData)
-    console.log("clicked delte button", id)
 
     const selectedUser = userData.find((user: any) => user.id === id)
     setUserActivate(selectedUser)
-    console.log(selectedUser)
     const data = {
       isEnable: !selectedUser.isActivate,
     }
     const res = activateUser(selectedUser.id, data)
     fetchUserData()
     res.then(() => {
-      console.log(userData)
       window.location.reload()
       console.log("status updated")
     })

@@ -71,7 +71,7 @@ const Table = ({
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="border border-gray-300 dark:border-none dark:text-white dark:bg-[#404040] outline-none px-4 py-2 rounded-md"
+                    className="border border-gray-300 dark:border-none dark:text-white dark:bg-[#404040] outline-none px-4 py-2 rounded-md max-sm:w-[220px] max-sm:px-2 max-sm:py-2 max-sm:text-sm"
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
@@ -84,7 +84,7 @@ const Table = ({
                       {columns.map((column: any, index: number) => (
                         <th
                           key={index}
-                          className="py-3 px-3 text-white font-bold whitespace-nowrap group max-sm:py-1 max-sm:px-1"
+                          className="py-3 px-3 text-white font-bold whitespace-nowrap text-left group max-sm:py-1 max-sm:px-1"
                         >
                           <span className="cursor-pointer pl-1 max-sm:text-[14px]">{column.label}</span>
                         </th>

@@ -48,7 +48,6 @@ const SendOtp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const otp = otpDigits.join("")
-    console.log(otp)
     setOtpDigits(new Array(6).fill(""))
     const email = sessionStorage.getItem("userEmail")
     axios

@@ -9,11 +9,10 @@ const GlobalStateProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const myToken = decryptData("userData", "object")
-    console.log("myToken?.user?.id", myToken?.user?.id)
+
     if (myToken?.user?.id) {
       getUserById(myToken.user.id)
         .then((res: any) => {
-          console.log("res", res?.[0])
           setPoints(res?.[0]?.leaderboard?.[0]?.points ?? 0)
         })
         .catch((err) => {

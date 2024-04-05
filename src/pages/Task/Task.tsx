@@ -37,7 +37,6 @@ const Task = () => {
   useEffect(() => {
     setIsLoading(true)
     const res = getUserTaks(myToken.user.id)
-    console.log(myToken.user.id)
     res
       .then((data: any) => {
         setTaskData(data)
@@ -99,7 +98,6 @@ const Task = () => {
   }
 
   const handleEdit = (id: string) => {
-    console.log(id)
     const taskToEdit = taskData.find((task: any) => task.id === id)
 
     if (taskToEdit) {
@@ -117,7 +115,6 @@ const Task = () => {
 
   const handleConfirmDelete = (id: string) => {
     setIsDeleteModal(true)
-    console.log("clicked delte button")
     const res = deleteUserTask(id)
     res
       .then(() => {

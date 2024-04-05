@@ -34,7 +34,6 @@ const Dashboard = () => {
     const res = getAllLeaerboardData()
     res
       .then((res: any) => {
-        console.log(res)
         setLoaderboardData(res)
       })
       .catch((err: any) => {
@@ -55,7 +54,6 @@ const Dashboard = () => {
     const myToken = JSON.parse(decryptData("userData", null))
     const user = getUserById(myToken.user.id)
     user.then((res: any) => {
-      console.log("user", res?.[0])
       setUserdata(res?.[0])
     })
   }, [])
@@ -97,6 +95,7 @@ const Dashboard = () => {
           <UserCard title="Attendance" subTitle="Percentage" count={attendancePercentage ?? ""} />
           <UserCard title="Tasks" subTitle="Number of tasks" count={userdata?.tasks?.length ?? ""} />
           <UserCard title="Points" subTitle="Total points" count={points} />
+          <UserCard title="Total learners" subTitle="Webshine family" count={52} />
 
           <div className="text-lg col-span-12 h-[100%] bg-white dark:bg-[#404040] text-gray-800 dark:text-gray-200 leading-relaxed mb-6 px-5 py-3 shadow-md">
             <p className="p-3">

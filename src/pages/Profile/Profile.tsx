@@ -24,7 +24,6 @@ const Profile = () => {
       .then((data: any) => {
         const profileId = data[0]?.profile?.id
         setUserData(data)
-        console.log(profileId)
         if (profileId) {
           return getUserProfile(profileId)
         }
@@ -41,7 +40,6 @@ const Profile = () => {
   const handleOpenModal = () => {
     setShowModal(true)
   }
-  console.log(profileData)
   const handleCloseModal = () => {
     console.log("Close modal")
     setShowModal(false)
@@ -57,7 +55,6 @@ const Profile = () => {
       const res = updateProfile(userData[0].profile.id, payload)
       res
         .then((data) => {
-          console.log("Profile updated:", data)
           handleCloseModal()
           setProfileData((prevProfileData: any) => ({
             ...prevProfileData,
@@ -71,7 +68,6 @@ const Profile = () => {
       const res = createProfile(payload)
       res
         .then((data) => {
-          console.log("New profile created:", data)
           handleCloseModal()
           setProfileData((prevProfileData: any) => ({
             ...prevProfileData,

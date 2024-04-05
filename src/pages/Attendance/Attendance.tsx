@@ -25,12 +25,9 @@ const Attendance = () => {
   ]
   const myToken = JSON.parse(decryptData("userData", null))
 
-  console.log(attendanceData, "attendanceData")
-
   useEffect(() => {
     setIsLoading(true)
     const res = getUserAttendance(myToken.user.id)
-    console.log(myToken.user.id)
     res
       .then((data: any) => {
         setAttendanceData(data)

@@ -12,8 +12,6 @@ const Header = () => {
   const [urlPath, setUrlPath] = useState<string>("")
 
   const { points } = useContext(globalStateContext)
-
-  console.log("points: ", points)
   
 
   const location = useLocation()

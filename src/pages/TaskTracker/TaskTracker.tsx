@@ -5,6 +5,7 @@ import {
   getUserTaskTracker,
   deleteTaskTracker,
   updateTaskTracker,
+  getAllTaskTracker,
 } from "../../services/taskTracker.services"
 import { decryptData } from "../../utils/security"
 import { Field, Formik, ErrorMessage, Form } from "formik"
@@ -16,6 +17,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai"
 
 const TaskTracker = () => {
   const [taskTrackerData, setTaskTrackerkData] = useState<any>([])
+  const [allTrackerData, setAllTrackerData] = useState<any>([])
   const [isModal, setisModal] = useState<boolean>(false)
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null)
   const [initialFormValues, setInitialFormValues] = useState<any>({
@@ -24,6 +26,14 @@ const TaskTracker = () => {
     status: "",
     comments: "",
   })
+
+  const columns = [
+    { label: "Username", field: "user" },
+    { label: "Title", field: "title" },
+    { label: "Story Points", field: "storyPoints" },
+    { label: "Status", field: "status" },
+    { label: "Comments", field: "comments" },
+  ]
 
   const [isDeleteModal, setIsDeleteModal] = useState(false)
   const [taskIdToDelete, settaskIdToDelete] = useState("")
@@ -35,11 +45,18 @@ const TaskTracker = () => {
     res
       .then((taskTrackerData: any) => {
         setTaskTrackerkData(taskTrackerData)
-        console.log(taskTrackerData)
       })
       .catch((err) => {
         console.log(err)
       })
+
+    const trackerData = getAllTaskTracker()
+    trackerData.then((taskTrackerData: any) => {
+      setAllTrackerData(taskTrackerData)
+    })
+    .catch((err) => {
+       console.log(err)
+    })
   }, [])
 
   const handleModal = () => {
@@ -83,8 +100,6 @@ const TaskTracker = () => {
     handleCloseModal()
   }
 
-  console.log("tasktracker data: ", taskTrackerData)
-
   const handleCloseModal = () => {
     setisModal(false)
     setInitialFormValues({
@@ -105,7 +120,6 @@ const TaskTracker = () => {
   }
 
   const handleEdit = (id: string) => {
-    console.log(id)
     const taskToEdit = taskTrackerData.find((task: any) => task.id === id)
 
     if (taskToEdit) {
@@ -187,12 +201,10 @@ const TaskTracker = () => {
                 <div className="px-6 py-4 dark:text-white">
                   <div className="flex justify-between items-center">
                     <h1 className="text-2xl font-bold">{tracker.storyPoints}</h1>
-                    {/* Move the status here */}
                   </div>
                   <h2 className="text-xl mt-2 capitalize">{tracker.title}</h2>
                   <p className="text-gray-700 mt-2 dark:text-gray-200">{tracker.comments}</p>
                 </div>
-                {/* Status moved to bottom right corner */}
                 <span className="absolute bottom-2 right-2 text-gray-600 capitalize bg-gray-200 dark:bg-[#565656] dark:text-white px-3 py-1 rounded-md my-3 mx-2">
                   {tracker.status}
                 </span>
@@ -229,6 +241,11 @@ const TaskTracker = () => {
           )}
         </>
       )}
+
+      <Table columns={columns} data={allTrackerData}>
+            <div className="mt-10">
+            </div>
+      </Table>
 
       {isDeleteModal && (
         <Modal title="">
