@@ -58,5 +58,11 @@ export const navHeader = [
         navText: 'Task Tracker',
         navMatch: 'tasktracker',
         role: 'admin'
+    },
+    {
+        navlink: '/usermemes',
+        navText: 'Memes',
+        navMatch: 'usermemes',
+        role: 'admin'
     }
 ]

@@ -15,6 +15,7 @@ import {
   Leaderboard,
   UserLeaderboard,
   TaskTracker,
+  UserMemes,
 } from "../pages"
 
 interface IRoutesTypes {
@@ -103,6 +104,11 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/userleaderboard",
     component: UserLeaderboard,
-    private: false,
+    private: true,
   },
+  {
+    path: "/userMemes",
+    component: UserMemes,
+    private: true,
+  }
 ]
