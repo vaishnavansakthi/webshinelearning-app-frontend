@@ -30,6 +30,12 @@ export const navHeader = [
         role: 'user'
     },
     {
+        navlink: '/memes',
+        navText: 'Memes',
+        navMatch: 'memes',
+        role: 'user'
+    },
+    {
         navlink: '/manageuser',
         navText: 'Manage User',
         navMatch: 'manageuser',

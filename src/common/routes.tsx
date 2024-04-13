@@ -110,5 +110,10 @@ export const routes: IRoutesTypes[] = [
     path: "/userMemes",
     component: UserMemes,
     private: true,
+  },
+  {
+    path: "/memes",
+    component: UserMemes,
+    private: true,
   }
 ]

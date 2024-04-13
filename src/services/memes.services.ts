@@ -24,7 +24,18 @@ async function getAllMemes() {
     }
 }
 
+async function deleteMemes(id: number) {
+    try {
+        const response = await axiosInstance.delete(`/memes/${id}`);
+        return response;
+    } catch (error) {
+        console.error("Error deleting meme:", error);
+        throw error;
+    }
+}
+
 export {
     createMemes,
-    getAllMemes
+    getAllMemes,
+    deleteMemes
 }
