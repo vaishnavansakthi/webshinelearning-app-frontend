@@ -35,6 +35,7 @@ const UserMemes = () => {
   }
 
   const simulateUploadProgress = (file: File) => {
+    console.log(file)
     let progress = 0
     const interval = setInterval(() => {
       progress += Math.random() * 10
@@ -222,7 +223,7 @@ const UserMemes = () => {
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 max-sm:ml-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 max-sm:ml-1">
         {memesData.length > 0 &&
           memesData.map((meme: any) => {
             return (
