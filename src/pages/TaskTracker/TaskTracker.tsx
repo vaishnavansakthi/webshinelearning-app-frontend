@@ -169,8 +169,9 @@ const TaskTracker = () => {
 
             <div className="flex items-center mt-4 gap-x-3 px-7 py-1">
               <button
+                disabled={taskTrackerData.length}
                 onClick={handleModal}
-                className="flex items-center justify-center px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
+                className="flex disabled:bg-gray-300 items-center justify-center px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

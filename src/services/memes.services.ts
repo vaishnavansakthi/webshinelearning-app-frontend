@@ -24,6 +24,16 @@ async function getAllMemes() {
     }
 }
 
+async function getMeme(id: number) {
+    try {
+        const response = await axiosInstance.get(`/memes/${id}`);
+        return response;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+    }
+}
+
 async function deleteMemes(id: number) {
     try {
         const response = await axiosInstance.delete(`/memes/${id}`);
@@ -37,5 +47,6 @@ async function deleteMemes(id: number) {
 export {
     createMemes,
     getAllMemes,
+    getMeme,
     deleteMemes
 }
