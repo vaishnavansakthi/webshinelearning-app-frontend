@@ -12,10 +12,15 @@ const Header = () => {
   const [urlPath, setUrlPath] = useState<string>("")
 
   const { points } = useContext(globalStateContext)
-  
-
   const location = useLocation()
   let currentPath = location.pathname
+
+  useEffect(() => {
+    const tokenExpirationTime = myToken?.expires_at;
+    if (tokenExpirationTime && new Date(tokenExpirationTime) < new Date()) {
+      handleLogout();
+    }
+  }, []);
 
   useEffect(() => {
     if (currentPath.startsWith("/")) {
