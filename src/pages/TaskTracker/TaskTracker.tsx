@@ -90,6 +90,7 @@ const TaskTracker = () => {
       const res = updateTaskTracker(editingTaskId, values)
       res.then(() => {
         setisModal(false)
+        getAllTrackerData()
       })
     } else {
       const res = createTaskTracker(myToken.user.id, values)
