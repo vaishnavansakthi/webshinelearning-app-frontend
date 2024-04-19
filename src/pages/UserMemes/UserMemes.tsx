@@ -10,6 +10,7 @@ const UserMemes = () => {
   const [isModal, setisModal] = useState<boolean>(false)
   const [uploadProgress, setUploadProgress] = useState<number>(0)
   const [memesData, setMemesData] = useState<any>([])
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false)
 
   const user = decryptData("userData", "object")
 
@@ -78,7 +79,7 @@ const UserMemes = () => {
       ) {
         if (file.size <= 2100000) {
           formData.append("file", file)
-
+          setButtonDisabled(true)
           try {
             await createMemes(user?.user?.id, formData)
             setUploadProgress(0)
@@ -89,12 +90,15 @@ const UserMemes = () => {
           }
         } else {
           console.error("File size exceeds the maximum allowed size")
+          setButtonDisabled(false)
         }
       } else {
         console.error("Invalid file type")
+        setButtonDisabled(false)
       }
     } else {
       console.error("No file selected")
+      setButtonDisabled(false)
     }
   }
 
@@ -202,10 +206,11 @@ const UserMemes = () => {
                 )}
                 {uploadProgress >= 100 && (
                   <input
+                    disabled={buttonDisabled}
                     type="submit"
                     placeholder="upload"
                     value="Upload"
-                    className="flex items-center justify-center px-5 py-2 text-sm cursor-pointer tracking-wide text-white transition-colors mt-5 text-center duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
+                    className="flex disabled:bg-gray-300 items-center justify-center px-5 py-2 text-sm cursor-pointer tracking-wide text-white transition-colors mt-5 text-center duration-200 bg-blue-500 rounded-lg shrink-0 gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600"
                   />
                 )}
               </label>
@@ -233,9 +238,10 @@ const UserMemes = () => {
                 </a>
                 <div className="p-5">
                   <a>
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 capitalize dark:text-white">
-                      {meme?.user?.username}
-                    </h5>
+                    
+                    <p className="mb-2 text-sm font-light tracking-tight text-gray-900 capitalize dark:text-white">
+                    Posted By <span className="text-lg">{meme?.user?.username}</span>
+                    </p>
                   </a>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {dayjs(meme?.createAt).format("MMM D, YYYY")}

@@ -50,17 +50,22 @@ const TaskTracker = () => {
         console.log(err)
       })
 
-    const trackerData = getAllTaskTracker()
-    trackerData.then((taskTrackerData: any) => {
-      setAllTrackerData(taskTrackerData)
-    })
-    .catch((err) => {
-       console.log(err)
-    })
+    getAllTrackerData()
   }, [])
 
   const handleModal = () => {
     setisModal(true)
+  }
+
+  const getAllTrackerData = () => {
+    const trackerData = getAllTaskTracker()
+    trackerData
+      .then((taskTrackerData: any) => {
+        setAllTrackerData(taskTrackerData)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   const handleSubmit = (values: any) => {
@@ -91,6 +96,7 @@ const TaskTracker = () => {
       res
         .then((data) => {
           setTaskTrackerkData([...taskTrackerData, data])
+          getAllTrackerData()
         })
         .catch((err) => {
           console.log(err)
@@ -143,6 +149,7 @@ const TaskTracker = () => {
     res
       .then(() => {
         setTaskTrackerkData(taskTrackerData.filter((item: any) => item.id !== id))
+        getAllTrackerData()
         setIsDeleteModal(false)
       })
       .catch((error) => {
@@ -244,8 +251,7 @@ const TaskTracker = () => {
       )}
 
       <Table columns={columns} data={allTrackerData}>
-            <div className="mt-10">
-            </div>
+        <div className="mt-10"></div>
       </Table>
 
       {isDeleteModal && (
