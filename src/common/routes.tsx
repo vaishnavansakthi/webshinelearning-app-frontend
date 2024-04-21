@@ -17,7 +17,9 @@ import {
   TaskTracker,
   UserMemes,
   Home,
+  Dashboard,
 } from "../pages"
+import { decryptData } from "../utils/security"
 
 interface IRoutesTypes {
   path: string
@@ -26,12 +28,16 @@ interface IRoutesTypes {
   component: React.FC
 }
 
+const myToken = decryptData("userData", null)
+
+console.log(myToken !== null)
+
 export const routes: IRoutesTypes[] = [
   {
     path: "/",
-    component: Home,
+    component: myToken !== null ? Dashboard : Home,
     navigate: "/dashboard",
-    private: false,
+    private: myToken !== null ? true : false,
   },
   {
     path: "/login",

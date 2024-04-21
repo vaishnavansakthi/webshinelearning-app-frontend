@@ -1,4 +1,29 @@
+import { useRef, useEffect } from "react"
+
 const Home = () => {
+  const countRef: any = useRef(null);
+
+  const courseStartDate: any = new Date('2024-06-01');
+
+  function updateCountdown() {
+    const currentDate: any = new Date();
+    const timeDifference = courseStartDate - currentDate;
+
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    countRef.current.textContent = `
+      ${days}d ${hours}h ${minutes}m ${seconds}s
+    `;
+
+    setTimeout(updateCountdown, 1000);
+  }
+  useEffect(() => {
+    updateCountdown();
+  }, []);
+
   return (
     <>
       {/* 
@@ -32,6 +57,7 @@ const Home = () => {
             with the tools to build scalable, robust, and feature-rich applications. Join us and unleash your potential
             in the world of full-stack development!
           </p>
+          <div id="countdown" ref={countRef} className="text-5xl max-md:text-3xl font-medium text-gray-600 mb-10 dark:text-gray-500"></div>
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a
               href="/signup"
