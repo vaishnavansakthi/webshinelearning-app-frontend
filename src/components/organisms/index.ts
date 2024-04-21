@@ -4,6 +4,7 @@ import DashboardBanner from "./DashboardBanner/DashboardBanner";
 import DashboardTable from "./DashboardTable/DashboardTable";
 import BirthDayCard from "./BirthDayCard/BirthDayCard";
 import SessionCard from "./SessionCard/SessionCard";
+import CountDown from "./CountDown/CountDown";
 
 export {
     Header,
@@ -11,5 +12,6 @@ export {
     DashboardBanner,
     DashboardTable,
     BirthDayCard,
-    SessionCard
+    SessionCard,
+    CountDown
 }
