@@ -19,6 +19,7 @@ const Leaderboard = React.lazy(() => import("./Leaderboard/Leaderboard"));
 const UserLeaderboard = React.lazy(() => import("./UserLeaderboard/UserLeaderboard"));
 const TaskTracker = React.lazy(() => import("./TaskTracker/TaskTracker"));
 const UserMemes = React.lazy(() => import("./UserMemes/UserMemes"));
+const Home = React.lazy(() => import("./Home/Home"));
 
 
 export {
@@ -40,5 +41,6 @@ export {
   Leaderboard,
   UserLeaderboard,
   TaskTracker, 
-  UserMemes
+  UserMemes,
+  Home
 }

@@ -51,7 +51,7 @@ const Header = () => {
       <header className="bg-white dark:bg-[#181818] mb-10 bottom-3">
         <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
+            <Link to="/dashboard" className="-m-1.5 p-1.5">
               <span className="text-black dark:text-[#ffffff] text-lg">
                 <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                 alents.
@@ -174,7 +174,7 @@ const Header = () => {
                   Sign Up
                 </Link>
                 <Link
-                  to="/"
+                  to="/login"
                   className="text-sm ml-2 border border-none border-black dark:text-white px-5 py-2 font-semibold leading-6 text-gray-900"
                 >
                   Login
@@ -191,7 +191,7 @@ const Header = () => {
             <div className="fixed inset-0 z-10"></div>
             <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-[#404040] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
-                <Link onClick={toggleMobileMenu} to="/" className="-m-1.5 p-1.5">
+                <Link onClick={toggleMobileMenu} to="/dashbaord" className="-m-1.5 p-1.5">
                   <span className="text-black text-lg dark:text-[#ffffff]">
                     <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
                     alents.
@@ -291,7 +291,7 @@ const Header = () => {
                           Sign Up
                         </Link>
                         <Link
-                          to="/"
+                          to="/login"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold dark:text-white leading-7 text-gray-900"
                           onClick={toggleMobileMenu}
                         >

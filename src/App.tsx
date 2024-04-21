@@ -13,7 +13,6 @@ function App() {
 
   return (
     <Router>
-      
         <LoaderProvider>
         <GlobalStateProvider>
           <Layout>

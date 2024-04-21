@@ -16,6 +16,7 @@ import {
   UserLeaderboard,
   TaskTracker,
   UserMemes,
+  Home,
 } from "../pages"
 
 interface IRoutesTypes {
@@ -28,6 +29,12 @@ interface IRoutesTypes {
 export const routes: IRoutesTypes[] = [
   {
     path: "/",
+    component: Home,
+    navigate: "/dashboard",
+    private: false,
+  },
+  {
+    path: "/login",
     component: Login,
     navigate: "/dashboard",
     private: false,
@@ -115,5 +122,5 @@ export const routes: IRoutesTypes[] = [
     path: "/memes",
     component: UserMemes,
     private: true,
-  }
+  },
 ]
