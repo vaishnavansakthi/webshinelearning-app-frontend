@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const Home = () => {
   const [countValues, setCountValues] = useState<any>({
@@ -130,7 +130,7 @@ const Home = () => {
 
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <a
-              href="/signup"
+              href="/booking"
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 bg-blue-600"
             >
               Book your seat
@@ -172,7 +172,7 @@ const Home = () => {
               tools to craft feature-rich apps and realize your full potential.
             </p>
             <a
-              href="#"
+              href="/booking"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
@@ -202,7 +202,7 @@ const Home = () => {
               your design career to new heights!
             </p>
             <a
-              href="#"
+              href="/booking"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
@@ -216,13 +216,14 @@ const Home = () => {
 
       <div className="flex justify-center mt-24 flex-wrap">
         <div className="">
-          <img
-            className="w-[500px] h-[100%] max-sm:w-[320px] rounded-lg shadow-md"
-            src="https://media.licdn.com/dms/image/D4E12AQGrNoiFzdi51A/article-cover_image-shrink_720_1280/0/1708037630649?e=2147483647&v=beta&t=vNMnnl2vJxeRAP6nfJ2URsFNNXQhgGING0FbkGlrDwQ"
-            alt=""
-          />
+          <iframe
+            className="w-[500px] h-[100%] max-sm:w-[340px] max-sm:h-[220px] rounded-lg shadow-md"
+            src="https://www.youtube.com/embed/jE47yZ2NtiQ?si=x-5DOydnhgWjxLDK"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          ></iframe>
         </div>
-        <div className="w-[480px] max-sm:w-[320px] text-left dark:text-[#9BA3AF] max-lg:mt-7 ml-5">
+        <div className="w-[480px] max-sm:w-[340px] text-left dark:text-[#9BA3AF] max-lg:mt-7 ml-5">
           <h1 className="text-2xl dark:text-white mb-3 text-black">Full Stack Development</h1>
           <p>
             Dive into the world of Full Stack Development, where you'll learn to build dynamic web applications from

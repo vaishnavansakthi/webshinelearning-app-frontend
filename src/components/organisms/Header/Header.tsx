@@ -99,7 +99,7 @@ const Header = () => {
           ) : (
             myToken &&
             myToken?.user?.role === "admin" && (
-              <div className="hidden lg:flex lg:gap-x-12">
+              <div className="hidden lg:flex lg:gap-x-6">
                 {navHeader &&
                   navHeader?.map((nav: any) => {
                     return (

@@ -18,8 +18,11 @@ import {
   UserMemes,
   Home,
   Dashboard,
+  UserBooking,
+  Booking
 } from "../pages"
 import { decryptData } from "../utils/security"
+
 
 interface IRoutesTypes {
   path: string
@@ -66,6 +69,12 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/verify-otp",
     component: SendOtp,
+    navigate: "/dashboard",
+    private: false,
+  },
+  {
+    path: "/booking",
+    component: Booking,
     navigate: "/dashboard",
     private: false,
   },
@@ -129,4 +138,9 @@ export const routes: IRoutesTypes[] = [
     component: UserMemes,
     private: true,
   },
+  {
+    path: "/userbooking",
+    component: UserBooking,
+    private: true,
+  }
 ]

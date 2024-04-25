@@ -12,14 +12,14 @@ const Table = ({
   handleDelete,
   handleStatus,
   children,
-  handleModal
+  handleModal,
 }: {
   data?: any
   columns?: any
   handleEdit?: any
   handleDelete?: any
-  handleStatus?: any,
-  handleModal?: any,
+  handleStatus?: any
+  handleModal?: any
   children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -51,7 +51,14 @@ const Table = ({
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
   const currentRows = data.slice(indexOfFirstRow, Math.min(indexOfLastRow, data.length))
 
-  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard", "/userleaderboard"];
+  const allowedPaths = [
+    "/tasks",
+    "/userattendance",
+    "/attendance",
+    "/manageuser",
+    "/usertasks",
+    "/leaderboard",
+  ]
 
   const searchData = searchQuery.length > 0 ? filteredRows : currentRows
 
@@ -66,7 +73,7 @@ const Table = ({
             </div>
           ) : (
             <>
-              {data.length  > 0 && allowedPaths.includes(window.location.pathname) && (
+              {data.length > 0 && allowedPaths.includes(window.location.pathname) && (
                 <div className="mb-4">
                   <input
                     type="text"
@@ -161,7 +168,8 @@ const Table = ({
                             )
                           ) : typeof rowData[column.field] === "object" ? (
                             rowData[column.field]?.username
-                          ) : typeof rowData[column?.field] === "string" && rowData[column?.field]?.startsWith("https://") ? (
+                          ) : typeof rowData[column?.field] === "string" &&
+                            rowData[column?.field]?.startsWith("https://") ? (
                             <a
                               className="lowercase underline hover:text-blue-300"
                               href={rowData[column.field]}
@@ -173,7 +181,7 @@ const Table = ({
                             </a>
                           ) : rowData[column?.field] && rowData[column?.field] ? (
                             rowData[column.field]
-                          ): null}
+                          ) : null}
                         </td>
                       ))}
                     </tr>
@@ -185,37 +193,39 @@ const Table = ({
               </table>
             </>
           )}
-          {!searchQuery ? data.length > rowsPerPage && (
-            <div className="mt-5">
-              <div className="flex justify-between align-middle">
-                <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <div className="flex">
-                  <div className="flex mr-2 px-4 py-2  items-center bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
-                    <FaLongArrowAltLeft />
-                    <button
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                      className="px-2"
-                    >
-                      Previous
-                    </button>
-                  </div>
-                  <div className="flex ml-2 px-4 py-1 items-center align-middle bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
-                    <button
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                      className="px-2"
-                    >
-                      Next
-                    </button>
-                    <FaLongArrowAltRight />
+          {!searchQuery
+            ? data.length > rowsPerPage && (
+                <div className="mt-5">
+                  <div className="flex justify-between align-middle">
+                    <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <div className="flex">
+                      <div className="flex mr-2 px-4 py-2  items-center bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
+                        <FaLongArrowAltLeft />
+                        <button
+                          onClick={() => handlePageChange(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="px-2"
+                        >
+                          Previous
+                        </button>
+                      </div>
+                      <div className="flex ml-2 px-4 py-1 items-center align-middle bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
+                        <button
+                          onClick={() => handlePageChange(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          className="px-2"
+                        >
+                          Next
+                        </button>
+                        <FaLongArrowAltRight />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ): null}
+              )
+            : null}
         </div>
       </div>
     </>

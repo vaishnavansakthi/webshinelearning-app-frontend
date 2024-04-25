@@ -8,7 +8,7 @@ const withProtectedRoute = <P extends any>(Component: ComponentType): React.FC<P
     const isAuthenticated = myToken && myToken.access_token
 
     if (isAuthenticated) {
-      const allowedRoutes = ["login", "signup", "forgot-password", "reset-password", "verfy-otp"]
+      const allowedRoutes = ["login", "signup", "forgot-password", "reset-password", "verfy-otp", "booking"]
       const currentRoute = window.location.pathname.split("/")[1]
       if (allowedRoutes.includes(currentRoute)) {
         return <Navigate to="/dashboard" />
