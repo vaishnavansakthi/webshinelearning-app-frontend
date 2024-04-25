@@ -93,7 +93,7 @@ function Booking() {
         <h5 className="text-center text-xl mb-10 dark:text-white">
           Book your course to enjoy your incredible full stack journey
         </h5>
-        <p className="text-center text-red-500"><span className="dark:text-gray-200 text-black mr-1 max-sm:hidden">Time left to book the course:</span> {formatTime(countdown)} seconds</p>
+        <p className="text-center text-red-500"><span className="dark:text-gray-200 text-black mr-1 max-sm:hidden">Time left to book the course:</span> {formatTime(countdown)}</p>
       </div>
       <div>
         <div className="flex justify-evenly flex-wrap p-5 w-[500px] max-sm:w-[280px] m-auto">
