@@ -5,7 +5,6 @@ import withProtectedRoute from "../../hoc/ProductedRoute";
 
 const StudyPlan = () => {
   const [activeCategory, setActiveCategory] = useState(null);
-  const [activeTopic, setActiveTopic] = useState(null);
   const timelineRefs = useRef<any>([]);
 
   useEffect(() => {
@@ -26,10 +25,11 @@ const StudyPlan = () => {
     }));
   
     let activeCategoryIndex: any = null;
-    let activeTopicIndex = null;
+    
   
     for (let i = categories.length - 1; i >= 0; i--) {
       const { index, offsetTop, topics } = categories[i];
+      let activeTopicIndex: any = null;
       if (scrollPosition >= offsetTop) {
         activeCategoryIndex = index;
         for (let j = topics.length - 1; j >= 0; j--) {
@@ -44,6 +44,7 @@ const StudyPlan = () => {
     }
   
     setActiveCategory(activeCategoryIndex);
+    // setActiveTopic(activeTopicIndex);
   };
   
 
@@ -66,7 +67,6 @@ const StudyPlan = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
       setActiveCategory(categoryIndex);
-      setActiveTopic(topicIndex);
     }
   };
 
@@ -87,7 +87,7 @@ const StudyPlan = () => {
                   {studyplan.topics.map((topic, topicIndex) => (
                     <li
                       key={topicIndex}
-                      className={`cursor-pointer ${activeTopic === topicIndex ? "font-semibold text-blue-500" : ""}`}
+                      className={`cursor-pointer`}
                       onClick={() => handleTopicClick(index, topicIndex)}
                     >
                       {topic.subtopic && <div className="ml-4">{topic.topic}</div>}

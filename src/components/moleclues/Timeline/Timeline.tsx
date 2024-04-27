@@ -1,12 +1,10 @@
 import dayjs from "dayjs";
 
 const Timeline = ({
-  id,
   topic,
   subtopic,
   date,
   contentData,
-  onClick
 }: {
   id?: any;
   topic?: string;
