@@ -1,21 +1,23 @@
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 
 const Timeline = ({
+  id,
   topic,
   subtopic,
   date,
   contentData,
-  id,
+  onClick
 }: {
-  id?: number
-  topic?: string
-  subtopic?: string
-  date?: string
-  contentData?: any
+  id?: any;
+  topic?: string;
+  subtopic?: string;
+  date?: string;
+  contentData?: { topic: string; content: string }[];
+  onClick: () => void;
 }) => {
   return (
     <>
-      <ol key={id} className="relative border-s border-gray-200 dark:border-gray-700">
+      <ol className="relative border-s border-gray-200 dark:border-gray-700">
         <li className="mb-10 ms-6">
           <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
             <svg
@@ -30,25 +32,29 @@ const Timeline = ({
           </span>
           <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
             {topic}{" "}
-            <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">
-              {subtopic}
-            </span>
+            {subtopic && (
+              <span className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">
+                {subtopic}
+              </span>
+            )}
           </h3>
-          <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{dayjs(date).format('MMMM D, YYYY')}</time>
+          {date && (
+            <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+              {dayjs(date).format('MMMM D, YYYY')}
+            </time>
+          )}
           <div className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-            {contentData?.map((content: { topic: string; content: string }, contentIndex: number) => {
-              return (
-                <dl className="my-5" key={contentIndex}>
-                  <dt className="font-bold">{content?.topic}</dt>
-                  <dd>- {content?.content}</dd>
-                </dl>
-              )
-            })}
+            {contentData?.map((content, contentIndex) => (
+              <dl className="my-5" key={contentIndex}>
+                <dt className="font-bold">{content?.topic}</dt>
+                <dd>- {content?.content}</dd>
+              </dl>
+            ))}
           </div>
         </li>
       </ol>
     </>
-  )
-}
+  );
+};
 
-export default Timeline
+export default Timeline;

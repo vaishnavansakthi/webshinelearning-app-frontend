@@ -7,6 +7,7 @@ import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
 import { encryptData } from "../../utils/security"
 import { loginUsers } from "../../services/login.services"
+import { Helmet } from "react-helmet"
 
 type User = {
   email: string
@@ -57,6 +58,9 @@ const Login = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Webshine talents - Login</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center">
         <div className="w-full bg-white dark:bg-[#404040] rounded-lg shadow border-none dark:border md:mt-0 sm:p-2 max-w-[340px] sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

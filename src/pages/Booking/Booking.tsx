@@ -3,6 +3,7 @@ import { Field, Formik, ErrorMessage, Form } from "formik"
 import { useEffect, useState } from "react"
 import { bookingFormSchema, bookingValidationSchema } from "../../schema/bookingFormSchema"
 import { getAllBookings, updateBooking } from "../../services/booking.services"
+import { Helmet } from "react-helmet"
 
 function Booking() {
   const [isModel, setIsModel] = useState(false)
@@ -13,27 +14,30 @@ function Booking() {
   })
   const [bookingData, setBookingData] = useState([])
   const [editingTaskId, setEditingTaskId] = useState<any>(null)
-  const [countdown, setCountdown] = useState(259200) 
-  const [timerId, setTimerId] = useState<any>(null)
+  const [countdown, setCountdown] = useState(0) 
+  const targetDate: any = new Date('2024-04-28');
 
   useEffect(() => {
     const res = getAllBookings()
     res.then((bookings: any) => {
       setBookingData(bookings)
     })
-    const id = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1)
-    }, 1000)
-    setTimerId(id)
+    const calculateCountdown = () => {
+      const now: any = new Date();
+      const differenceInSeconds = Math.floor((targetDate - now) / 1000);
+      setCountdown(differenceInSeconds);
+    };
 
-    return () => {
-      clearInterval(timerId)
-    }
+    calculateCountdown();
+
+    const timerId = setInterval(calculateCountdown, 1000);
+
+    return () => clearInterval(timerId);
   }, [])
 
   useEffect(() => {
     if (countdown === 0) {
-      setCountdown(259200)
+      setCountdown(0)
     }
   }, [countdown])
 
@@ -79,16 +83,23 @@ function Booking() {
   }
 
   const formatTime = (timeInSeconds: number) => {
-    const days = Math.floor(timeInSeconds / (3600 * 24))
-    const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600)
-    const minutes = Math.floor((timeInSeconds % 3600) / 60)
-    const seconds = timeInSeconds % 60
+    if (timeInSeconds <= 0) {
+      return `0 days 0 hours 0 minutes 0 seconds`;
+    }
+  
+    const days = Math.floor(timeInSeconds / (3600 * 24));
+    const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
 
-    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
+    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
   }
 
   return (
     <div>
+      <Helmet>
+        <title>Webshine talents - Booking</title>
+      </Helmet>
       <div>
         <h5 className="text-center text-xl mb-10 dark:text-white">
           Book your course to enjoy your incredible full stack journey
@@ -112,8 +123,8 @@ function Booking() {
             ))}
         </div>
         <div className="flex justify-center dark:text-white">
-          <div className="w-5 h-5 border border-black bg-gray-400 mr-4 "></div> Booked
-          <div className="w-5 h-5 border border-black bg-white mr-4 ml-5"></div> Available
+          <div className="w-5 h-5 border border-black bg-gray-400  mr-4 "></div> Booked
+          <div className="w-5 h-5 border border-black bg-white dark:bg-black mr-4 ml-5"></div> Available
         </div>
       </div>
       {isModel && (

@@ -1,79 +1,125 @@
-import React, { useState, useRef, useEffect } from "react"
-import { studyplanData } from "../../common/studyplan"
-import Timeline from "../../components/moleclues/Timeline/Timeline"
-import withProtectedRoute from "../../hoc/ProductedRoute"
+import React, { useState, useRef, useEffect } from "react";
+import { studyplanData } from "../../common/studyplan";
+import Timeline from "../../components/moleclues/Timeline/Timeline";
+import withProtectedRoute from "../../hoc/ProductedRoute";
 
 const StudyPlan = () => {
-  const [activeTopic, setActiveTopic] = useState(null)
-  const timelineRefs = useRef<React.MutableRefObject<HTMLDivElement>[]>([])
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeTopic, setActiveTopic] = useState(null);
+  const timelineRefs = useRef<any>([]);
 
   useEffect(() => {
     timelineRefs.current = Array(studyplanData.length)
       .fill(null)
-      .map((_, index) => timelineRefs.current[index] || React.createRef())
-  }, [studyplanData.length])
+      .map((_, index) => timelineRefs.current[index] || React.createRef());
+  }, [studyplanData.length]);
 
   const handleScroll = () => {
-    const scrollPosition = window.scrollY
-    const topics = studyplanData.map((_: any, index: any) => ({
+    const scrollPosition = window.scrollY;
+    const categories = studyplanData.map((studyplan, index) => ({
       index,
       offsetTop: timelineRefs.current[index]?.current?.offsetTop || 0,
-    }))
-
-    for (let i = topics.length - 1; i >= 0; i--) {
-      const { index, offsetTop } = topics[i]
+      topics: studyplan.topics.map((_, topicIndex) => ({
+        topicIndex,
+        offsetTop: timelineRefs.current[index]?.current?.childNodes[topicIndex]?.getBoundingClientRect().top + scrollPosition || 0,
+      })),
+    }));
+  
+    let activeCategoryIndex: any = null;
+    let activeTopicIndex = null;
+  
+    for (let i = categories.length - 1; i >= 0; i--) {
+      const { index, offsetTop, topics } = categories[i];
       if (scrollPosition >= offsetTop) {
-        setActiveTopic(index)
-        break
+        activeCategoryIndex = index;
+        for (let j = topics.length - 1; j >= 0; j--) {
+          const { topicIndex, offsetTop: topicOffsetTop } = topics[j];
+          if (scrollPosition >= topicOffsetTop) {
+            activeTopicIndex = topicIndex;
+            break;
+          }
+        }
+        break;
       }
     }
-  }
+  
+    setActiveCategory(activeCategoryIndex);
+  };
+  
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const handleTopicClick = (index: any) => {
-    setActiveTopic(index)
-    const element = document.getElementById(`studyplan-${index}`)
+  const handleCategoryClick = (index: any) => {
+    setActiveCategory(index);
+    const element = document.getElementById(`studyplan-category-${index}`);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }
+  };
+
+  const handleTopicClick = (categoryIndex: any, topicIndex: any) => {
+    
+    const element = document.getElementById(`studyplan-category-${categoryIndex}-topic-${topicIndex}`);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveCategory(categoryIndex);
+      setActiveTopic(topicIndex);
+    }
+  };
 
   return (
     <div className="flex justify-between px-12 max-sm:px-2">
       <div className="py-4 max-sm:hidden">
         <div className="sticky top-10">
-          {studyplanData.map((studyplan, index: any) => (
-            <div
-              key={index}
-              className={`cursor-pointer mb-2 ${
-                activeTopic === index ? "text-blue-500 font-semibold" : "text-gray-600 dark:text-gray-400 hover:text-blue-500"
-              }`}
-              onClick={() => handleTopicClick(index)}
-            >
-              {studyplan.topic}
+        {studyplanData.map((studyplan, index) => (
+            <div key={index} className="mb-2">
+              <div
+                className={`cursor-pointer ${activeCategory === index ? "font-semibold text-blue-500" : "text-gray-600 dark:text-gray-400"} mb-3`}
+                onClick={() => handleCategoryClick(index)}
+              >
+                {studyplan.category}
+              </div>
+              {activeCategory === index && (
+                <ul className="ml-4 space-y-2">
+                  {studyplan.topics.map((topic, topicIndex) => (
+                    <li
+                      key={topicIndex}
+                      className={`cursor-pointer ${activeTopic === topicIndex ? "font-semibold text-blue-500" : ""}`}
+                      onClick={() => handleTopicClick(index, topicIndex)}
+                    >
+                      {topic.subtopic && <div className="ml-4">{topic.topic}</div>}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
       </div>
       <div className="px-3 max-sm:px-3 max-lg:px-20">
-        {studyplanData.map((studyplan, index) => (
-          <div key={index} id={`studyplan-${index}`} className="mb-8 px-3" ref={timelineRefs.current[index]}>
-            <Timeline
-              id={index}
-              topic={studyplan.topic}
-              subtopic={studyplan.subtopic}
-              date={studyplan.date}
-              contentData={studyplan.contentList}
-            />
+        {studyplanData.map((studyplan, categoryIndex) => (
+          <div key={categoryIndex} id={`studyplan-category-${categoryIndex}`} className="mb-8 px-3" ref={timelineRefs.current[categoryIndex]}>
+            <h2 className="text-xl font-semibold mb-4">{studyplan.category}</h2>
+            {studyplan.topics.map((topic, topicIndex) => (
+              <div key={topicIndex} id={`studyplan-category-${categoryIndex}-topic-${topicIndex}`} className="mb-8">
+                <Timeline
+                  id={topicIndex}
+                  topic={topic.topic}
+                  subtopic={topic.subtopic}
+                  date={topic.date}
+                  contentData={topic.contentList}
+                  onClick={() => handleTopicClick(categoryIndex, topicIndex)}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default  withProtectedRoute(StudyPlan)
+export default withProtectedRoute(StudyPlan);
