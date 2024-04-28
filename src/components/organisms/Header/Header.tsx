@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <>
       {currentPath === "/" ? (
-        <div className="sticky top-0 left-0 w-full bg-gray-100 dark:bg-[#3d3d3d] dark:text-white shadow-md p-2 px-6 z-10">
+        <div className="sticky top-0 left-0 w-full bg-gray-100 dark:bg-[#404040] dark:text-white shadow-md p-2 px-6 z-10 max-md:hidden">
           <div className="flex justify-between">
             <div>
               <h5 className="text-[14px] font-bold">Special Offer!</h5>

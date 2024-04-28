@@ -381,7 +381,7 @@ const Home = () => {
       <div className="flex justify-center p-3">
         <div className="container" id="accordion-open" data-accordion="open">
           <div className="mb-10 text-4xl text-center">
-            <h1 className="dark:text-white">Frequently asked questions</h1>
+            <h1 className="dark:text-white text-2xl max-sm:text-lg">Frequently asked questions</h1>
           </div>
           {accordionItems.map((item) => (
             <Accordion
