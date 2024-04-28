@@ -16,11 +16,11 @@ const Header = () => {
   let currentPath = location.pathname
 
   useEffect(() => {
-    const tokenExpirationTime = myToken?.expires_at;
+    const tokenExpirationTime = myToken?.expires_at
     if (tokenExpirationTime && new Date(tokenExpirationTime) < new Date()) {
-      handleLogout();
+      handleLogout()
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (currentPath.startsWith("/")) {
@@ -46,8 +46,36 @@ const Header = () => {
     window.location.reload()
   }
 
+  console.log("pathname: " + currentPath)
   return (
     <>
+      {currentPath === "/" ? (
+        <div className="sticky top-0 left-0 w-full bg-gray-100 dark:bg-[#3d3d3d] dark:text-white shadow-md p-2 px-6 z-10">
+          <div className="flex justify-between">
+            <div>
+              <h5 className="text-[14px] font-bold">Special Offer!</h5>
+              <p>Enroll now and get 40% off!</p>
+            </div>
+            <div className="text-[14px]">
+              Learn <span className="font-bold">HTML + CSS + JS + React + Redux + NodeJs + ExpressJs + MongoDB</span> at 9,999/- Only.
+              <button
+                onClick={() => navigate("/booking")}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
+              >
+                Book Now
+              </button>
+            </div>
+            <div>
+              <h5 className="text-[14px] font-bold">Reach Us</h5>
+              <p>
+                Contact: <a className="underline" href="tel:+919047609410">+91 9047609410</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <header className="bg-white dark:bg-[#181818] mb-10 bottom-3">
         <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
@@ -161,8 +189,8 @@ const Header = () => {
                 </div>
               </div>
               <span className="ml-6 mt-2 max-lg:hidden">
-                  <Switcher />
-                </span>
+                <Switcher />
+              </span>
             </>
           ) : (
             <>

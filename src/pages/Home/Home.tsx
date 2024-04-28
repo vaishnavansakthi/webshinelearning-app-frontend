@@ -6,26 +6,38 @@ const Home = () => {
   const [accordionItems, setAccordionItems] = useState([
     {
       id: 1,
-      question: "What is Flowbite?",
+      question: "Why enroll at Webshine Learning for full stack developer training?",
       answer:
-        "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+        "Webshine Learning is the Top Full Stack Training Institute. Each trainer at the institute is an industry expert with more than 4 years of experience. The Full Stack Developer course schedule is flexible, and course participants should not be concerned if they miss a class",
       isOpen: false,
     },
     {
       id: 2,
-      question: "What is Flowbite?",
+      question: "Is Full Stack an open source?",
       answer:
-        "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+        "Well, a Full Stack developer can work on open source as well as commercial software. However, due to recent industry demands, majority of the Full Stack Developers are seen working with products and services that are open source. Therefore, Full Stack Development does allow you to work on open source software and enhance your career graph at the same time.",
       isOpen: false,
     },
     {
       id: 3,
-      question: "What is Flowbite?",
+      question: "What is the average salary of a fresher Full Stack Developer?",
       answer:
-        "Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.",
+        "The average salary for a Full Stack Developer(Fresher) is usually between 5 Lacs to 18 lacs. The average salary of an experienced full stack developer in Bangalore is counted as 9 lacs.",
       isOpen: false,
     },
-    // Add more items as needed
+    {
+      id: 4,
+      question: "Is it easy to get a job after learning Full Stack?",
+      answer:
+        "After the finishing the Full Stack Developer Course, your life becomes easier because a job is guaranteed. There is a huge demand for Full Stack Professionals in the market and you will get a good job without any doubt.",
+      isOpen: false,
+    },
+    {
+      id: 5,
+      question: "What are the jobs available after Full Stack Training?",
+      answer: "Full Stack Developer, Full Stack Engineer, Software Engineer, Web Application Engineer",
+      isOpen: false,
+    },
   ])
 
   const [countValues, setCountValues] = useState<any>({
@@ -216,7 +228,7 @@ const Home = () => {
               <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
 
               <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
-              <span className="text-[14px]">30% off</span>
+              <span className="text-[14px]">40% off</span>
             </a>
           </div>
         </div>
@@ -246,7 +258,7 @@ const Home = () => {
               <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
 
               <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
-              <span className="text-[14px]">30% off</span>
+              <span className="text-[14px]">40% off</span>
             </a>
           </div>
         </div>
@@ -364,7 +376,7 @@ const Home = () => {
           </ol>
         </div>
       </div>
-     
+
       {/* FAQ */}
       <div className="flex justify-center p-3">
         <div className="container" id="accordion-open" data-accordion="open">
