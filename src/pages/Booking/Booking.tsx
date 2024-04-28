@@ -14,8 +14,9 @@ function Booking() {
   })
   const [bookingData, setBookingData] = useState([])
   const [editingTaskId, setEditingTaskId] = useState<any>(null)
-  const [countdown, setCountdown] = useState(0) 
-  const targetDate: any = new Date('2024-04-28');
+  const [countdown, setCountdown] = useState(0)
+  const targetDate: any = new Date("2024-04-30")
+  const [courseTimeout, setCourseTimeout] = useState(false)
 
   useEffect(() => {
     const res = getAllBookings()
@@ -23,16 +24,19 @@ function Booking() {
       setBookingData(bookings)
     })
     const calculateCountdown = () => {
-      const now: any = new Date();
-      const differenceInSeconds = Math.floor((targetDate - now) / 1000);
-      setCountdown(differenceInSeconds);
-    };
+      const now: any = new Date()
+      const differenceInSeconds = Math.floor((targetDate - now) / 1000)
+      setCountdown(differenceInSeconds)
+      if (differenceInSeconds <= 0) {
+        setCourseTimeout(true)
+      }
+    }
 
-    calculateCountdown();
+    calculateCountdown()
 
-    const timerId = setInterval(calculateCountdown, 1000);
+    const timerId = setInterval(calculateCountdown, 1000)
 
-    return () => clearInterval(timerId);
+    return () => clearInterval(timerId)
   }, [])
 
   useEffect(() => {
@@ -84,15 +88,15 @@ function Booking() {
 
   const formatTime = (timeInSeconds: number) => {
     if (timeInSeconds <= 0) {
-      return `0 days 0 hours 0 minutes 0 seconds`;
+      return `0 days 0 hours 0 minutes 0 seconds`
     }
-  
-    const days = Math.floor(timeInSeconds / (3600 * 24));
-    const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600);
-    const minutes = Math.floor((timeInSeconds % 3600) / 60);
-    const seconds = timeInSeconds % 60;
 
-    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    const days = Math.floor(timeInSeconds / (3600 * 24))
+    const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600)
+    const minutes = Math.floor((timeInSeconds % 3600) / 60)
+    const seconds = timeInSeconds % 60
+
+    return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
   }
 
   return (
@@ -104,23 +108,34 @@ function Booking() {
         <h5 className="text-center text-xl mb-10 dark:text-white">
           Book your course to enjoy your incredible full stack journey
         </h5>
-        <p className="text-center text-red-500"><span className="dark:text-gray-200 text-black mr-1 max-sm:hidden">Time left to book the course:</span> {formatTime(countdown)}</p>
+        <p className="text-center text-red-500">
+          <span className="dark:text-gray-200 text-black mr-1 max-sm:hidden">Time left to book the course:</span>{" "}
+          {formatTime(countdown)}
+        </p>
       </div>
       <div>
         <div className="flex justify-evenly flex-wrap p-5 w-[500px] max-sm:w-[280px] m-auto">
           {/* Render seats dynamically */}
-          {bookingData.length > 0 &&
-            bookingData.map((booking: any) => (
-              <button
-                className="w-[45px] h-[45px] border border-1 border-white mb-5 p-3 m-3 dark:border-gray-500 dark:text-white dark:disabled:bg-gray-700 text-[14px] shadow-md"
-                key={booking.id}
-                onClick={() => handleFormModal(booking?.id)}
-                disabled={booking.isCourseBooked}
-                style={booking.isCourseBooked ? { backgroundColor: "#dddddd", color: "black" } : { backgroundColor: "" }}
-              >
-                {booking.order}
-              </button>
-            ))}
+          {courseTimeout ? (
+            <span className="text-red-500 font-bold text-lg animate-pulse w-[320px] h-[320px] text-center mt-10">Booking closed, Please try again once booking opens</span>
+          ) : (
+            <>
+              {bookingData.length > 0 &&
+                bookingData.map((booking: any) => (
+                  <button
+                    className="w-[45px] h-[45px] border border-1 border-white mb-5 p-3 m-3 dark:border-gray-500 dark:text-white dark:disabled:bg-gray-700 text-[14px] shadow-md"
+                    key={booking.id}
+                    onClick={() => handleFormModal(booking?.id)}
+                    disabled={booking.isCourseBooked}
+                    style={
+                      booking.isCourseBooked ? { backgroundColor: "#dddddd", color: "black" } : { backgroundColor: "" }
+                    }
+                  >
+                    {booking.order}
+                  </button>
+                ))}
+            </>
+          )}
         </div>
         <div className="flex justify-center dark:text-white">
           <div className="w-5 h-5 border border-black bg-gray-400  mr-4 "></div> Booked
