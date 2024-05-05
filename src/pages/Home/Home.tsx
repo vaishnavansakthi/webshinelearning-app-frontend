@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet"
 import { Accordion } from "../../components/moleclues"
 import { useEffect, useState } from "react"
+import headphome from '../../assets/headphone.png'
+import blueheadphone from '../../assets/blueheadphone.png'
+import smartwatch from '../../assets/smartwatch.png'
 
 const Home = () => {
   const [accordionItems, setAccordionItems] = useState([
@@ -8,7 +11,7 @@ const Home = () => {
       id: 1,
       question: "Why enroll at Webshine Learning for full stack developer training?",
       answer:
-        "Webshine Learning is the Top Full Stack Training Institute. Each trainer at the institute is an industry expert with more than 4 years of experience. The Full Stack Developer course schedule is flexible, and course participants should not be concerned if they miss a class",
+        "Webshine Learning is the Top Full Stack Training Institute. Each trainer at the institute is an industry expert with more than 4 years of experience. The Full Stack Developer course schedule is flexible, and course participants should not be concerned if they miss a className",
       isOpen: false,
     },
     {
@@ -263,7 +266,41 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-24 flex-wrap">
+
+      {/**
+       * Gifts
+       */}
+      <div className="container mt-28 mb-8 mx-auto p-5">
+        <h1 className="text-2xl text-center dark:text-white mb-10">Scholar's Sanctuary: Gifts to Inspire and Empower Course Toppers</h1>
+        <div className="mt-5 flex justify-evenly flex-wrap">
+          <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
+            <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">1<span className="text-[14px]">st</span></h2>
+            <img
+              src={smartwatch}
+              alt="smart watch"
+              style={{ width: "300px", height: "300px" }}
+            />
+          </div>
+          <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
+          <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">2<span className="text-[14px]">nd</span></h2>
+            <img
+              src={headphome}
+              alt="smart watch"
+              style={{ width: "300px", height: "300px" }}
+            />
+          </div>
+          <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
+          <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">3<span className="text-[14px]">rd</span></h2>
+            <img
+              src={blueheadphone}
+              alt="smart watch"
+              style={{ width: "300px", height: "300px" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-center flex-wrap mt-28 mb-8">
         <div className="">
           <iframe
             className="w-[500px] h-[100%] max-sm:w-[340px] max-sm:h-[220px] rounded-lg shadow-md"
@@ -285,7 +322,7 @@ const Home = () => {
         </div>
       </div>
       {/* stats */}
-      <section className="dark:bg-[#282828] mt-8">
+      <section className="dark:bg-[#282828] mt-16 mb-8">
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
           <dl className="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
             <div className="flex flex-col items-center justify-center max-sm:mt-10">
@@ -310,14 +347,16 @@ const Home = () => {
             <li className="mb-10 ms-4">
               <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
               <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">June 2024</time>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">HTML, CSS, Javascript</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Web Development Essentials: HTML, CSS, JavaScript
+              </h3>
               <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
-                E-commerce & Marketing pages. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt omnis sequi
-                ratione officiis, odio quo rem velit culpa veniam, amet animi quis nobis, provident eum. Pariatur fugit
-                enim eaque velit? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis maxime sapiente,
-                voluptate quia ea dolorem nam saepe totam est soluta itaque excepturi facilis aliquam dignissimos
-                praesentium assumenda quis, commodi aspernatur.
+                Dive into the foundations of web development with our intensive course covering HTML, CSS, and
+                JavaScript. Discover the power of HTML for structuring content, CSS for styling and layout, and
+                JavaScript for interactivity. Through hands-on exercises and projects, gain the skills to create
+                captivating websites from scratch. Perfect for beginners or those looking to refresh their skills, this
+                course equips you with the essential tools and knowledge to kickstart your journey in web development.
+                Join us and unlock the potential of the web!
               </p>
               {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Learn more <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -326,14 +365,17 @@ const Home = () => {
             <li className="mb-10 ms-4">
               <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
               <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">July 2024</time>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">React and Redux</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Mastering React and Redux: Building Dynamic Web Applications
+              </h3>
               <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-                All of the pages and components are first designed in Figma and we keep a parity between the two
-                versions even as we update the project. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum,
-                in mollitia quasi cupiditate laudantium deserunt hic, nulla soluta molestias distinctio ipsum non
-                consequuntur animi odit omnis officiis tempore corrupti laborum. Lorem ipsum dolor sit, amet consectetur
-                adipisicing elit. Mollitia alias itaque illo facilis repellendus. Suscipit, eaque odio! Inventore
-                facilis nihil aperiam eveniet tenetur ut culpa veritatis illum nisi, maxime nemo.
+                Unlock the full potential of modern web development with our comprehensive course on React and Redux.
+                Dive deep into React, the leading JavaScript library for building user interfaces, and learn how to
+                manage application state effectively with Redux. Through a blend of theory and hands-on projects, you'll
+                explore advanced concepts like component composition, state management, and asynchronous data fetching.
+                Whether you're a beginner or seasoned developer, this course equips you with the skills to create
+                dynamic and scalable web applications with confidence. Elevate your coding prowess and stay ahead in the
+                ever-evolving landscape of web development.
               </p>
             </li>
             <li className="mb-10 ms-4">
@@ -341,17 +383,17 @@ const Home = () => {
               <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                 August 2024
               </time>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Node.js and Express.Js</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Node.js and Express.js Mastery: Building Scalable Web Applications
+              </h3>
               <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-                Get started with dozens of web components and interactive elements built on top of Tailwind CSS. Lorem,
-                ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate perspiciatis distinctio tenetur
-                culpa dolorum sint ullam exercitationem, illum inventore odio? Repudiandae reiciendis sint quidem
-                similique voluptatibus labore perferendis tenetur. Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Voluptas dolores libero accusantium, odit repellat nulla quasi magni similique consequuntur
-                debitis quam, mollitia, hic voluptates reiciendis. Sequi nobis velit ullam earum? Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Debitis quam doloribus tempora voluptatibus alias. Perspiciatis
-                distinctio accusantium perferendis sequi earum eligendi. Dignissimos ipsum voluptatem doloribus corrupti
-                deleniti qui dicta aspernatur.
+                Unleash the full potential of server-side JavaScript with our comprehensive course on Node.js and
+                Express.js. Dive into the world of back-end development and learn how to build robust, scalable web
+                applications with ease. Master the fundamentals of Node.js for server-side programming and harness the
+                power of Express.js to create RESTful APIs and dynamic web servers. Through hands-on projects and
+                real-world examples, you'll explore topics like routing, middleware, database integration, and
+                authentication. Whether you're a novice or seasoned developer, this course provides you with the skills
+                and knowledge to take your web development journey to new heights.
               </p>
             </li>
             <li className="mb-10 ms-4">
@@ -359,18 +401,18 @@ const Home = () => {
               <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                 September 2024
               </time>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">MongoDB</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                MongoDB Essentials: Building Flexible and Scalable Databases
+              </h3>
               <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-                Get started with dozens of web components and interactive elements built on top of Tailwind CSS. Lorem
-                ipsum dolor sit, amet consectetur adipisicing elit. Cumque dolorum, amet vero tenetur sint sapiente odit
-                nulla autem consequuntur voluptate velit temporibus, assumenda recusandae impedit blanditiis sed tempora
-                doloremque voluptatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore suscipit
-                laboriosam praesentium possimus nobis neque maxime vero rerum non? Eligendi quos consectetur dignissimos
-                maxime! Voluptatem molestias earum numquam iusto sint? Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Iste odio expedita aperiam illum modi similique, fugiat officia accusamus in
-                exercitationem non ad beatae velit maiores sit deleniti nulla recusandae itaque. Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Voluptas adipisci reiciendis, hic impedit distinctio qui, at deserunt
-                harum minus corrupti, molestias quod consequuntur non temporibus? Modi eius blanditiis velit quam!
+                Discover the power of MongoDB, the leading NoSQL database, with our comprehensive course on MongoDB
+                Essentials. Dive into the world of document-oriented databases and learn how MongoDB's flexible schema
+                design can revolutionize your data storage and retrieval. From basic CRUD operations to advanced
+                aggregation pipelines, this course covers everything you need to know to build robust and scalable
+                databases with MongoDB. Through hands-on projects and real-world examples, you'll explore topics like
+                data modeling, indexing, replication, and sharding. Whether you're a beginner or experienced developer,
+                this course equips you with the skills to harness the full potential of MongoDB and elevate your data
+                management capabilities.
               </p>
             </li>
           </ol>
@@ -378,7 +420,7 @@ const Home = () => {
       </div>
 
       {/* FAQ */}
-      <div className="flex justify-center p-3">
+      <div className="flex justify-center p-3 mt-16 mb-8">
         <div className="container" id="accordion-open" data-accordion="open">
           <div className="mb-10 text-4xl text-center">
             <h1 className="dark:text-white text-2xl max-sm:text-lg">Frequently asked questions</h1>
