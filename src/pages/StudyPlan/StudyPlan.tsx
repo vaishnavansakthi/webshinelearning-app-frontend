@@ -87,7 +87,7 @@ const StudyPlan = () => {
                   {studyplan.topics.map((topic, topicIndex) => (
                     <li
                       key={topicIndex}
-                      className={`cursor-pointer`}
+                      className={`cursor-pointer dark:text-white`}
                       onClick={() => handleTopicClick(index, topicIndex)}
                     >
                       {topic.subtopic && <div className="ml-4">{topic.topic}</div>}
@@ -102,7 +102,7 @@ const StudyPlan = () => {
       <div className="px-3 max-sm:px-3 max-lg:px-20">
         {studyplanData.map((studyplan, categoryIndex) => (
           <div key={categoryIndex} id={`studyplan-category-${categoryIndex}`} className="mb-8 px-3" ref={timelineRefs.current[categoryIndex]}>
-            <h2 className="text-xl font-semibold mb-4">{studyplan.category}</h2>
+            <h2 className="text-xl font-semibold mb-10 ml-[-15px] dark:text-white">{studyplan.category}</h2>
             {studyplan.topics.map((topic, topicIndex) => (
               <div key={topicIndex} id={`studyplan-category-${categoryIndex}-topic-${topicIndex}`} className="mb-8">
                 <Timeline

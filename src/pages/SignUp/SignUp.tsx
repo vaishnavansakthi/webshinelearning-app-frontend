@@ -40,7 +40,7 @@ const SignUp = () => {
       .then(() => {
         setLoading(false)
         formikHelpers.resetForm()
-        navigate("/admin-dashboard")
+        navigate("/login")
       })
       .catch((err: any) => {
         setLoading(false)

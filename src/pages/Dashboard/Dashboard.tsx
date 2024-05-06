@@ -34,7 +34,7 @@ const Dashboard = () => {
     const res = getAllLeaerboardData()
     res
       .then((res: any) => {
-        setLoaderboardData(res)
+        setLoaderboardData(res.sort((a: any, b: any) => b.points - a.points))
       })
       .catch((err: any) => {
         console.log(err)
@@ -120,7 +120,7 @@ const Dashboard = () => {
             </p>
           </div>
           <SessionCard />
-          <DashboardTable header={leaderboardHeader} data={leaderboardData} title="Leaderboard Toppers" />
+          <DashboardTable header={leaderboardHeader} data={leaderboardData} title="Top 5 Leaderboard Toppers" />
 
           <DashboardTable header={tasktrackerHeader} data={tasktrackerData} title="Task Tracker" />
           <BirthDayCard />

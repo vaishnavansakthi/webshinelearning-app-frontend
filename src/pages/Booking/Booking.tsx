@@ -15,7 +15,7 @@ function Booking() {
   const [bookingData, setBookingData] = useState([])
   const [editingTaskId, setEditingTaskId] = useState<any>(null)
   const [countdown, setCountdown] = useState(0)
-  const targetDate: any = new Date("2024-05-06")
+  const targetDate: any = new Date("2024-05-28")
   const [courseTimeout, setCourseTimeout] = useState(false)
 
   useEffect(() => {
@@ -137,10 +137,10 @@ function Booking() {
             </>
           )}
         </div>
-        <div className="flex justify-center dark:text-white">
+        {!courseTimeout && <div className="flex justify-center dark:text-white">
           <div className="w-5 h-5 border border-black bg-gray-400  mr-4 "></div> Booked
           <div className="w-5 h-5 border border-black bg-white dark:bg-black mr-4 ml-5"></div> Available
-        </div>
+        </div>}
       </div>
       {isModel && (
         <Modal title="Book your course">
