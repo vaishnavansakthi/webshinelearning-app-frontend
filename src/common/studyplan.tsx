@@ -9,7 +9,7 @@ export const studyplanData = [
                 contentList: [
                     {
                         topic: "Basics",
-                        content: "HTML is the standard markup language for describing the structure of web pages.",
+                        content: "HTML is the standard markup language for describing the structure of web pages.lorem",
                     },
                     {
                         topic: "Elements",
