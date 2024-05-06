@@ -31,7 +31,7 @@ const Login = () => {
     const res = loginUsers(values)
     res.then((d) => {
       console.log(d)
-      window.location.reload()
+      
     })
     res
       .then((res: any) => {
@@ -39,6 +39,7 @@ const Login = () => {
         formikHelpers.resetForm()
         if (res.user.isActivate) {
           encryptData(res, "userData", "object")
+          window.location.reload()
           navigate("/dashboard")
           
         } else {
