@@ -4,7 +4,7 @@ export const studyplanData = [
         topics: [
             {
                 topic: "HTML",
-                subtopic: "3.0",
+                subtopic: "4.0",
                 date: "06/06/2024",
                 contentList: [
                     {
