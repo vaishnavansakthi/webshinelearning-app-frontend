@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet"
 import { Accordion } from "../../components/moleclues"
 import { useEffect, useState } from "react"
-import headphome from '../../assets/headphone.png'
-import blueheadphone from '../../assets/blueheadphone.png'
-import smartwatch from '../../assets/smartwatch.png'
+import headphome from "../../assets/headphone.png"
+import blueheadphone from "../../assets/blueheadphone.png"
+import smartwatch from "../../assets/smartwatch.png"
 
 const Home = () => {
   const [accordionItems, setAccordionItems] = useState([
@@ -89,11 +89,30 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Webshine talents - Home</title>
+        <title>Webshine Learning - Home</title>
         <meta
           name="description"
-          content="Dive into the world of full-stack development with our comprehensive MERN stack course within 4 months. Gain the skills and knowledge to create dynamic web applications from scratch using MongoDB, Express.js, React, and Node.js - the powerful technologies that fuel modern web development. Whether you're a beginner or experienced developer, our course will equip you with the tools to build scalable, robust, and feature-rich applications. Join us and unleash your potential in the world of full-stack development!"
+          content="Welcome to Example Website. We offer a wide range of products and services to meet your needs."
         />
+        <meta name="keywords" content="learning, website, products, services" />
+        <meta name="author" content="vaishnavan" />
+        <link rel="canonical" href="https://www.example.com" />
+        <meta property="og:title" content="Webshine learning creative future tech experts" />
+        <meta
+          property="og:description"
+          content="Welcome to WebshineLearning. We offer a full sttack learning and development services to meet your needs."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://webshinelearning.in/" />
+        <meta property="og:image" content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.example.com" />
+        <meta property="twitter:title" content="Webshine learning creative future tech experts" />
+        <meta
+          property="twitter:description"
+          content="Welcome to WebshineLearning. We offer a full sttack learning and development services to meet your needs."
+        />
+        <meta property="twitter:image" content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg" />
       </Helmet>
       {/* 
             Hero section
@@ -271,31 +290,27 @@ const Home = () => {
        * Gifts
        */}
       <div className="container mt-28 mb-8 mx-auto p-5">
-        <h1 className="text-2xl text-center dark:text-white mb-10">Scholar's Sanctuary: Gifts to Inspire and Empower Course Toppers</h1>
+        <h1 className="text-2xl text-center dark:text-white mb-10">
+          Scholar's Sanctuary: Gifts to Inspire and Empower Course Toppers
+        </h1>
         <div className="mt-5 flex justify-evenly flex-wrap">
           <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
-            <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">1<span className="text-[14px]">st</span></h2>
-            <img
-              src={smartwatch}
-              alt="smart watch"
-              style={{ width: "300px", height: "300px" }}
-            />
+            <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">
+              1<span className="text-[14px]">st</span>
+            </h2>
+            <img src={smartwatch} alt="smart watch" style={{ width: "300px", height: "300px" }} />
           </div>
           <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
-          <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">2<span className="text-[14px]">nd</span></h2>
-            <img
-              src={headphome}
-              alt="smart watch"
-              style={{ width: "300px", height: "300px" }}
-            />
+            <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">
+              2<span className="text-[14px]">nd</span>
+            </h2>
+            <img src={headphome} alt="smart watch" style={{ width: "300px", height: "300px" }} />
           </div>
           <div className="p-2 border-1 border-gray-400 shadow-lg mt-5">
-          <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">3<span className="text-[14px]">rd</span></h2>
-            <img
-              src={blueheadphone}
-              alt="smart watch"
-              style={{ width: "300px", height: "300px" }}
-            />
+            <h2 className="text-2xl mb-8 text-center shadow-xl bg-[#FFD700] inline-block p-5 rounded-full mt-[-40px] ml-[-30px]">
+              3<span className="text-[14px]">rd</span>
+            </h2>
+            <img src={blueheadphone} alt="smart watch" style={{ width: "300px", height: "300px" }} />
           </div>
         </div>
       </div>
