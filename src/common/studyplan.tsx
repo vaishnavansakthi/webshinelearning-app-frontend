@@ -4,12 +4,12 @@ export const studyplanData = [
         topics: [
             {
                 topic: "HTML",
-                subtopic: "3.0",
+                subtopic: "4.0",
                 date: "06/06/2024",
                 contentList: [
                     {
                         topic: "Basics",
-                        content: "HTML is the standard markup language for describing the structure of web pages.",
+                        content: "HTML is the standard markup language for describing the structure of web pages.hello and welcome",
                     },
                     {
                         topic: "Elements",
