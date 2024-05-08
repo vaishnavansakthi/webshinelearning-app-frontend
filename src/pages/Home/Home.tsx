@@ -96,7 +96,7 @@ const Home = () => {
         />
         <meta name="keywords" content="learning, website, products, services" />
         <meta name="author" content="vaishnavan" />
-        <link rel="canonical" href="https://www.example.com" />
+        <link rel="canonical" href="https://webshinelearning.in/" />
         <meta property="og:title" content="Webshine learning creative future tech experts" />
         <meta
           property="og:description"
@@ -106,7 +106,7 @@ const Home = () => {
         <meta property="og:url" content="https://webshinelearning.in/" />
         <meta property="og:image" content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://www.example.com" />
+        <meta property="twitter:url" content="https://webshinelearning.in/" />
         <meta property="twitter:title" content="Webshine learning creative future tech experts" />
         <meta
           property="twitter:description"
