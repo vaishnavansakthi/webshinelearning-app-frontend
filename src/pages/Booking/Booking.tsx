@@ -103,6 +103,29 @@ function Booking() {
     <div>
       <Helmet>
         <title>Webshine talents - Booking</title>
+        <meta
+          name="description"
+          content="Full-Stack Mastery: Book Your Journey Now"
+        />
+        <meta name="keywords" content="learning, website, products, services" />
+        <meta name="author" content="vaishnavan" />
+        <link rel="canonical" href="https://webshinelearning.in/booking" />
+        <meta property="og:title" content="Full-Stack Mastery: Book Your Journey Now" />
+        <meta
+          property="og:description"
+          content="Experience the full-stack journey: from front-end finesse to back-end brilliance. Book your course now."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://webshinelearning.in/booking" />
+        <meta property="og:image" content="https://rezdy.com//wp-content/uploads/2021/03/Blog-Photos-37_11zon.jpg" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://webshinelearning.in/" />
+        <meta property="twitter:title" content="Full-Stack Mastery: Book Your Journey Now" />
+        <meta
+          property="twitter:description"
+          content="Experience the full-stack journey: from front-end finesse to back-end brilliance. Book your course now."
+        />
+        <meta property="twitter:image" content="https://rezdy.com//wp-content/uploads/2021/03/Blog-Photos-37_11zon.jpg" />
       </Helmet>
       <div>
         <h5 className="text-center text-xl mb-10 dark:text-white">
