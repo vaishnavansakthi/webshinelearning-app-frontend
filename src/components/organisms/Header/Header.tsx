@@ -5,6 +5,7 @@ import { Switcher } from "../../atoms"
 import { IoLogOutOutline } from "react-icons/io5"
 import { navHeader } from "../../../constant"
 import { globalStateContext } from "../../../context/GlobalStateProvider"
+import logo from "../../../assets/webshinelogo-mine.png"
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -86,12 +87,11 @@ const Header = () => {
         ""
       )}
       <header className="bg-white dark:bg-[#181818] mb-10 bottom-3">
-        <nav className="px-10 py-5 flex items-center justify-between w-full" aria-label="Global">
+        <nav className="px-10 py-3 max-sm:px-2 flex items-center justify-between w-full" aria-label="Global">
           <div className="flex lg:flex-1">
             <Link to="/dashboard" className="-m-1.5 p-1.5">
               <span className="text-black dark:text-[#ffffff] text-lg">
-                <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">L</span>
-                earning.
+                <img className="h-[55px]" src={logo} alt="logo" />
               </span>
             </Link>
           </div>
@@ -226,12 +226,11 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden" role="dialog" aria-modal="true">
             <div className="fixed inset-0 z-10"></div>
-            <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-[#404040] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-[#404040] px-2 py-3 sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
                 <Link onClick={toggleMobileMenu} to="/dashbaord" className="-m-1.5 p-1.5">
                   <span className="text-black text-lg dark:text-[#ffffff]">
-                    <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">L</span>
-                    earning.
+                  <img className="h-[55px]" src={logo} alt="logo" />
                   </span>
                 </Link>
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">

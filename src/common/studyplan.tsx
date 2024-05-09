@@ -3,57 +3,89 @@ export const studyplanData = [
         category: "Full Stack Development",
         topics: [
             {
-                topic: "HTML",
-                subtopic: "3.0",
+                topic: "Introduction",
+                subtopic: "",
                 date: "06/06/2024",
                 contentList: [
                     {
-                        topic: "Basics",
-                        content: "HTML is the standard markup language for describing the structure of web pages.",
+                        topic: "Overview of web development",
+                        content: "",
                     },
                     {
-                        topic: "Elements",
-                        content: "HTML elements are the basic building blocks of a web page.",
+                        topic: "History of web browsers",
+                        content: "",
                     },
                     {
-                        topic: "Attributes",
-                        content: "HTML attributes are the properties of HTML elements.",
+                        topic: "Introduction to the MERN stack",
+                        content: "",
                     },
                     {
-                        topic: "Tags",
-                        content: "HTML tags are used to mark up HTML elements.",
+                        topic: "Advantages of using the MERN stack",
+                        content: "",
                     },
                     {
-                        topic: "DOM",
-                        content: "The Document Object Model (DOM) is a data-model for web pages.",
-                    }
+                        topic: "Setting up development environment",
+                        content: "",
+                    },
                 ]
             },
             {
-                topic: "CSS",
-                subtopic: "3.0",
+                topic: "HTML",
+                subtopic: "5.0",
                 date: "06/12/2024",
                 contentList: [
                     {
-                        topic: "Basics",
-                        content: "CSS is a style sheet language used for describing the presentation of a document written in HTML.",
+                        topic: "Introduction to HTML",
+                        content: "",
                     },
                     {
-                        topic: "Properties",
-                        content: "CSS properties are the properties of CSS.",
+                        topic: "Structure of an HTML document",
+                        content: "",
                     },
                     {
-                        topic: "Selectors",
-                        content: "Selectors are used to mark up CSS rules.",
+                        topic: "Basic HTML tags",
+                        content: "<html>, <head>, <title>, <body>, etc.",
                     },
                     {
-                        topic: "Media Queries",
-                        content: "Media Queries are used to style the presentation of a document written in HTML.",
+                        topic: "Lists",
+                        content: "<ul>, <ol>, <li>",
                     },
                     {
-                        topic: "Animations",
-                        content: "Animations are used to style the presentation of a document written in HTML.",
+                        topic: "Links:",
+                        content: "<a>",
                     },
+                    {
+                        topic: "Images",
+                        content: "<img>",
+                    },
+                    {
+                        topic: "Tables",
+                        content: "<table>, <tr>, <td>",
+                    },
+                    {
+                        topic: "Forms",
+                        content: "<form>, <input>, <textarea>, <button>",
+                    },
+                    {
+                        topic: "Semantic HTML",
+                        content: "<header>, <nav>, <section>, <article>, <footer>, etc.",
+                    },
+                    {
+                        topic: "Multimedia",
+                        content: "<audio>, <video>, <iframe>",
+                    },
+                    {
+                        topic: "HTML entities and special characters",
+                        content: "",
+                    },
+                    {
+                        topic: "HTML validation and best practices",
+                        content: "",
+                    },
+                    {
+                        topic: "Accessibility considerations in HTML",
+                        content: "",
+                    }
                 ]
             },
             {

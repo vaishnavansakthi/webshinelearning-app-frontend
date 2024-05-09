@@ -45,7 +45,7 @@ const Timeline = ({
             {contentData?.map((content, contentIndex) => (
               <dl className="my-5" key={contentIndex}>
                 <dt className="font-bold">{content?.topic}</dt>
-                <dd>- {content?.content}</dd>
+                <dd>{content?.content && "-"} {content?.content}</dd>
               </dl>
             ))}
           </div>
