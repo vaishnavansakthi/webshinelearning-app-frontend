@@ -92,11 +92,15 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-sm text-gray-500 sm:text-center dark:text-gray-400  max-md:mt-4">
-              <span className="text-[14px] font-bold mr-2 mt-3">Reach Us</span>
               <span>
                 <a className="underline" href="tel:+919047609410">
                   +91 9047609410
                 </a>
+                <p>
+                <a className="underline" href="mailto:webshinelearninginfo@webshinelearning.in">
+                  webshinelearninginfo@webshinelearning.in
+                </a>
+              </p>
               </span>
             </div>
           </div>

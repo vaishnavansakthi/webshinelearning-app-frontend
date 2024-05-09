@@ -30,9 +30,20 @@ async function activateUser(id: string, data: any) {
   }
 }
 
+async function deleteUser(id: string) {
+  try {
+    const response = await axiosInstance.delete(`/user/${id}`)
+    return response
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 
 export {
     getAllUserData,
     getUserData,
-    activateUser
+    activateUser,
+    deleteUser
 }

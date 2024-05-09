@@ -57,7 +57,8 @@ const Header = () => {
               <p>Enroll now and get 40% off!</p>
             </div>
             <div className="text-[14px]">
-              Learn <span className="font-bold">HTML + CSS + JS + React + Redux + NodeJs + ExpressJs + MongoDB</span> at 9,999/- Only.
+              Learn <span className="font-bold">HTML + CSS + JS + React + Redux + NodeJs + ExpressJs + MongoDB</span> at
+              9,999/- Only.
               <button
                 onClick={() => navigate("/booking")}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
@@ -66,9 +67,17 @@ const Header = () => {
               </button>
             </div>
             <div>
-              <h5 className="text-[14px] font-bold">Reach Us</h5>
               <p>
-                Contact: <a className="underline" href="tel:+919047609410">+91 9047609410</a>
+                Contact:{" "}
+                <a className="underline" href="tel:+919047609410">
+                  +91 9047609410
+                </a>
+              </p>
+              <p>
+                Email:{" "}
+                <a className="underline" href="mailto:webshinelearninginfo@webshinelearning.in">
+                  webshinelearninginfo@webshinelearning.in
+                </a>
               </p>
             </div>
           </div>
@@ -81,8 +90,8 @@ const Header = () => {
           <div className="flex lg:flex-1">
             <Link to="/dashboard" className="-m-1.5 p-1.5">
               <span className="text-black dark:text-[#ffffff] text-lg">
-                <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
-                alents.
+                <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">L</span>
+                earning.
               </span>
             </Link>
           </div>
@@ -221,8 +230,8 @@ const Header = () => {
               <div className="flex items-center justify-between">
                 <Link onClick={toggleMobileMenu} to="/dashbaord" className="-m-1.5 p-1.5">
                   <span className="text-black text-lg dark:text-[#ffffff]">
-                    <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">T</span>
-                    alents.
+                    <span className="text-2xl font-mono">W</span>ebshine <span className="text-2xl font-mono">L</span>
+                    earning.
                   </span>
                 </Link>
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">

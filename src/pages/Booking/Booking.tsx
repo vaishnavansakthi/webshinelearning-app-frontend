@@ -1,5 +1,6 @@
 import { Modal } from "../../components/moleclues"
 import { Field, Formik, ErrorMessage, Form } from "formik"
+import { ThreeDots } from "react-loader-spinner"
 import { useEffect, useState } from "react"
 import { bookingFormSchema, bookingValidationSchema } from "../../schema/bookingFormSchema"
 import { getAllBookings, updateBooking } from "../../services/booking.services"
@@ -103,10 +104,7 @@ function Booking() {
     <div>
       <Helmet>
         <title>Webshine talents - Booking</title>
-        <meta
-          name="description"
-          content="Full-Stack Mastery: Book Your Journey Now"
-        />
+        <meta name="description" content="Full-Stack Mastery: Book Your Journey Now" />
         <meta name="keywords" content="learning, website, products, services" />
         <meta name="author" content="vaishnavan" />
         <link rel="canonical" href="https://webshinelearning.in/booking" />
@@ -125,7 +123,10 @@ function Booking() {
           property="twitter:description"
           content="Experience the full-stack journey: from front-end finesse to back-end brilliance. Book your course now."
         />
-        <meta property="twitter:image" content="https://rezdy.com//wp-content/uploads/2021/03/Blog-Photos-37_11zon.jpg" />
+        <meta
+          property="twitter:image"
+          content="https://rezdy.com//wp-content/uploads/2021/03/Blog-Photos-37_11zon.jpg"
+        />
       </Helmet>
       <div>
         <h5 className="text-center text-xl mb-10 dark:text-white">
@@ -140,10 +141,12 @@ function Booking() {
         <div className="flex justify-evenly flex-wrap p-5 w-[500px] max-sm:w-[280px] m-auto">
           {/* Render seats dynamically */}
           {courseTimeout ? (
-            <span className="text-red-500 font-bold text-lg animate-pulse w-[320px] h-[320px] text-center mt-10">Booking closed, Please try again once booking opens</span>
+            <span className="text-red-500 font-bold text-lg animate-pulse w-[320px] h-[320px] text-center mt-10">
+              Booking closed, Please try again once booking opens
+            </span>
           ) : (
             <>
-              {bookingData.length > 0 &&
+              {bookingData.length > 0 ? (
                 bookingData.map((booking: any) => (
                   <button
                     className="w-[45px] h-[45px] border border-1 border-white mb-5 p-3 m-3 dark:border-gray-500 dark:text-white dark:disabled:bg-gray-700 text-[14px] shadow-md"
@@ -156,14 +159,30 @@ function Booking() {
                   >
                     {booking.order}
                   </button>
-                ))}
+                ))
+              ) : (
+                <div className="font-bold text-lg animate-pulse text-center mt-10 dark:text-white h-[300px]">
+                  <ThreeDots
+                    visible={true}
+                    height="55"
+                    width="55"
+                    color="lightblue"
+                    radius="9"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                </div>
+              )}
             </>
           )}
         </div>
-        {!courseTimeout && <div className="flex justify-center dark:text-white">
-          <div className="w-5 h-5 border border-black bg-gray-400  mr-4 "></div> Booked
-          <div className="w-5 h-5 border border-black bg-white dark:bg-black mr-4 ml-5"></div> Available
-        </div>}
+        {!courseTimeout && (
+          <div className="flex justify-center dark:text-white">
+            <div className="w-5 h-5 border border-black bg-gray-400  mr-4 "></div> Booked
+            <div className="w-5 h-5 border border-black bg-white dark:bg-black mr-4 ml-5"></div> Available
+          </div>
+        )}
       </div>
       {isModel && (
         <Modal title="Book your course">
