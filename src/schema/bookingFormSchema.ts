@@ -3,9 +3,9 @@ import * as Yup from "yup"
 export const bookingFormSchema = [
   {
     name: "username",
-    label: "Username",
+    label: "Your Name",
     type: "text",
-    placeholder: "John Victor",
+    placeholder: "eg:- sakthi",
     required: true,
     className: "text-gray-400",
     text: "Username",
@@ -14,7 +14,7 @@ export const bookingFormSchema = [
     name: "email",
     label: "Email",
     type: "email",
-    placeholder: "name@company.com",
+    placeholder: "xxxxxxx@gmail.com",
     required: true,
     className: "text-gray-400",
     text: "Your Email",
