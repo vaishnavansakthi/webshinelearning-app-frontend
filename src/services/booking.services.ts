@@ -40,9 +40,21 @@ async function deleteAllBookings(){
       }
 }
 
+async function resetBooking(bookingId: number, updateBookingData: any) {
+  try {
+    const response = await axiosInstance.put(`/bookings/${bookingId}`, updateBookingData)
+    return response
+  }
+  catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 export {
     createBooking,
     getAllBookings,
     updateBooking,
-    deleteAllBookings
+    deleteAllBookings,
+    resetBooking
 }
