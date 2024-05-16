@@ -12,6 +12,8 @@ function Booking() {
     username: "",
     email: "",
     phone: "",
+    chooseYourCourse: "",
+    desc: "",
   })
   const [bookingData, setBookingData] = useState([])
   const [editingTaskId, setEditingTaskId] = useState<any>(null)
@@ -66,6 +68,8 @@ function Booking() {
       email: values.email,
       phone: values.phone,
       isCourseBooked: true,
+      chooseYourCourse: values.chooseYourCourse,
+      desc: values.desc,
     }
 
     updateBooking(editingTaskId, data)
@@ -225,6 +229,7 @@ function Booking() {
                           name={form.name}
                           type={form.type}
                           placeholder={form.placeholder}
+                          style={form.type === "textArea" ? {"height": "140px", width: "100%"}: null}
                           className="appearance-none mt-1 max-[650px]:mt-2 block w-[220px] max-[650px]:w-[300px] px-3 py-2 border border-gray-300 dark:border-black dark:bg-[#282828] dark:text-white rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}

@@ -148,7 +148,7 @@ const SignUp = () => {
                     />
                     <p className="text-sm font-light dark:text-[#ffffff] text-gray-500">
                       Already have an account?{" "}
-                      <LinkText href="/" text="Login" className="tracking-wide leading-normal" />
+                      <LinkText href="/login" text="Login" className="tracking-wide leading-normal" />
                     </p>
                   </Form>
                 )
