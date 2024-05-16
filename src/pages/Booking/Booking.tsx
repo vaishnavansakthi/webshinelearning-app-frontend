@@ -5,9 +5,12 @@ import { useEffect, useState } from "react"
 import { bookingFormSchema, bookingValidationSchema } from "../../schema/bookingFormSchema"
 import { getAllBookings, updateBooking } from "../../services/booking.services"
 import { Helmet } from "react-helmet"
+import whatsappGroup from "../../assets/whatsapp-community-group.webp"
+import whatsappQR from "../../assets/Webshine Learning Group.png"
 
 function Booking() {
   const [isModel, setIsModel] = useState(false)
+  const [isBooked, setIsBooked] = useState(false)
   const [initialFormValues, setInitialFormValues] = useState<any>({
     username: "",
     email: "",
@@ -60,6 +63,7 @@ function Booking() {
   const handleFormModal = (id: any) => {
     setIsModel(true)
     setEditingTaskId(id)
+    setIsBooked(false)
   }
 
   const handleSubmit = (values: any) => {
@@ -83,12 +87,14 @@ function Booking() {
           })
           return updatedData
         })
-
+        setIsBooked(true)
         handleCloseModal()
       })
       .catch((error) => {
         console.log(error)
+        setIsBooked(false)
       })
+    setIsBooked(false)
   }
 
   const formatTime = (timeInSeconds: number) => {
@@ -132,6 +138,33 @@ function Booking() {
           content="https://rezdy.com//wp-content/uploads/2021/03/Blog-Photos-37_11zon.jpg"
         />
       </Helmet>
+      {isBooked && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white dark:bg-[#282828] p-8 rounded-md shadow-md max-md:w-[320px]">
+            <p className="text-lg font-semibold mb-4 text-center dark:text-white">
+              🚀 Join our exclusive WhatsApp group for exciting discussions and updates! 🚀
+            </p>
+            <div className="flex justify-center align-middle items-center gap-5 flex-wrap mt-5">
+              <div>
+                <a className="text-center" href="https://chat.whatsapp.com/ItbeoQVy0laDX9QIfUNdhF">
+                  <img src={whatsappGroup} alt="whatsapp-group" className="object-contain w-[280px] mx-auto" />
+                </a>
+              </div>
+              <div className="border-1 border border-black h-[100px] max-md:hidden dark:border-white"></div>
+              <div>
+                <img src={whatsappQR} className="object-contain w-[220px] mx-auto" alt="whatsapp-group" />
+              </div>
+            </div>
+            <p className="text-sm text-gray-500 mt-8 text-center">Scan the QR code or click the link above to join</p>
+            <button
+              onClick={() => setIsBooked(false)}
+              className="bg-blue-500 text-white px-4 py-2 mt-5 rounded-md block mx-auto"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div>
         <h5 className="text-center text-xl mb-10 dark:text-white">
           Book your course to enjoy your incredible full stack journey
@@ -229,7 +262,7 @@ function Booking() {
                           name={form.name}
                           type={form.type}
                           placeholder={form.placeholder}
-                          style={form.type === "textArea" ? {"height": "140px", width: "100%"}: null}
+                          style={form.type === "textArea" ? { height: "140px", width: "100%" } : null}
                           className="appearance-none mt-1 max-[650px]:mt-2 block w-[220px] max-[650px]:w-[300px] px-3 py-2 border border-gray-300 dark:border-black dark:bg-[#282828] dark:text-white rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                       )}

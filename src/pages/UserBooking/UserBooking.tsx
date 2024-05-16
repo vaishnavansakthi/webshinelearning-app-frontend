@@ -8,7 +8,6 @@ export default function UserBooking() {
     const res = getAllBookings()
     res
       .then((booking) => {
-        console.log(booking)
         setBookingData(booking)
       })
       .catch((error) => {
@@ -60,7 +59,6 @@ export default function UserBooking() {
                   >
                     Reset Booking
                   </button>}
-                 
                 </div>
               </div>
             )
