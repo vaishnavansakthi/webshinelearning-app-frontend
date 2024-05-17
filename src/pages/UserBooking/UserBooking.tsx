@@ -42,15 +42,17 @@ export default function UserBooking() {
           bookingData.map((bookingData: any) => {
             return (
               <div
-                style={bookingData?.isCourseBooked === true ? { background: "#FFFAE6" } : undefined}
-                className="w-[400px] h-[400px] border border-1 border-white mb-5 p-3 max-[650px]:w-[320px] max-[650px]:h-[350px] shadow-md"
+                style={bookingData?.isCourseBooked === true ? { background: "#FFE0B5" } : {background: "#404040" } }
+                className="w-[400px] h-auto border border-1 border-white mb-5 p-3 max-[650px]:w-[320px] max-[650px]:h-auto shadow-md"
               >
                 <div className="text-center my-[100px] max-[650px]:my-[50px]">
                   <h1 className="text-lg">{bookingData.order}</h1>
-                  <h1 className="text-xl dark:text-white">{bookingData.username}</h1>
+                  <h1 className="text-xl">{bookingData.username}</h1>
                   <h1>{bookingData.phone}</h1>
                   <h1>{bookingData.email}</h1>
-                  <h3 className="text-xl dark:text-white mt-8">
+                  <h1>{bookingData.chooseYourCourse}</h1>
+                  <p>{bookingData.desc}</p>
+                  <h3 className="text-xl mt-8">
                     {bookingData?.isCourseBooked ? "Booked" : "Yet to book"}
                   </h3>
                   {bookingData?.isCourseBooked &&  <button
