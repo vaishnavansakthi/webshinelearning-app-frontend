@@ -6,8 +6,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="bg-[#f5f5f5] dark:bg-[#282828]">
         <Header />
-          <section className="min-h-[72vh]">{children}</section>
-        <Footer />
+        <section className="min-h-[100vh]">{children}</section>
+        <div className="mt-[20px]">
+          <Footer />
+        </div>
       </div>
     </>
   )

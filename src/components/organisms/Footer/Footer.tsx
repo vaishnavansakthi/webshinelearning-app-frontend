@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[#0A0E1F] mt-8">
-        <div className="mx-auto w-full max-w-screen-2xl p-10 py-6 lg:py-8">
+      <footer className="bg-[#0A0E1F] mt-24 w-full py-4 px-4">
+        <div className="">
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2023{" "}
@@ -97,10 +97,10 @@ const Footer = () => {
                   +91 9047609410
                 </a>
                 <p>
-                <a className="underline" href="mailto:webshinelearninginfo@webshinelearning.in">
-                  webshinelearninginfo@webshinelearning.in
-                </a>
-              </p>
+                  <a className="underline" href="mailto:webshinelearninginfo@webshinelearning.in">
+                    webshinelearninginfo@webshinelearning.in
+                  </a>
+                </p>
               </span>
             </div>
           </div>

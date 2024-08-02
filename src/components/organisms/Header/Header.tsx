@@ -1,20 +1,40 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef } from "react"
 import { decryptData } from "../../../utils/security"
 import { Switcher } from "../../atoms"
 import { IoLogOutOutline } from "react-icons/io5"
 import { navHeader } from "../../../constant"
 import { globalStateContext } from "../../../context/GlobalStateProvider"
 import logo from "../../../assets/webshinelogo-mine.png"
+import { FaChevronDown } from "react-icons/fa"
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [myToken, setMyToken] = useState(decryptData("userData", "object"))
   const [urlPath, setUrlPath] = useState<string>("")
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   const { points } = useContext(globalStateContext)
   const location = useLocation()
   let currentPath = location.pathname
+
+  const toggleDropdown = (path: string) => {
+    setOpenDropdown(openDropdown === path ? null : path)
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setOpenDropdown(null)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
 
   useEffect(() => {
     const tokenExpirationTime = myToken?.expires_at
@@ -138,21 +158,40 @@ const Header = () => {
             myToken?.user?.role === "admin" && (
               <div className="hidden lg:flex lg:gap-x-6">
                 {navHeader &&
-                  navHeader?.map((nav: any) => {
-                    return (
-                      <>
-                        {nav.role === "admin" && (
-                          <Link
-                            to={nav.navlink}
-                            key={nav.path}
-                            className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
-                          >
-                            {nav.navText}
-                          </Link>
-                        )}
-                      </>
-                    )
-                  })}
+                  navHeader.map((nav: any) => (
+                    <div key={nav.path} className="relative" ref={dropdownRef}>
+                      {nav.role === "admin" && (
+                        <>
+                          <div className="flex items-center">
+                            <Link
+                              to={nav.navlink === "/hello" ? "/userbooking" : nav.navlink}
+                              className={`text-sm font-semibold dark:text-[#ffffff] leading-6 ${urlPath === nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
+                            >
+                              {nav.navText}
+                            </Link>
+                            {nav.subNav && (
+                              <button onClick={() => toggleDropdown(nav.path)} className="ml-2">
+                                <FaChevronDown className="dark:text-white" />
+                              </button>
+                            )}
+                          </div>
+                          {nav.subNav && openDropdown === nav.path && (
+                            <div className="absolute left-0 bg-white shadow-lg mt-2">
+                              {nav.subNav.map((subNav: any) => (
+                                <Link
+                                  to={subNav.navlink}
+                                  key={subNav.navMatch}
+                                  className={`block px-4 py-2 text-sm font-semibold ${urlPath === subNav.navMatch ? "text-blue-400" : "text-gray-900"}`}
+                                >
+                                  {subNav.navText}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  ))}
               </div>
             )
           )}
@@ -230,7 +269,7 @@ const Header = () => {
               <div className="flex items-center justify-between">
                 <Link onClick={toggleMobileMenu} to="/dashbaord" className="-m-1.5 p-1.5">
                   <span className="text-black text-lg dark:text-[#ffffff]">
-                  <img className="h-[55px]" src={logo} alt="logo" />
+                    <img className="h-[55px]" src={logo} alt="logo" />
                   </span>
                 </Link>
                 <button onClick={toggleMobileMenu} type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700">
