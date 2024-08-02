@@ -26,12 +26,12 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
+    // navigate("/dashboard")
     setLoading(true)
-    
+
     const res = loginUsers(values)
     res.then((d) => {
       console.log(d)
-      
     })
     res
       .then((res: any) => {
@@ -41,7 +41,6 @@ const Login = () => {
           encryptData(res, "userData", "object")
           window.location.reload()
           navigate("/dashboard")
-          
         } else {
           setsMessage(
             `Welcome, ${res.user.username}! Your profile awaits for activation by our diligent admin team. Stay tuned!`,

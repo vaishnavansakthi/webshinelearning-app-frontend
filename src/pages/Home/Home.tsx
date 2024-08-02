@@ -50,7 +50,7 @@ const Home = () => {
     seconds: 0,
   })
 
-  const courseStartDate: any = new Date("2024-06-01")
+  const courseStartDate: any = new Date("2024-10-30")
 
   function updateCountdown() {
     const currentDate: any = new Date()
@@ -104,7 +104,10 @@ const Home = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://webshinelearning.in/" />
-        <meta property="og:image" content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg"
+        />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://webshinelearning.in/" />
         <meta property="twitter:title" content="Webshine learning creative future tech experts" />
@@ -112,7 +115,10 @@ const Home = () => {
           property="twitter:description"
           content="Welcome to WebshineLearning. We offer a full sttack learning and development services to meet your needs."
         />
-        <meta property="twitter:image" content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg" />
+        <meta
+          property="twitter:image"
+          content="https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1511848673/1511848671.jpg"
+        />
       </Helmet>
       {/* 
             Hero section

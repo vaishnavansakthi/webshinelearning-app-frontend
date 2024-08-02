@@ -19,10 +19,9 @@ import {
   Home,
   Dashboard,
   UserBooking,
-  Booking
+  Booking,
 } from "../pages"
 import { decryptData } from "../utils/security"
-
 
 interface IRoutesTypes {
   path: string
@@ -38,7 +37,7 @@ console.log(myToken !== null)
 export const routes: IRoutesTypes[] = [
   {
     path: "/",
-    component: myToken !== null ? Dashboard : Home,
+    component: Home,
     navigate: "/dashboard",
     private: myToken !== null ? true : false,
   },
@@ -142,5 +141,5 @@ export const routes: IRoutesTypes[] = [
     path: "/userbooking",
     component: UserBooking,
     private: true,
-  }
+  },
 ]
