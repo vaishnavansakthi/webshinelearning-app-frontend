@@ -8,20 +8,21 @@ import { Label } from "components/atoms"
 
 const ManageUser = () => {
   const [userData, setUserData] = useState<any>([])
-  console.log("userData", userData)
   const columns = [
     { label: "Username", field: "username" },
     { label: "Email", field: "email" },
     { label: "Mobile Number", field: "mobileNumber" },
     { label: "Role", field: "role" },
     { label: "Status", field: "isActivate", trueValue: "Deactivate", falseValue: "Activate" },
-    { label: "Actions", field: "actions", enable: "delete" },
+    { label: "Actions", field: "actions", enable: "delete,view,promote" },
   ]
   const [isActivateModal, setisActivateModal] = useState(false)
   const [taskIdToActivate, settaskIdToActivate] = useState("")
   const [userActivate, setUserActivate] = useState<{ isActivate?: boolean }>({})
   const [isDeleteModal, setIsDeleteModal] = useState(false)
   const [userIdToDelete, setUserIdToDelete] = useState<string>("")
+  const [userDetailModal, setUserDetailModal] = useState<boolean>(false)
+  const [userDetail, setUserDetail] = useState<any>({} as any)
 
   useEffect(() => {
     try {
@@ -50,22 +51,24 @@ const ManageUser = () => {
 
   const handleConfirmDelete = (id: string) => {
     setIsDeleteModal(true)
-   
+
     const res = deleteUser(id)
-    res.then(() => {
-      setUserIdToDelete(id)
-      setUserData(userData.filter((item: any) => item.id!== id))
-      setIsDeleteModal(false)
-    })
-    .catch((err) => {
-       console.log(err)
-    })
+    res
+      .then(() => {
+        setUserIdToDelete(id)
+        setUserData(userData.filter((item: any) => item.id !== id))
+        setIsDeleteModal(false)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     console.log("delete user id", id)
   }
 
   const handleClosePopModal = () => {
     setisActivateModal(false)
     setIsDeleteModal(false)
+    setUserDetailModal(false)
   }
 
   const handleConfirmActivate = (id: string) => {
@@ -85,6 +88,19 @@ const ManageUser = () => {
     setisActivateModal(false)
   }
 
+  const handleView = (id: string) => {
+    const user = userData.find((user: any) => user.id === id)
+    console.log("View user id", user)
+    setUserDetail(user)
+    setUserDetailModal(true)
+  }
+
+  const handlePromote = (id: string) => {
+    const user = userData.find((user: any) => user.id === id)
+    console.log("Promote user id", user)
+    // TODO: Implement promote user functionality
+  }
+
   return (
     <>
       <Table
@@ -93,6 +109,8 @@ const ManageUser = () => {
         handleStatus={handleStatus}
         handleDelete={handleDelete}
         handleEdit={() => {}}
+        handleView={handleView}
+        handlePromote={handlePromote}
       />
       {isDeleteModal && (
         <Modal title="">
@@ -132,6 +150,41 @@ const ManageUser = () => {
                 >
                   Yes, I'm sure
                 </button>
+                <button
+                  onClick={handleClosePopModal}
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {userDetailModal && (
+        <Modal title="">
+          <div className="relative p-4 w-full max-w-md max-h-full">
+            <div className="relative bg-white rounded-lg border-none dark:bg-[#404040] border border-[#404040]">
+              <div className="p-4 md:p-5 text-center">
+                {userDetail?.profile !== null ? (
+                  <div className="text-left">
+                    <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                      {userDetail?.username}
+                    </h3>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.degree}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.university}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.fieldOfStudy}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.graduationYear}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.description}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.hobbies}</p>
+                    <p className="mb-2 text-gray-500 dark:text-gray-400">{userDetail?.profile?.dateOfBirth}</p>
+                  </div>
+                ) : (
+                  <h1 className="p-10 text-center">Profile not yet updated</h1>
+                )}
+
                 <button
                   onClick={handleClosePopModal}
                   data-modal-hide="popup-modal"

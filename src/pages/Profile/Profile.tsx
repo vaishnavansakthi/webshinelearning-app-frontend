@@ -20,6 +20,7 @@ const Profile = () => {
   useEffect(() => {
     setIsLoading(true)
     const mytoken = JSON.parse(decryptData("userData", null))
+    console.log(mytoken)
     getUserData(mytoken?.user?.id)
       .then((data: any) => {
         const profileId = data[0]?.profile?.id
@@ -108,17 +109,17 @@ const Profile = () => {
             </div>
           </div>
           {isLoading ? (
-             <div className=" flex justify-center mt-32 text-center border-b h-72 pb-12 max-[600px]:mt-28">
-            <ThreeDots
-              visible={true}
-              height="35"
-              width="35"
-              color="lightblue"
-              radius="9"
-              ariaLabel="three-dots-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-            />
+            <div className=" flex justify-center mt-32 text-center border-b h-72 pb-12 max-[600px]:mt-28">
+              <ThreeDots
+                visible={true}
+                height="35"
+                width="35"
+                color="lightblue"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
             </div>
           ) : (
             <div className="mt-20 text-center border-b pb-12 max-[600px]:mt-28">

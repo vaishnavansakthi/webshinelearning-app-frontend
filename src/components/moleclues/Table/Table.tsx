@@ -1,9 +1,17 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import dayjs from "dayjs"
 import { loaderContext } from "../../../context/LoaderProvider"
-import { FaLongArrowAltLeft, FaLongArrowAltRight, FaRegEdit, FaPlusCircle } from "react-icons/fa"
+import {
+  FaLongArrowAltLeft,
+  FaLongArrowAltRight,
+  FaRegEdit,
+  FaPlusCircle,
+  FaRegEye,
+  FaArrowAltCircleUp,
+} from "react-icons/fa"
 import { MdDelete } from "react-icons/md"
+import { decryptData } from "../../../utils/security"
 
 const Table = ({
   data,
@@ -13,6 +21,8 @@ const Table = ({
   handleStatus,
   children,
   handleModal,
+  handleView,
+  handlePromote,
 }: {
   data?: any
   columns?: any
@@ -20,12 +30,24 @@ const Table = ({
   handleDelete?: any
   handleStatus?: any
   handleModal?: any
+  handleView?: any
+  handlePromote?: any
   children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [searchQuery, setSearchQuery] = useState("")
   const { isLoading } = useContext(loaderContext)
+  const [isAdmin, setIsAdmin] = useState(false)
   const rowsPerPage = 6
+
+  useEffect(() => {
+    const mytoken = JSON.parse(decryptData("userData", null))
+    if (mytoken?.user?.role === "admin") {
+      setIsAdmin(true)
+    }
+  }, [])
+
+  console.log("isAdmin", isAdmin)
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber)
@@ -128,6 +150,29 @@ const Table = ({
                                       color="green"
                                     />
                                   </button>
+                                </>
+                              ) : column.enable === "delete,view,promote" ? (
+                                <>
+                                  <button className="mr-2 rounded-md" onClick={() => handleView(rowData.id)}>
+                                    <FaRegEye
+                                      className="text-blue-400 hover:text-blue-500"
+                                      size="22px"
+                                      color="#89CFF0"
+                                    />
+                                  </button>
+                                  <button onClick={() => handleDelete(rowData.id)}>
+                                    <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
+                                  </button>
+                                  {/* {isAdmin && (
+                                    <button onClick={() => handlePromote(rowData.id)}>
+                                      <FaArrowAltCircleUp
+                                        title="promote to admin"
+                                        className="text-green-400 hover:text-green-500 ml-3"
+                                        size="22px"
+                                        color="green"
+                                      />
+                                    </button>
+                                  )} */}
                                 </>
                               ) : (
                                 <>
