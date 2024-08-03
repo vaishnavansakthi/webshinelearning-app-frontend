@@ -83,9 +83,9 @@ export const navHeader = [
         navMatch: "userbooking",
       },
       {
-        navlink: "/session",
+        navlink: "/usersession",
         navText: "Session",
-        navMatch: "session",
+        navMatch: "usersession",
       },
     ],
   },

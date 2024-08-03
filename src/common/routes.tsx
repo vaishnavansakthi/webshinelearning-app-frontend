@@ -20,6 +20,7 @@ import {
   Dashboard,
   UserBooking,
   Booking,
+  UserSession,
 } from "../pages"
 import { decryptData } from "../utils/security"
 
@@ -140,6 +141,11 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/userbooking",
     component: UserBooking,
+    private: true,
+  },
+  {
+    path: "/usersession",
+    component: UserSession,
     private: true,
   },
 ]

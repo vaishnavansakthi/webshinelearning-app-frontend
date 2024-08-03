@@ -19,16 +19,16 @@ const Dashboard = () => {
   const leaderboardHeader = [
     { label: "Username", value: "user.username" },
     { label: "Suggestion", value: "suggestion" },
-    { label: "Points", value: "points" }
-  ];
-  
+    { label: "Points", value: "points" },
+  ]
+
   const tasktrackerHeader = [
     { label: "Username", value: "user.username" },
     { label: "Title", value: "title" },
     { label: "Story Points", value: "storyPoints" },
     { label: "Status", value: "status" },
-    { label: "Comments", value: "comments" }
-  ];
+    { label: "Comments", value: "comments" },
+  ]
 
   useEffect(() => {
     const res = getAllLeaerboardData()
@@ -58,10 +58,10 @@ const Dashboard = () => {
     })
   }, [])
 
-  const attendancePercentage = userdata && userdata.attendance ? Math.floor((userdata.attendance.length / 32) * 100) : 0;
+  const attendancePercentage = userdata && userdata.attendance ? Math.floor((userdata.attendance.length / 32) * 100) : 0
 
   // Define accordion items data
-  const accordionItems = [
+  const accordionItemsLeft = [
     {
       id: 1,
       question: "What is MERN Stack?",
@@ -76,9 +76,30 @@ const Dashboard = () => {
     },
     {
       id: 3,
-      question: "What are the differences between Flowbite and Tailwind UI?",
+      question: "What is better than MERN?",
       answer:
-        "The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.",
+        "The key distinction is that the MEAN stack employs Angular in the front-end structure, whereas the MERN stack employs React Js for the User Interface (UI). On the one hand, MEAN is preferred for enterprise-level design. Whereas the MERN is opted for when applications are smaller.",
+    },
+  ]
+
+  const accordionItemsRight = [
+    {
+      id: 1,
+      question: "What is MERN vs full-stack?",
+      answer:
+        "Full Stack is used to create any type of application as per your business requirements, whereas MEAN and MERN stack are referred to specific technologies for JavaScript-based app development with great scalability and performance.",
+    },
+    {
+      id: 2,
+      question: "Is MERN stack highly paid?",
+      answer:
+        "Experienced MERN stack developers with over five years of experience are among the highest earners in the field. Their salaries can range from ₹15,00,000 to ₹25,00,000 per annum (Source: LinkedIn), and in some cases, even higher depending on their expertise and the company they work for",
+    },
+    {
+      id: 3,
+      question: "Is MERN difficult to learn?",
+      answer:
+        "MERN is a relatively advanced set of skills with many prerequisites to learn, and this course will teach students all of those prerequisites, including JavaScript, HTML, and CSS. Once that training is out of the way, students will learn MERN stack frameworks and tools like Flex, Git, Virtual Studio Code, and Bootstrap",
     },
   ]
 
@@ -126,14 +147,14 @@ const Dashboard = () => {
           <BirthDayCard />
 
           <div className="col-span-6 max-md:col-span-12">
-            {accordionItems.map((item) => (
+            {accordionItemsLeft.map((item) => (
               <div className="col-span-6" key={item.id}>
                 <AccordionItem question={item.question} answer={item.answer} />
               </div>
             ))}
           </div>
           <div className="col-span-6 max-md:col-span-12">
-            {accordionItems.map((item) => (
+            {accordionItemsRight.map((item) => (
               <div className="col-span-6" key={item.id}>
                 <AccordionItem question={item.question} answer={item.answer} />
               </div>

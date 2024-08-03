@@ -50,6 +50,8 @@ const Home = () => {
     seconds: 0,
   })
 
+  const [startDate, setStats] = useState<any>("")
+
   const courseStartDate: any = new Date("2024-10-30")
 
   function updateCountdown() {

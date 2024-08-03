@@ -51,21 +51,14 @@ const Table = ({
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
   const currentRows = data.slice(indexOfFirstRow, Math.min(indexOfLastRow, data.length))
 
-  const allowedPaths = [
-    "/tasks",
-    "/userattendance",
-    "/attendance",
-    "/manageuser",
-    "/usertasks",
-    "/leaderboard",
-  ]
+  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard"]
 
   const searchData = searchQuery.length > 0 ? filteredRows : currentRows
 
   return (
     <>
       {children}
-      <div className="flex justify-center max-sm:px-1.5">
+      <div className="flex justify-center max-sm:px-1.5 px-10">
         <div className="relative overflow-x-auto m-auto">
           {isLoading ? (
             <div className="flex items-center justify-center h-32">
