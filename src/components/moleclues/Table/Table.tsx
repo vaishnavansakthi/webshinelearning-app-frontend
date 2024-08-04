@@ -107,7 +107,7 @@ const Table = ({
                 )}
                 <tbody className="bg-white dark:bg-[#404040] dark:text-[#ffffff]">
                   {searchData.map((rowData: any, rowIndex: number) => (
-                    <tr key={rowIndex}>
+                    <tr className="capitalize" key={rowIndex}>
                       {columns.map((column: any, colIndex: number) => (
                         <td
                           key={colIndex}

@@ -24,24 +24,25 @@ const DashboardTable = ({ data, title, header }: { data: any; title: string; hea
                 </tr>
               </thead>
               <tbody className="text-sm font-medium divide-y divide-slate-100 dark:divide-slate-700">
-              {data && data.slice(0, 5).map((item: any, index: number) => (
-                  <tr key={index}>
-                    {header.map((heading: any, index: number) => {
-                      const valuePath = heading.value.split('.'); 
-                      let displayValue = item; 
-                      
-                      valuePath.forEach((property: any) => {
-                        displayValue = displayValue[property];
-                      });
+                {data &&
+                  data.slice(0, 5).map((item: any, index: number) => (
+                    <tr className="capitalize" key={index}>
+                      {header.map((heading: any, index: number) => {
+                        const valuePath = heading.value.split(".")
+                        let displayValue = item
 
-                      return (
-                        <td key={index} className="p-2">
-                          <div className="text-left">{displayValue}</div>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
+                        valuePath.forEach((property: any) => {
+                          displayValue = displayValue[property]
+                        })
+
+                        return (
+                          <td key={index} className="p-2">
+                            <div className="text-left">{displayValue}</div>
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

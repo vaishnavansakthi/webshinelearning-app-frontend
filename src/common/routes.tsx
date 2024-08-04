@@ -23,6 +23,7 @@ import {
   UserSession,
 } from "../pages"
 import { decryptData } from "../utils/security"
+import Videos from "../pages/Videos/Videos"
 
 interface IRoutesTypes {
   path: string
@@ -136,6 +137,11 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/memes",
     component: UserMemes,
+    private: true,
+  },
+  {
+    path: "/videos",
+    component: Videos,
     private: true,
   },
   {

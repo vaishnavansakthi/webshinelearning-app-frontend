@@ -36,6 +36,12 @@ export const navHeader = [
     role: "user",
   },
   {
+    navlink: "/videos",
+    navText: "Videos",
+    navMatch: "videos",
+    role: "user",
+  },
+  {
     navlink: "/manageuser",
     navText: "Manage User",
     navMatch: "manageuser",
