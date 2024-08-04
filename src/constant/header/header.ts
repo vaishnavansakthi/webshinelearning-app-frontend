@@ -42,6 +42,12 @@ export const navHeader = [
     role: "user",
   },
   {
+    navlink: "https://vaishnavanmblogger.vercel.app/",
+    navText: "Blog",
+    navMatch: "https://vaishnavanmblogger.vercel.app/",
+    role: "user",
+  },
+  {
     navlink: "/manageuser",
     navText: "Manage User",
     navMatch: "manageuser",

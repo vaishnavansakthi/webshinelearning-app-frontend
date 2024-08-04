@@ -15,6 +15,8 @@ const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
+  console.log("urlPath", urlPath)
+
   const { points } = useContext(globalStateContext)
   const location = useLocation()
   let currentPath = location.pathname
@@ -144,6 +146,7 @@ const Header = () => {
                         <Link
                           to={nav.navlink}
                           key={nav.path}
+                          target={nav.navText === "Blog" ? "_blank" : "_self"}
                           className={`text-sm font-semibold dark:text-[#ffffff] leading-6  ${urlPath == nav.navMatch ? "text-blue-400 dark:text-blue-400" : "text-gray-900"}`}
                         >
                           {nav.navText}
