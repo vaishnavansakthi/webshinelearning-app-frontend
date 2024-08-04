@@ -78,7 +78,7 @@ const Dashboard = () => {
       id: 3,
       question: "What is better than MERN?",
       answer:
-        "The key distinction is that the MEAN stack employs Angular in the front-end structure, whereas the MERN stack employs React Js for the User Interface (UI). On the one hand, MEAN is preferred for enterprise-level design. Whereas the MERN is opted for when applications are smaller.",
+        "The key distinction is that the MEAN stack employs Angular in the front-end structure, whereas the MERN stack employs React Js for the User Interface (UI). On the one hand, MEAN is preferred for enterprise-level design. Whereas the MERN is opted for when applications are smaller.P",
     },
   ]
 

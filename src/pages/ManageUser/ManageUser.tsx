@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import { activateUser, deleteUser, getAllUserData } from "../../services/adminDashboard.services"
 import { Modal } from "../../components/moleclues"
-import { Label } from "components/atoms"
 
 const ManageUser = () => {
   const [userData, setUserData] = useState<any>([])
@@ -95,12 +94,6 @@ const ManageUser = () => {
     setUserDetailModal(true)
   }
 
-  const handlePromote = (id: string) => {
-    const user = userData.find((user: any) => user.id === id)
-    console.log("Promote user id", user)
-    // TODO: Implement promote user functionality
-  }
-
   return (
     <>
       <Table
@@ -110,7 +103,6 @@ const ManageUser = () => {
         handleDelete={handleDelete}
         handleEdit={() => {}}
         handleView={handleView}
-        handlePromote={handlePromote}
       />
       {isDeleteModal && (
         <Modal title="">

@@ -2,14 +2,7 @@ import { useState, useContext, useEffect } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import dayjs from "dayjs"
 import { loaderContext } from "../../../context/LoaderProvider"
-import {
-  FaLongArrowAltLeft,
-  FaLongArrowAltRight,
-  FaRegEdit,
-  FaPlusCircle,
-  FaRegEye,
-  FaArrowAltCircleUp,
-} from "react-icons/fa"
+import { FaLongArrowAltLeft, FaLongArrowAltRight, FaRegEdit, FaPlusCircle, FaRegEye } from "react-icons/fa"
 import { MdDelete } from "react-icons/md"
 import { decryptData } from "../../../utils/security"
 
@@ -22,7 +15,6 @@ const Table = ({
   children,
   handleModal,
   handleView,
-  handlePromote,
 }: {
   data?: any
   columns?: any
@@ -31,7 +23,6 @@ const Table = ({
   handleStatus?: any
   handleModal?: any
   handleView?: any
-  handlePromote?: any
   children?: React.ReactNode
 }) => {
   const [currentPage, setCurrentPage] = useState(1)

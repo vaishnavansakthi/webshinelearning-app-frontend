@@ -242,9 +242,7 @@ const Home = () => {
           </a>
           <div className="p-5">
             <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Mern Stack Development
-              </h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">MERN Stack</h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               Unlock the power of full-stack development with our MERN stack course. From MongoDB to Node.js, learn to
@@ -280,6 +278,33 @@ const Home = () => {
               Elevate your design skills with our UI/UX Master Class. Perfect for beginners and seasoned designers
               alike, this course will unlock the secrets to creating captivating digital experiences. Join us and take
               your design career to new heights!
+            </p>
+            <a
+              href="/booking"
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
+
+              <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
+              <span className="text-[14px]">40% off</span>
+            </a>
+          </div>
+        </div>
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#404040] dark:border-gray-700 max-lg:mt-5">
+          <a href="#">
+            <img className="rounded-t-lg" src="https://img-c.udemycdn.com/course/750x422/5319816_3717_10.jpg" alt="" />
+          </a>
+          <div className="p-5">
+            <a href="#">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                React & Java Stack
+              </h5>
+            </a>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              This course provides comprehensive training on building modern web applications using the React front-end
+              library and Java back-end technologies. Participants will learn to create dynamic user interfaces with
+              React, manage state effectively, and integrate with robust Java back-end services using frameworks like
+              Spring Boot.
             </p>
             <a
               href="/booking"
