@@ -485,6 +485,16 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <div className="enquiry-form text-center w-100 mt-5">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdN89zZuKOBDyD6Fy6ODy16OI5Mdm4wR2KXBzvtFztx3P4qCg/viewform?embedded=true"
+          className="w-[100%]"
+          height="832"
+          frameBorder="0"
+        >
+          Loading…
+        </iframe>
+      </div>
     </>
   )
 }
