@@ -99,12 +99,11 @@ export const navHeader = [
         navText: "Session",
         navMatch: "usersession",
       },
+      {
+        navlink: "/uservideos",
+        navText: "Videos",
+        navMatch: "uservideos",
+      },
     ],
   },
-  // {
-  //     navlink: '/userbooking',
-  //     navText: 'Booking',
-  //     navMatch: 'userbooking',
-  //     role: 'admin'
-  // }
 ]

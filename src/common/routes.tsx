@@ -24,6 +24,7 @@ import {
 } from "../pages"
 import { decryptData } from "../utils/security"
 import Videos from "../pages/Videos/Videos"
+import UserVideos from "../pages/UserVideos/UserVideos"
 
 interface IRoutesTypes {
   path: string
@@ -152,6 +153,11 @@ export const routes: IRoutesTypes[] = [
   {
     path: "/usersession",
     component: UserSession,
+    private: true,
+  },
+  {
+    path: "/uservideos",
+    component: UserVideos,
     private: true,
   },
 ]

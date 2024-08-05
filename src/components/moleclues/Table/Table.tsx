@@ -64,7 +64,7 @@ const Table = ({
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
   const currentRows = data.slice(indexOfFirstRow, Math.min(indexOfLastRow, data.length))
 
-  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard"]
+  const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard", "/uservideos", "/tasktracker", "/userleaderboard"]
 
   const searchData = searchQuery.length > 0 ? filteredRows : currentRows
 
@@ -199,15 +199,27 @@ const Table = ({
                             rowData[column.field]?.username
                           ) : typeof rowData[column?.field] === "string" &&
                             rowData[column?.field]?.startsWith("https://") ? (
-                            <a
-                              className="lowercase underline hover:text-blue-300"
-                              href={rowData[column.field]}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ maxWidth: "50px", whiteSpace: "pre-wrap" }}
-                            >
-                              {rowData[column.field]}
-                            </a>
+                            rowData[column?.field]?.startsWith("https://www.youtube.com/embed/") ? (
+                              <iframe
+                                width="220"
+                                height="140"
+                                src={rowData[column.field]}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              ></iframe>
+                            ) : (
+                              <a
+                                className="lowercase underline hover:text-blue-300"
+                                href={rowData[column.field]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ maxWidth: "50px", whiteSpace: "pre-wrap" }}
+                              >
+                                {rowData[column.field]}
+                              </a>
+                            )
                           ) : rowData[column?.field] && rowData[column?.field] ? (
                             rowData[column.field]
                           ) : null}

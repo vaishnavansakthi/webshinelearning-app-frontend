@@ -179,7 +179,7 @@ const Header = () => {
                             )}
                           </div>
                           {nav.subNav && openDropdown === nav.path && (
-                            <div className="absolute left-0 bg-white shadow-lg mt-2">
+                            <div className="absolute left-0 bg-white shadow-lg mt-2 z-[999]">
                               {nav.subNav.map((subNav: any) => (
                                 <Link
                                   to={subNav.navlink}

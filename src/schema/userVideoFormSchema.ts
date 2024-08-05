@@ -1,0 +1,42 @@
+export const userVideoFormSchema = [
+  {
+    name: "title",
+    label: "Title",
+    type: "text",
+    placeholder: "Enter the tile name",
+    required: true,
+    className: "text-gray-400",
+  },
+  {
+    name: "description",
+    label: "Description",
+    type: "text",
+    placeholder: "Enter the description",
+    required: true,
+    className: "text-gray-400",
+  },
+  {
+    name: "url",
+    label: "URL",
+    type: "text",
+    placeholder: "Paste the Video URL",
+    required: true,
+    className: "text-gray-400",
+  },
+  {
+    name: "tags",
+    label: "Tags",
+    type: "text",
+    placeholder: "Enter the Tags",
+    required: true,
+    className: "text-gray-400",
+  },
+  {
+    name: "category",
+    label: "Category",
+    type: "text",
+    placeholder: "Enter the Category",
+    required: true,
+    className: "text-gray-400",
+  },
+]
