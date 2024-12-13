@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { userLeaderboardFormSchema } from "../../schema/userLeaderboardFormSchema"
@@ -11,6 +11,7 @@ import {
   updateLeaderboard,
   deleteLeaderboard,
 } from "../../services/userLeaderboard.services"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const UserLeaderboard = () => {
   const [userData, setUserData] = useState([])
@@ -36,12 +37,16 @@ const UserLeaderboard = () => {
     { label: "Actions", field: "actions", enable: "" },
   ]
 
+  const { setIsLoading } = useContext(loaderContext)
+
   useEffect(() => {
+    setIsLoading(true)
     const res = getAllUsers()
     res
       .then((res: any) => {
         const filterData = res.filter((user: any) => user.isActive || user.role !== "admin");
         setUserData(filterData)
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
@@ -143,8 +148,7 @@ const UserLeaderboard = () => {
                 {leaderboardData.length}
                 </span>
               </div>
-
-              <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Leaderboard to tark the students points</p>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Leaderboard to track the students points</p>
             </div>
           </div>
         </section>

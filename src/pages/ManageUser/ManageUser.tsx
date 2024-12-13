@@ -1,12 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 import withProtectedRoute from "../../hoc/ProductedRoute"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import { activateUser, deleteUser, getAllUserData } from "../../services/adminDashboard.services"
 import { Modal } from "../../components/moleclues"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const ManageUser = () => {
   const [userData, setUserData] = useState<any>([])
+  const { setIsLoading } = useContext(loaderContext)
   const columns = [
     { label: "Username", field: "username" },
     { label: "Email", field: "email" },
@@ -32,9 +34,17 @@ const ManageUser = () => {
   }, [])
 
   const fetchUserData = async () => {
-    const data = await getAllUserData()
-    setUserData(data)
-  }
+    try {
+      setIsLoading(true);
+      const data = await getAllUserData();
+      setUserData(data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      // You might want to add some error handling here, such as showing an error message to the user
+    } finally {
+      setIsLoading(false);
+    }
+  }; 
 
   const handleStatus = (id: string) => {
     setisActivateModal(true)

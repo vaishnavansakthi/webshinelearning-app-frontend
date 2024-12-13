@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import {
   createTaskTracker,
@@ -14,6 +14,7 @@ import { taskTrackerFormSchema } from "../../schema/taskTrackerFormSchema"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { FaEdit, FaTrash } from "react-icons/fa"
 import { AiOutlinePlusCircle } from "react-icons/ai"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const TaskTracker = () => {
   const [taskTrackerData, setTaskTrackerkData] = useState<any>([])
@@ -34,6 +35,8 @@ const TaskTracker = () => {
     { label: "Status", field: "status" },
     { label: "Comments", field: "comments" },
   ]
+
+  const { setIsLoading } = useContext(loaderContext)
 
   const [isDeleteModal, setIsDeleteModal] = useState(false)
   const [taskIdToDelete, settaskIdToDelete] = useState("")
@@ -58,10 +61,12 @@ const TaskTracker = () => {
   }
 
   const getAllTrackerData = () => {
+    setIsLoading(true)
     const trackerData = getAllTaskTracker()
     trackerData
       .then((taskTrackerData: any) => {
         setAllTrackerData(taskTrackerData)
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
@@ -160,7 +165,6 @@ const TaskTracker = () => {
 
   return (
     <>
-      <Table columns={[]} data={[]}>
         <section className="relative container overflow-x-auto m-auto flex items-center justify-center">
           <div className="flex items-center justify-between flex-wrap max-sm:justify-center p-6">
             <div>
@@ -201,7 +205,6 @@ const TaskTracker = () => {
             </div>
           </div>
         </section>
-      </Table>
       {taskTrackerData.length > 0 ? (
         taskTrackerData.slice(0, 1).map((tracker: any) => {
           return (

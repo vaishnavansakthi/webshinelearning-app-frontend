@@ -1,14 +1,10 @@
 import { useContext, useEffect, useState } from "react"
-
 import Table from "../../components/moleclues/Table/Table"
-import { deleteUserAttendance, getUserAttendance, markAttendance } from "../../services/attendance.services"
 import { decryptData } from "../../utils/security"
 import { Field, Formik, ErrorMessage, Form } from "formik"
 import { Modal } from "../../components/moleclues"
 import { loaderContext } from "../../context/LoaderProvider"
 import withProtectedRoute from "../../hoc/ProductedRoute"
-import { updateSession } from "../../services/showSession.services"
-import { update } from "lodash"
 import { addIframeVideos, deleteIframeVideos, getAllIframeVideos } from "../../services/iframeVideos.service"
 import { userVideoFormSchema } from "../../schema/userVideoFormSchema"
 
@@ -38,22 +34,12 @@ const UserVideos = () => {
   ]
   const myToken = JSON.parse(decryptData("userData", null))
 
-  //   useEffect(() => {
-  //     setIsLoading(true)
-  //     const res = getUserAttendance(myToken.user.id)
-  //     res
-  //       .then((data: any) => {
-  //         setIsLoading(false)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }, [])
-
   useEffect(() => {
+    setIsLoading(true)
     const videoData = getAllIframeVideos()
     videoData.then((data: any) => {
       setVideosData(data)
+      setIsLoading(false)
     })
   }, [])
 

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Table from "../../components/moleclues/Table/Table"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { getAllLeaerboardData } from "../../services/userLeaderboard.services"
+import { loaderContext } from "../../context/LoaderProvider"
 
 const Leaderboard = () => {
   const [leaderboardData, setLeaderboardData] = useState<any>([])
@@ -12,10 +13,14 @@ const Leaderboard = () => {
     { label: "Points", field: "points" },
   ]
 
+  const { setIsLoading } = useContext(loaderContext)
+
   useEffect(() => {
+    setIsLoading(true)
     getAllLeaerboardData()
       .then((res: any) => {
         setLeaderboardData(res)
+        setIsLoading(false)
       })
       .catch((err: any) => {
         console.log(err)

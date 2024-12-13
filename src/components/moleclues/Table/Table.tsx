@@ -39,10 +39,6 @@ const Table = ({
     }
   }, [])
 
-  const toTitleCase = (str: string) => {
-    return str.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-  };
-
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber)
     setManualPage(pageNumber.toString()) // Sync manual input with current page
@@ -118,7 +114,7 @@ const Table = ({
                 </div>
               )}
               <table className="w-full table-fixed text-left border-none min-w-[800px]">
-                {searchData.length > 0 && (
+                {(
                   <thead className="bg-blue-400 dark:bg-gray-700 rounded-lg text-base text-white font-semibold w-full">
                     <tr>
                       {columns.map((column: any, index: number) => (
@@ -132,128 +128,139 @@ const Table = ({
                     </tr>
                   </thead>
                 )}
-                <tbody className="bg-white dark:bg-[#404040] dark:text-[#ffffff]">
-                  {searchData.map((rowData: any, rowIndex: number) => (
-                    <tr className="capitalize" key={rowIndex}>
-                      {columns.map((column: any, colIndex: number) => (
-                        <td
-                          key={colIndex}
-                          className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap max-sm:text-[14px] max-sm:py-1 max-sm:px-1"
-                          style={{
-                            width: column.width || "auto",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                          title={rowData[column.field]?.length > 20 && rowData[column.field]}
-                        >
-                          {column.field === "actions" ? (
-                            <div>
-                              {column.enable === "delete" ? (
-                                <>
-                                  <button className="rounded-md" onClick={() => handleDelete(rowData.id)}>
-                                    <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
-                                  </button>
-                                </>
-                              ) : column.enable === "add" ? (
-                                <>
-                                  <button className="mr-2 rounded-md" onClick={() => handleModal(rowData.id)}>
-                                    <FaPlusCircle
-                                      className="text-green-400 hover:text-green-500"
-                                      size="22px"
-                                      color="green"
-                                    />
-                                  </button>
-                                </>
-                              ) : column.enable === "edit" ? (
-                                <>
-                                  <button className="mr-2 rounded-md" onClick={() => handleEdit(rowData.id)}>
-                                    <FaRegEdit
-                                      className="text-green-400 hover:text-green-500"
-                                      size="22px"
-                                      color="green"
-                                    />
-                                  </button>
-                                </>
-                              ) : column.enable === "delete,view,promote" ? (
-                                <>
-                                  <button className="mr-2 rounded-md" onClick={() => handleView(rowData.id)}>
-                                    <FaRegEye
-                                      className="text-blue-400 hover:text-blue-500"
-                                      size="22px"
-                                      color="#89CFF0"
-                                    />
-                                  </button>
-                                  <button onClick={() => handleDelete(rowData.id)}>
-                                    <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
-                                  </button>
-                                </>
+                {(searchData.length && data.length) > 0 ? (
+                  <tbody className="bg-white dark:bg-[#404040] dark:text-[#ffffff]">
+                    {searchData.map((rowData: any, rowIndex: number) => (
+                      <tr className="capitalize" key={rowIndex}>
+                        {columns.map((column: any, colIndex: number) => (
+                          <td
+                            key={colIndex}
+                            className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap max-sm:text-[14px] max-sm:py-1 max-sm:px-1"
+                            style={{
+                              width: column.width || "auto",
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                            title={rowData[column.field]?.length > 20 && rowData[column.field]}
+                          >
+                            {column.field === "actions" ? (
+                              <div>
+                                {column.enable === "delete" ? (
+                                  <>
+                                    <button className="rounded-md" onClick={() => handleDelete(rowData.id)}>
+                                      <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
+                                    </button>
+                                  </>
+                                ) : column.enable === "add" ? (
+                                  <>
+                                    <button className="mr-2 rounded-md" onClick={() => handleModal(rowData.id)}>
+                                      <FaPlusCircle
+                                        className="text-green-400 hover:text-green-500"
+                                        size="22px"
+                                        color="green"
+                                      />
+                                    </button>
+                                  </>
+                                ) : column.enable === "edit" ? (
+                                  <>
+                                    <button className="mr-2 rounded-md" onClick={() => handleEdit(rowData.id)}>
+                                      <FaRegEdit
+                                        className="text-green-400 hover:text-green-500"
+                                        size="22px"
+                                        color="green"
+                                      />
+                                    </button>
+                                  </>
+                                ) : column.enable === "delete,view,promote" ? (
+                                  <>
+                                    <button className="mr-2 rounded-md" onClick={() => handleView(rowData.id)}>
+                                      <FaRegEye
+                                        className="text-blue-400 hover:text-blue-500"
+                                        size="22px"
+                                        color="#89CFF0"
+                                      />
+                                    </button>
+                                    <button onClick={() => handleDelete(rowData.id)}>
+                                      <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <button className="mr-2 rounded-md" onClick={() => handleEdit(rowData.id)}>
+                                      <FaRegEdit className="text-green-400 hover:text-green-500" size="22px" />
+                                    </button>
+                                    <button onClick={() => handleDelete(rowData.id)}>
+                                      <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
+                                    </button>
+                                  </>
+                                )}
+                              </div>
+                            ) : (column.label === "Uploaded On" || column.label === "Date") &&
+                              rowData[column.field] !== null ? (
+                              dayjs(rowData[column.field]).format("MMM D, YYYY")
+                            ) : typeof rowData[column.field] === "boolean" ? (
+                              rowData[column.field] ? (
+                                <button
+                                  onClick={() => handleStatus(rowData.id)}
+                                  className="border border-gray-300 px-3 py-2 rounded-md"
+                                >
+                                  {column.trueValue}
+                                </button>
                               ) : (
-                                <>
-                                  <button className="mr-2 rounded-md" onClick={() => handleEdit(rowData.id)}>
-                                    <FaRegEdit className="text-green-400 hover:text-green-500" size="22px" />
-                                  </button>
-                                  <button onClick={() => handleDelete(rowData.id)}>
-                                    <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
-                                  </button>
-                                </>
-                              )}
-                            </div>
-                          ) : (column.label === "Uploaded On" || column.label === "Date") &&
-                            rowData[column.field] !== null ? (
-                            dayjs(rowData[column.field]).format("MMM D, YYYY")
-                          ) : typeof rowData[column.field] === "boolean" ? (
-                            rowData[column.field] ? (
-                              <button
-                                onClick={() => handleStatus(rowData.id)}
-                                className="border border-gray-300 px-3 py-2 rounded-md"
-                              >
-                                {column.trueValue}
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => handleStatus(rowData.id)}
-                                className="border border-gray-300 px-3 py-2 rounded-md"
-                              >
-                                {column.falseValue}
-                              </button>
-                            )
-                          ) : typeof rowData[column.field] === "object" ? (
-                            rowData[column.field]?.username
-                          ) : typeof rowData[column?.field] === "string" &&
-                            rowData[column?.field]?.startsWith("https://") ? (
-                            rowData[column?.field]?.startsWith("https://www.youtube.com/embed/") ? (
-                              <iframe
-                                width="220"
-                                height="140"
-                                src={rowData[column.field]}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                              ></iframe>
-                            ) : (
-                              <a
-                                className="lowercase underline hover:text-blue-300"
-                                href={rowData[column.field]}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ maxWidth: "50px", whiteSpace: "pre-wrap" }}
-                              >
-                                {rowData[column.field]}
-                              </a>
-                            )
-                          ) : rowData[column?.field] && rowData[column?.field] ? (
-                            rowData[column.field]
-                          ) : null}
-                        </td>
-                      ))}
+                                <button
+                                  onClick={() => handleStatus(rowData.id)}
+                                  className="border border-gray-300 px-3 py-2 rounded-md"
+                                >
+                                  {column.falseValue}
+                                </button>
+                              )
+                            ) : typeof rowData[column.field] === "object" ? (
+                              rowData[column.field]?.username
+                            ) : typeof rowData[column?.field] === "string" &&
+                              rowData[column?.field]?.startsWith("https://") ? (
+                              rowData[column?.field]?.startsWith("https://www.youtube.com/embed/") ? (
+                                <iframe
+                                  width="220"
+                                  height="140"
+                                  src={rowData[column.field]}
+                                  title="YouTube video player"
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                ></iframe>
+                              ) : (
+                                <a
+                                  className="lowercase underline hover:text-blue-300"
+                                  href={rowData[column.field]}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{ maxWidth: "50px", whiteSpace: "pre-wrap" }}
+                                >
+                                  {rowData[column.field]}
+                                </a>
+                              )
+                            ) : rowData[column?.field] && rowData[column?.field] ? (
+                              rowData[column.field]
+                            ) : null}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr>
+                      <td colSpan={columns.length} className="border-t dark:border-black"></td>
                     </tr>
-                  ))}
+                  </tbody>
+                ) : (<tbody className="bg-white dark:bg-[#404040] dark:text-[#ffffff]">
                   <tr>
-                    <td colSpan={columns.length} className="border-t dark:border-black"></td>
+                    <td
+                      colSpan={columns.length}
+                      className="py-4 px-5 text-center text-gray-600 dark:text-white"
+                    >
+                      No data found for the search query.
+                    </td>
                   </tr>
-                </tbody>
+                </tbody>)}
               </table>
             </>
           )}
@@ -262,13 +269,13 @@ const Table = ({
               <div className="flex justify-between align-middle">
                 <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
                   Page  <input
-                      type="text"
-                      value={manualPage}
-                      onChange={handleManualPageChange}
-                      onKeyDown={handleManualPageKeyDown}
-                      onBlur={handleManualPageSubmit}
-                      className="mx-1 h-7 w-7 text-center border border-gray-700 border-none"
-                    /> of {totalPages}
+                    type="text"
+                    value={manualPage}
+                    onChange={handleManualPageChange}
+                    onKeyDown={handleManualPageKeyDown}
+                    onBlur={handleManualPageSubmit}
+                    className="mx-1 h-7 w-7 text-center border border-gray-700 border-none"
+                  /> of {totalPages}
                 </span>
                 <div className="flex">
                   <div className={`flex mr-2 px-4 py-2  items-center ${currentPage === 1
