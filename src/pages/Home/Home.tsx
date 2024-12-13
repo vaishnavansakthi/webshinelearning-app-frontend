@@ -52,7 +52,7 @@ const Home = () => {
 
   const [startDate, setStats] = useState<any>("")
 
-  const courseStartDate: any = new Date("2024-10-30")
+  const courseStartDate: any = new Date("2025-03-05")
 
   function updateCountdown() {
     const currentDate: any = new Date()
@@ -379,7 +379,7 @@ const Home = () => {
             </div>
             <div className="flex flex-col items-center justify-center max-sm:mt-10">
               <dt className="mb-2 text-3xl md:text-4xl font-extrabold">100%</dt>
-              <dd className="font-light text-gray-500 dark:text-gray-400">Job Guidence and Assurance</dd>
+              <dd className="font-light text-gray-500 dark:text-gray-400">Job Guidance and Assurance</dd>
             </div>
             <div className="flex flex-col items-center justify-center max-sm:mt-10">
               <dt className="mb-2 text-3xl md:text-4xl font-extrabold">3</dt>

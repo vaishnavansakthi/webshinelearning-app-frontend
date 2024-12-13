@@ -21,7 +21,7 @@ function Booking() {
   const [bookingData, setBookingData] = useState([])
   const [editingTaskId, setEditingTaskId] = useState<any>(null)
   const [countdown, setCountdown] = useState(0)
-  const targetDate: any = new Date("2024-10-30")
+  const targetDate: any = new Date("2025-03-05")
   const [courseTimeout, setCourseTimeout] = useState(false)
 
   useEffect(() => {
