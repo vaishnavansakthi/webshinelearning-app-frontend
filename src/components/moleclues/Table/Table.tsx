@@ -29,6 +29,7 @@ const Table = ({
   const [searchQuery, setSearchQuery] = useState("")
   const { isLoading } = useContext(loaderContext)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [manualPage, setManualPage] = useState("1")
   const rowsPerPage = 6
 
   useEffect(() => {
@@ -38,35 +39,61 @@ const Table = ({
     }
   }, [])
 
-  console.log("isAdmin", isAdmin)
+  const toTitleCase = (str: string) => {
+    return str.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  };
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber)
+    setManualPage(pageNumber.toString()) // Sync manual input with current page
+  }
+
+  const handleManualPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setManualPage(e.target.value)
+  }
+
+  const handleManualPageSubmit = () => {
+    const page = Math.max(1, Math.min(parseInt(manualPage) || 1, Math.ceil(data.length / rowsPerPage)))
+    setCurrentPage(page)
+    setManualPage(page.toString()) // Update the input field with the corrected value
   }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
 
-  const filteredRows = data.filter((row: any) =>
-    Object.values(row).some((value: any) => {
-      if (typeof value === "object" && value !== null) {
-        const nestedValue = value.username
-        return nestedValue && nestedValue?.toLowerCase()?.includes(searchQuery?.toLowerCase())
-      }
-      return value?.toString()?.toLowerCase()?.includes(searchQuery.toLowerCase())
-    }),
-  )
+  const handleManualPageKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleManualPageSubmit();
+    }
+  };
 
-  const totalPages = Math.ceil(data.length / rowsPerPage)
+  const filteredRows = data
+    .sort((a: any, b: any) => {
+      const dateA = new Date(a.createdAt || a.uploadedOn || a.date); // Replace with your actual date field
+      const dateB = new Date(b.createdAt || b.uploadedOn || b.date);
+      return dateB.getTime() - dateA.getTime(); // Sort latest first
+    })
+    .filter((row: any) =>
+      Object.values(row).some((value: any) => {
+        if (typeof value === "object" && value !== null) {
+          const nestedValue = value.username;
+          return nestedValue && nestedValue?.toLowerCase()?.includes(searchQuery?.toLowerCase());
+        }
+        return value?.toString()?.toLowerCase()?.includes(searchQuery.toLowerCase());
+      })
+    );
+
+  const paginatedData = searchQuery.length > 0 ? filteredRows : data;
+  const totalPages = Math.ceil((searchQuery.length > 0 ? filteredRows.length : data.length) / rowsPerPage);
 
   const indexOfLastRow = currentPage * rowsPerPage
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
-  const currentRows = data.slice(indexOfFirstRow, Math.min(indexOfLastRow, data.length))
+  const currentRows = paginatedData.slice(indexOfFirstRow, Math.min(indexOfLastRow, paginatedData.length))
 
   const allowedPaths = ["/tasks", "/userattendance", "/attendance", "/manageuser", "/usertasks", "/leaderboard", "/uservideos", "/tasktracker", "/userleaderboard"]
 
-  const searchData = searchQuery.length > 0 ? filteredRows : currentRows
+  const searchData = currentRows;
 
   return (
     <>
@@ -90,7 +117,7 @@ const Table = ({
                   />
                 </div>
               )}
-              <table className="text-left font-inter border-separate border-spacing-y-0 border dark:border-black">
+              <table className="w-full table-fixed text-left border-none min-w-[800px]">
                 {searchData.length > 0 && (
                   <thead className="bg-blue-400 dark:bg-gray-700 rounded-lg text-base text-white font-semibold w-full">
                     <tr>
@@ -112,7 +139,13 @@ const Table = ({
                         <td
                           key={colIndex}
                           className="py-4 px-5 font-normal text-base border-t dark:border-black whitespace-nowrap max-sm:text-[14px] max-sm:py-1 max-sm:px-1"
-                          style={{ whiteSpace: "pre-line" }}
+                          style={{
+                            width: column.width || "auto",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                          title={rowData[column.field]?.length > 20 && rowData[column.field]}
                         >
                           {column.field === "actions" ? (
                             <div>
@@ -154,16 +187,6 @@ const Table = ({
                                   <button onClick={() => handleDelete(rowData.id)}>
                                     <MdDelete className="text-red-400 hover:text-red-500" size="22px" />
                                   </button>
-                                  {/* {isAdmin && (
-                                    <button onClick={() => handlePromote(rowData.id)}>
-                                      <FaArrowAltCircleUp
-                                        title="promote to admin"
-                                        className="text-green-400 hover:text-green-500 ml-3"
-                                        size="22px"
-                                        color="green"
-                                      />
-                                    </button>
-                                  )} */}
                                 </>
                               ) : (
                                 <>
@@ -234,39 +257,51 @@ const Table = ({
               </table>
             </>
           )}
-          {!searchQuery
-            ? data.length > rowsPerPage && (
-                <div className="mt-5">
-                  <div className="flex justify-between align-middle">
-                    <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
-                      Page {currentPage} of {totalPages}
-                    </span>
-                    <div className="flex">
-                      <div className="flex mr-2 px-4 py-2  items-center bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
-                        <FaLongArrowAltLeft />
-                        <button
-                          onClick={() => handlePageChange(currentPage - 1)}
-                          disabled={currentPage === 1}
-                          className="px-2"
-                        >
-                          Previous
-                        </button>
-                      </div>
-                      <div className="flex ml-2 px-4 py-1 items-center align-middle bg-blue-400 dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]">
-                        <button
-                          onClick={() => handlePageChange(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                          className="px-2"
-                        >
-                          Next
-                        </button>
-                        <FaLongArrowAltRight />
-                      </div>
-                    </div>
+          {data.length > rowsPerPage && (
+            <div className="mt-5">
+              <div className="flex justify-between align-middle">
+                <span className="mx-4 mt-2 text-gray-700 dark:text-[#ffffff] max-sm:text-[14px]">
+                  Page  <input
+                      type="text"
+                      value={manualPage}
+                      onChange={handleManualPageChange}
+                      onKeyDown={handleManualPageKeyDown}
+                      onBlur={handleManualPageSubmit}
+                      className="mx-1 h-7 w-7 text-center border border-gray-700 border-none"
+                    /> of {totalPages}
+                </span>
+                <div className="flex">
+                  <div className={`flex mr-2 px-4 py-2  items-center ${currentPage === 1
+                    ? "bg-gray-400 text-white cursor-not-allowed"
+                    : "bg-blue-400 text-white hover:bg-blue-500"
+                    } dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]`}>
+                    <FaLongArrowAltLeft />
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-2"
+                    >
+                      Previous
+                    </button>
+                  </div>
+                  <div className={`flex ml-2 px-4 py-1 items-center align-middle ${currentPage === totalPages
+                    ? "bg-gray-400 text-white cursor-not-allowed"
+                    : "bg-blue-400 text-white hover:bg-blue-500"
+                    } dark:bg-gray-700 rounded-lg text-white max-sm:text-[14px]`}>
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-2"
+                    >
+                      Next
+                    </button>
+                    <FaLongArrowAltRight />
                   </div>
                 </div>
-              )
-            : null}
+              </div>
+            </div>
+          )
+          }
         </div>
       </div>
     </>
