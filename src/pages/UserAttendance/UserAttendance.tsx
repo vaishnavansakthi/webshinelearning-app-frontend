@@ -20,7 +20,6 @@ const UserAttendance = () => {
     const fetchData = async () => {
       try {
         const data = await getAllAttendance()
-        console.log("attendanceData", data)
         setAttendanceData(data)
         setIsLoading(false)
       } catch (error) {

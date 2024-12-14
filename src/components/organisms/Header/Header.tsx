@@ -15,8 +15,6 @@ const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
-  console.log("urlPath", urlPath)
-
   const { points } = useContext(globalStateContext)
   const location = useLocation()
   let currentPath = location.pathname
@@ -68,8 +66,7 @@ const Header = () => {
     navigate("/")
     window.location.reload()
   }
-
-  console.log("pathname: " + currentPath)
+  
   return (
     <>
       {currentPath === "/" ? (

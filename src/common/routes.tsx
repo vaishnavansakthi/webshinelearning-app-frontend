@@ -30,12 +30,11 @@ interface IRoutesTypes {
   path: string
   private: boolean
   navigate?: string
-  component: React.FC
+  component: React.FC,
+  roles?:  string[],
 }
 
 const myToken = decryptData("userData", null)
-
-console.log(myToken !== null)
 
 export const routes: IRoutesTypes[] = [
   {
@@ -89,11 +88,13 @@ export const routes: IRoutesTypes[] = [
     path: "/attendance",
     component: Attendance,
     private: true,
+    roles: ["user"],
   },
   {
     path: "/tasks",
     component: Task,
     private: true,
+    roles: ["user"],
   },
   {
     path: "/studyplan",
@@ -104,6 +105,7 @@ export const routes: IRoutesTypes[] = [
     path: "/leaderboard",
     component: Leaderboard,
     private: true,
+    roles: ["user"],
   },
   {
     path: "/tasktracker",
@@ -114,50 +116,60 @@ export const routes: IRoutesTypes[] = [
     path: "/manageuser",
     component: ManageUser,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/userattendance",
     component: UserAttendance,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/usertasks",
     component: UserTasks,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/userleaderboard",
     component: UserLeaderboard,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/userMemes",
     component: UserMemes,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/memes",
     component: UserMemes,
     private: true,
+    roles: ["user"],
   },
   {
     path: "/videos",
     component: Videos,
     private: true,
+    roles: ["user"],
   },
   {
     path: "/userbooking",
     component: UserBooking,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/usersession",
     component: UserSession,
     private: true,
+    roles: ["admin"],
   },
   {
     path: "/uservideos",
     component: UserVideos,
     private: true,
+    roles: ["admin"],
   },
 ]

@@ -132,7 +132,7 @@ const UserLeaderboard = () => {
         const leaderboardToDelete = leaderboardData.filter((leaderboard: any) => leaderboard.id !== id)
         setLeaderboardData(leaderboardToDelete)
       })
-      .catch((err) => [console.log(err)])
+      .catch((err) => console.log(err))
   }
 
   return (

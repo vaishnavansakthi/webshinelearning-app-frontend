@@ -184,7 +184,7 @@ function Booking() {
           ) : (
             <>
               {bookingData.length > 0 ? (
-                bookingData.map((booking: any) => (
+                bookingData.sort((a: any, b: any) => a.order - b.order).map((booking: any) => (
                   <button
                     className="w-[45px] h-[45px] border border-1 border-white mb-5 p-3 m-3 dark:border-gray-500 dark:text-white dark:disabled:bg-gray-700 text-[14px] shadow-md"
                     key={booking.id}

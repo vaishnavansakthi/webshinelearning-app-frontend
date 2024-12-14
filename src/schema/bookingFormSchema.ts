@@ -45,7 +45,7 @@ export const bookingFormSchema = [
     name: "desc",
     label: "Give some intro about you",
     type: "textArea",
-    placeholder: "Please provide some background you eg:- Where you are coming from, College and degree",
+    placeholder: "Please provide some background of you eg:- Where you are coming from, College and degree",
     required: true,
     className: "text-gray-400",
   },

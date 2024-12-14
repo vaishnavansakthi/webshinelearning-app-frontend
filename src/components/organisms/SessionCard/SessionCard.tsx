@@ -7,7 +7,6 @@ function SessionCard() {
     const res = getSessions()
     res
       .then((sessiondata) => {
-        console.log(sessiondata)
         setSessionData(sessiondata)
       })
       .catch((error) => {

@@ -150,7 +150,6 @@ const TaskTracker = () => {
 
   const handleConfirmDelete = (id: string) => {
     setIsDeleteModal(true)
-    console.log("clicked delte button")
     const res = deleteTaskTracker(id)
     res
       .then(() => {

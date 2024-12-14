@@ -10,10 +10,10 @@ import GlobalStateProvider from "./context/GlobalStateProvider"
 
 function App() {
   const myToken = decryptData("userData", "object")
-
+  const userRole = myToken?.user?.role;
   return (
     <Router>
-        <LoaderProvider>
+      <LoaderProvider>
         <GlobalStateProvider>
           <Layout>
             <Suspense fallback={<Loader />}>
@@ -21,7 +21,7 @@ function App() {
                 <Route
                   path="/dashboard"
                   element={
-                    myToken && myToken.user && myToken.user.role === "admin" ? (
+                    myToken && userRole === "admin" ? (
                       <AdminDashboard />
                     ) : myToken ? (
                       <Dashboard />
@@ -32,24 +32,34 @@ function App() {
                 />
                 {routes &&
                   routes.map((route, index) => {
+                    const hasAccess =
+                      !route.roles || route.roles.includes(userRole); // Check if role has access
+
                     const element = route.navigate ? (
                       myToken !== null && !route.private ? (
                         <Navigate to={`${route.navigate}`} />
-                      ) : (
+                      ) : hasAccess ? (
                         <route.component />
+                      ) : (
+                        <Navigate to="/dashboard" /> // Redirect if access is denied
                       )
-                    ) : (
+                    ) : hasAccess ? (
                       <route.component />
-                    )
-                    return <Route key={index} path={route.path} element={element} />
+                    ) : (
+                      <Navigate to="/dashboard" /> // Redirect if access is denied
+                    );
+
+                    return <Route key={index} path={route.path} element={element} />;
                   })}
-                <Route path="*" element={myToken !== null ? <NotFound /> : <Navigate to={"/"} />} />
+                <Route
+                  path="*"
+                  element={myToken !== null ? <NotFound /> : <Navigate to="/" />}
+                />
               </Routes>
             </Suspense>
           </Layout>
-          </GlobalStateProvider>
-        </LoaderProvider>
-     
+        </GlobalStateProvider>
+      </LoaderProvider>
     </Router>
   )
 }

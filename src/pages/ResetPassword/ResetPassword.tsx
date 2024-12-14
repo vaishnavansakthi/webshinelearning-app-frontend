@@ -24,7 +24,6 @@ const ResetPassword = () => {
   const navigate = useNavigate()
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
-    console.log(values)
     formikHelpers.resetForm()
 
     if (values.password === values.confirmPassword) {

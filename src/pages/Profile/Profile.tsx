@@ -20,7 +20,6 @@ const Profile = () => {
   useEffect(() => {
     setIsLoading(true)
     const mytoken = JSON.parse(decryptData("userData", null))
-    console.log(mytoken)
     getUserData(mytoken?.user?.id)
       .then((data: any) => {
         const profileId = data[0]?.profile?.id
@@ -42,7 +41,6 @@ const Profile = () => {
     setShowModal(true)
   }
   const handleCloseModal = () => {
-    console.log("Close modal")
     setShowModal(false)
   }
   const handleSubmit = (values: any) => {

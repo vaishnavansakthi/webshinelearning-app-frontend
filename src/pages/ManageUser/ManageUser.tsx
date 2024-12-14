@@ -71,7 +71,6 @@ const ManageUser = () => {
       .catch((err) => {
         console.log(err)
       })
-    console.log("delete user id", id)
   }
 
   const handleClosePopModal = () => {
@@ -92,14 +91,12 @@ const ManageUser = () => {
     fetchUserData()
     res.then(() => {
       window.location.reload()
-      console.log("status updated")
     })
     setisActivateModal(false)
   }
 
   const handleView = (id: string) => {
     const user = userData.find((user: any) => user.id === id)
-    console.log("View user id", user)
     setUserDetail(user)
     setUserDetailModal(true)
   }

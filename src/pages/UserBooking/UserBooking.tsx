@@ -39,11 +39,11 @@ export default function UserBooking() {
     <>
       <div className="flex justify-evenly align-middle flex-wrap">
         {bookingData.length > 0 &&
-          bookingData.map((bookingData: any) => {
+          bookingData.sort((a: any, b: any) => a.order - b.order).map((bookingData: any) => {
             return (
               <div
-                style={bookingData?.isCourseBooked === true ? { background: "#FFE0B5" } : {background: "#404040" } }
-                className="w-[400px] h-auto border border-1 border-white mb-5 p-3 max-[650px]:w-[320px] max-[650px]:h-auto shadow-md"
+                className={`w-[400px] h-auto border border-1 dark:bg-slate-500 border-white mb-5 p-3 max-[650px]:w-[320px] max-[650px]:h-auto shadow-md ${bookingData?.isCourseBooked ? "bg-[#d4d3d1]" : "bg-[#f2f2f2]"
+                  }`}
               >
                 <div className="text-center my-[100px] max-[650px]:my-[50px]">
                   <h1 className="text-lg">{bookingData.order}</h1>
@@ -55,9 +55,9 @@ export default function UserBooking() {
                   <h3 className="text-xl mt-8">
                     {bookingData?.isCourseBooked ? "Booked" : "Yet to book"}
                   </h3>
-                  {bookingData?.isCourseBooked &&  <button
+                  {bookingData?.isCourseBooked && <button
                     onClick={() => handleReset(bookingData.id)}
-                    className="border border-1 border-red-200 px-5 py-1 mt-8 shadow-md hover:bg-red-300 hover:text-white"
+                    className="border border-1 border-gray-200 px-5 py-1 mt-8 shadow-md hover:bg-gray-700 text-white"
                   >
                     Reset Booking
                   </button>}

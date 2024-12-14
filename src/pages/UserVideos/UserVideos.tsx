@@ -43,8 +43,6 @@ const UserVideos = () => {
     })
   }, [])
 
-  console.log("videoData: " + JSON.stringify(videosData))
-
   const handleModal = () => {
     setisModal(true)
   }

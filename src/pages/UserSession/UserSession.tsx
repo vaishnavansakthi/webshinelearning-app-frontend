@@ -61,7 +61,6 @@ const UserSession = () => {
 
   const handleSubmit = (values: any) => {
     setisModal(false)
-    console.log("sessionData", values)
     const res = updateSession(values.id, values)
     res
       .then((data: any) => {

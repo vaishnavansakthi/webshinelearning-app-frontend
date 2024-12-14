@@ -29,7 +29,6 @@ function Videos() {
 
   // Get unique tags
   const allTags = Array.from(new Set(iframeVideos.flatMap((iframe: any) => iframe.tags)))
-  console.log("allTags: ", allTags)
 
   // Filter videos based on search query and selected tag
   const filteredVideos = iframeVideos.filter((iframe: any) => {
