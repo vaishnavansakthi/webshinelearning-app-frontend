@@ -244,7 +244,7 @@ const UserMemes = () => {
                     </p>
                   </a>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {dayjs(meme?.createAt).format("MMM D, YYYY")}
+                    {dayjs(meme?.createdAt).format("MMM D, YYYY")}
                   </p>
                   {user?.user?.role === "admin" && (
                     <button
