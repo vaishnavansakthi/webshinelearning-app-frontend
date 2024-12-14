@@ -102,7 +102,7 @@ const Home = () => {
         <meta property="og:title" content="Webshine learning creative future tech experts" />
         <meta
           property="og:description"
-          content="Welcome to WebshineLearning. We offer a full sttack learning and development services to meet your needs."
+          content="Welcome to WebshineLearning. We offer a full stack learning and development services to meet your needs."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://webshinelearning.in/" />
@@ -133,7 +133,7 @@ const Home = () => {
             role="alert"
           >
             <span className="text-xs bg-primary-600 rounded-full text-black dark:text-black px-4 py-1.5 mr-3">New</span>{" "}
-            <span className="text-sm font-medium">Batch starts from March 1st week onwards</span>
+            <span className="text-sm font-medium">Batch starts from Jan 2025 1st week onwards</span>
             <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
@@ -147,7 +147,7 @@ const Home = () => {
           </h1>
           <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
             Dive into the world of full-stack development with our comprehensive MERN stack course{" "}
-            <span className="font-extrabold">within 4 months</span>. Gain the skills and knowledge to create dynamic web
+            <span className="font-extrabold">within 3 months</span>. Gain the skills and knowledge to create dynamic web
             applications from scratch using MongoDB, Express.js, React, and Node.js - the powerful technologies that
             fuel modern web development. Whether you're a beginner or experienced developer, our course will equip you
             with the tools to build scalable, robust, and feature-rich applications. Join us and unleash your potential
