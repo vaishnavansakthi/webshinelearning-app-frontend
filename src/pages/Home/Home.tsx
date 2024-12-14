@@ -52,7 +52,7 @@ const Home = () => {
 
   const [startDate, setStats] = useState<any>("")
 
-  const courseStartDate: any = new Date("2025-03-01")
+  const courseStartDate: any = new Date("2025-01-06")
 
   function updateCountdown() {
     const currentDate: any = new Date()
