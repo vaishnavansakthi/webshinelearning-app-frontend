@@ -74,11 +74,11 @@ const Header = () => {
           <div className="flex justify-between">
             <div>
               <h5 className="text-[14px] font-bold">Special Offer!</h5>
-              <p>Enroll now and get 40% off!</p>
+              <p>Enroll now and get 75% off!</p>
             </div>
             <div className="text-[14px]">
               Learn <span className="font-bold">HTML + CSS + JS + React + Redux + NodeJs + ExpressJs + MongoDB</span> at
-              9,999/- Only.
+              4,499/- Only.
               <button
                 onClick={() => navigate("/booking")}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"

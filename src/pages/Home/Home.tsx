@@ -52,7 +52,7 @@ const Home = () => {
 
   const [startDate, setStats] = useState<any>("")
 
-  const courseStartDate: any = new Date("2025-03-05")
+  const courseStartDate: any = new Date("2025-03-01")
 
   function updateCountdown() {
     const currentDate: any = new Date()
@@ -133,7 +133,7 @@ const Home = () => {
             role="alert"
           >
             <span className="text-xs bg-primary-600 rounded-full text-black dark:text-black px-4 py-1.5 mr-3">New</span>{" "}
-            <span className="text-sm font-medium">Batch starts from June 1st week onwards</span>
+            <span className="text-sm font-medium">Batch starts from March 1st week onwards</span>
             <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill-rule="evenodd"
@@ -253,10 +253,10 @@ const Home = () => {
               href="/booking"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
+              <span className="text-white mr-2 text-xl">&#x20B9; 4499</span>
 
-              <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
-              <span className="text-[14px]">40% off</span>
+              <span className="mr-2 line-through text-[14px]">&#x20B9; 19999</span>
+              <span className="text-[14px]">75% off</span>
             </a>
           </div>
         </div>
@@ -283,10 +283,10 @@ const Home = () => {
               href="/booking"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
+              <span className="text-white mr-2 text-xl">&#x20B9; 4499</span>
 
-              <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
-              <span className="text-[14px]">40% off</span>
+              <span className="mr-2 line-through text-[14px]">&#x20B9; 19999</span>
+              <span className="text-[14px]">75% off</span>
             </a>
           </div>
         </div>
@@ -310,10 +310,10 @@ const Home = () => {
               href="/booking"
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              <span className="text-white mr-2 text-xl">&#x20B9; 9999</span>
+              <span className="text-white mr-2 text-xl">&#x20B9; 4499</span>
 
-              <span className="mr-2 line-through text-[14px]">&#x20B9; 16999</span>
-              <span className="text-[14px]">40% off</span>
+              <span className="mr-2 line-through text-[14px]">&#x20B9; 19999</span>
+              <span className="text-[14px]">75% off</span>
             </a>
           </div>
         </div>
