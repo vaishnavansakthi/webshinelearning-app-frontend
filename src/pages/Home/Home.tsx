@@ -142,16 +142,12 @@ const Home = () => {
               ></path>
             </svg>
           </a>
-          <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Learn to Build with MERN Stack
+          <h1 className="mb-4 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+            Unlock Your Potential with Expert-Led Courses!
           </h1>
           <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-            Dive into the world of full-stack development with our comprehensive MERN stack course{" "}
-            <span className="font-extrabold">within 3 months</span>. Gain the skills and knowledge to create dynamic web
-            applications from scratch using MongoDB, Express.js, React, and Node.js - the powerful technologies that
-            fuel modern web development. Whether you're a beginner or experienced developer, our course will equip you
-            with the tools to build scalable, robust, and feature-rich applications. Join us and unleash your potential
-            in the world of full-stack development!
+            Transform Your Career with Expert-Led Courses in MERN, UI/UX, React, and Python!
+            Join our immersive, hands-on learning experience designed to equip you with cutting-edge skills. Whether you're dreaming of building dynamic web apps, crafting user-friendly designs, or mastering programming fundamentals, our courses are your gateway to success. Taught by a passionate instructor with real-world expertise, you'll gain practical knowledge, work on exciting projects, and open doors to endless opportunities in the tech world. Let’s build your future together—one skill at a time!
           </p>
 
           {/* count down */}
@@ -297,14 +293,14 @@ const Home = () => {
           <div className="p-5">
             <a href="#">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                React & Java Stack
+                React & Python Stack
               </h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               This course provides comprehensive training on building modern web applications using the React front-end
-              library and Java back-end technologies. Participants will learn to create dynamic user interfaces with
-              React, manage state effectively, and integrate with robust Java back-end services using frameworks like
-              Spring Boot.
+              library and Python back-end technologies. Participants will learn to create dynamic user interfaces with
+              React, manage state effectively, and integrate with robust Python back-end services using frameworks like
+              Fast API and Flask.
             </p>
             <a
               href="/booking"
