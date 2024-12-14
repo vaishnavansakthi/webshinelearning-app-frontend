@@ -88,12 +88,6 @@ const Header = () => {
             </div>
             <div>
               <p>
-                Contact:{" "}
-                <a className="underline" href="tel:+919047609410">
-                  +91 9047609410
-                </a>
-              </p>
-              <p>
                 Email:{" "}
                 <a className="underline" href="mailto:webshinelearninginfo@webshinelearning.in">
                   webshinelearninginfo@webshinelearning.in
