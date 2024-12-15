@@ -50,6 +50,10 @@ const Login = () => {
             action: "Logged In",
             label: "Login Success",
           });
+          ReactGA.set({
+            user_id: res.user.id, // Optionally, track user_id
+            username: res.user.username, // Custom user property
+          });
           window.location.reload()
           navigate("/dashboard")
         } else {
