@@ -2,7 +2,8 @@ import { Formik, Form, FormikProps, FormikHelpers } from "formik"
 import { Alert, Button, Label, LinkText } from "../../components/atoms"
 import { InputBlock } from "../../components/moleclues"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import ReactGA from "react-ga4";
 import { CgDanger } from "react-icons/cg"
 import { loginFormSchema, loginalidationSchema } from "../../schema/loginFormSchema"
 import { encryptData } from "../../utils/security"
@@ -25,6 +26,11 @@ const Login = () => {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    // Track page view when component mounts
+    ReactGA.send({ hitType: "pageview", page: "/login", title: "Login Page" });
+  }, []);
+
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
     // navigate("/dashboard")
     setLoading(true)
@@ -39,6 +45,11 @@ const Login = () => {
         formikHelpers.resetForm()
         if (res.user.isActivate) {
           encryptData(res, "userData", "object")
+          ReactGA.event({
+            category: "User",
+            action: "Logged In",
+            label: "Login Success",
+          });
           window.location.reload()
           navigate("/dashboard")
         } else {
@@ -46,6 +57,11 @@ const Login = () => {
             `Welcome, ${res.user.username}! Your profile awaits for activation by our diligent admin team. Stay tuned!`,
           )
           setAlertColor("bg-green-500")
+          ReactGA.event({
+            category: "User",
+            action: "Login Attempt",
+            label: "Profile Not Activated",
+          });
         }
       })
       .catch((err: any) => {
@@ -53,6 +69,11 @@ const Login = () => {
         setsMessage(err.response.data.message)
         setLoading(false)
         setAlertColor("bg-red-400 rounded-sm")
+        ReactGA.event({
+          category: "User",
+          action: "Login Failed",
+          label: err.response.data.message,
+        });
       })
   }
 

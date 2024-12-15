@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet"
 import { Accordion } from "../../components/moleclues"
 import { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import headphome from "../../assets/headphone.png"
 import blueheadphone from "../../assets/blueheadphone.png"
 import smartwatch from "../../assets/smartwatch.png"
@@ -86,6 +87,10 @@ const Home = () => {
 
   useEffect(() => {
     updateCountdown()
+  }, [])
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Home Page" });
   }, [])
 
   return (

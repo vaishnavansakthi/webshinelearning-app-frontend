@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import ReactGA from 'react-ga4';
 import App from './App.tsx'
 import './index.css'
 
@@ -12,6 +13,9 @@ if (!rootElement) {
 /**
  * Main component
  */
+ReactGA.initialize('G-V4ZRLH0DM0', {
+  // debug: true, // Uncomment this to enable debug mode
+});
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />

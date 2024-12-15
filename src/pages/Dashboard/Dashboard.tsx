@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { Helmet } from "react-helmet"
 import { BirthDayCard, DashboardBanner, DashboardTable, SessionCard } from "../../components/organisms"
 import { UserCard } from "../../components/moleclues"
@@ -29,6 +30,10 @@ const Dashboard = () => {
     { label: "Status", value: "status" },
     { label: "Comments", value: "comments" },
   ]
+  
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/dashboard", title: "Dashboard Page" });
+  }, [])
 
   useEffect(() => {
     const res = getAllLeaerboardData()
