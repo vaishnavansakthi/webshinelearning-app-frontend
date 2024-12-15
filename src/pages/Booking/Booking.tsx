@@ -2,6 +2,7 @@ import { Modal } from "../../components/moleclues"
 import { Field, Formik, ErrorMessage, Form } from "formik"
 import { ThreeDots } from "react-loader-spinner"
 import { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { bookingFormSchema, bookingValidationSchema } from "../../schema/bookingFormSchema"
 import { getAllBookings, updateBooking } from "../../services/booking.services"
 import { Helmet } from "react-helmet"
@@ -23,6 +24,10 @@ function Booking() {
   const [countdown, setCountdown] = useState(0)
   const targetDate: any = new Date("2025-01-06")
   const [courseTimeout, setCourseTimeout] = useState(false)
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/booking", title: "Booking Page" });
+  }, [])
 
   useEffect(() => {
     const res = getAllBookings()
