@@ -86,6 +86,19 @@ const Home = () => {
   }
 
   useEffect(() => {
+    // Check if there's a hash in the URL
+    if (window.location.hash) {
+      const id = window.location.hash.replace("#", ""); // Remove '#'
+      const element = document.getElementById(id);
+      
+      // Scroll to the element if it exists
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     updateCountdown()
   }, [])
 
@@ -484,7 +497,8 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="enquiry-form text-center w-100 mt-5">
+      
+      <div id="registration-form" className="enquiry-form text-center w-100 mt-5">
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSdN89zZuKOBDyD6Fy6ODy16OI5Mdm4wR2KXBzvtFztx3P4qCg/viewform?embedded=true"
           className="w-[100%]"
