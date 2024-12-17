@@ -135,7 +135,8 @@ const Home = () => {
           <a
             href="/booking"
             className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 dark:text-black bg-gray-100 rounded-full dark:bg-[#dbd5d5] hover:bg-gray-200 dark:hover:bg-[#b1a9a9]"
-            role="alert"
+            role="link"
+            aria-label="booking"
           >
             <span className="text-xs bg-primary-600 rounded-full text-black dark:text-black px-4 py-1.5 mr-3">New</span>{" "}
             <span className="text-sm font-medium">Batch starts from Jan 2025 1st week onwards</span>
@@ -238,7 +239,7 @@ const Home = () => {
          */}
       <div className="flex justify-evenly mt-[-80px] max-lg:mt-[-20px] px-3 flex-wrap">
         <div className="max-w-sm bg-white border border-gray-200rounded-lg shadow dark:bg-[#404040] dark:border-gray-700">
-          <a href="#">
+          <a aria-label="wallpapercave" href="#">
             <img className="rounded-t-lg" src="https://wallpapercave.com/wp/wp8725091.jpg" alt="" />
           </a>
           <div className="p-5">
@@ -262,7 +263,7 @@ const Home = () => {
           </div>
         </div>
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#404040] dark:border-gray-700 max-lg:mt-5">
-          <a href="#">
+          <a aria-label="media" href="#">
             <img
               className="rounded-t-lg"
               src="https://media.licdn.com/dms/image/D4D12AQGozixPY9TTHg/article-cover_image-shrink_720_1280/0/1694441317997?e=2147483647&v=beta&t=my_U0qqKwHBAi3ZUpgwtR3v_lM6AOx-hw8ZWoX1j408"
@@ -292,7 +293,7 @@ const Home = () => {
           </div>
         </div>
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-[#404040] dark:border-gray-700 max-lg:mt-5">
-          <a href="#">
+          <a aria-label="udemy" href="#">
             <img className="rounded-t-lg" src="https://img-c.udemycdn.com/course/750x422/5319816_3717_10.jpg" alt="" />
           </a>
           <div className="p-5">
@@ -407,9 +408,6 @@ const Home = () => {
                 course equips you with the essential tools and knowledge to kickstart your journey in web development.
                 Join us and unlock the potential of the web!
               </p>
-              {/* <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Learn more <svg className="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-  </svg></a> */}
             </li>
             <li className="mb-10 ms-4">
               <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
@@ -492,6 +490,7 @@ const Home = () => {
           className="w-[100%]"
           height="832"
           frameBorder="0"
+          title="form submission"
         >
           Loading…
         </iframe>
