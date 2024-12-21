@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import { getAllTasks } from "../../services/task.services"
 import withProtectedRoute from "../../hoc/ProductedRoute"
@@ -14,6 +15,14 @@ const UserTasks = () => {
     { label: "Deployed URL", field: "deployedUrl" },
     { label: "Uploaded On", field: "createdAt" },
   ]
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/usertasks",
+      title: "User Tasks",
+    })
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)

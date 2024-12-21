@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { getAllBookings, resetBooking } from "../../services/booking.services"
 
 export default function UserBooking() {
@@ -13,6 +14,14 @@ export default function UserBooking() {
       .catch((error) => {
         console.log(error)
       })
+  }, [])
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/userbooking",
+      title: "User Booking Page",
+    })
   }, [])
 
   const handleReset = (id: any) => {

@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import { activateUser, deleteUser, getAllUserData } from "../../services/adminDashboard.services"
 import { Modal } from "../../components/moleclues"
@@ -31,6 +32,16 @@ const ManageUser = () => {
     } catch (error) {
       console.log(error)
     }
+  }, [])
+
+  useEffect(() => {
+    useEffect(() => {
+      ReactGA.send({
+        hitType: "pageview",
+        page: "/manageuser",
+        title: "Manage User",
+      })
+    }, [])
   }, [])
 
   const fetchUserData = async () => {

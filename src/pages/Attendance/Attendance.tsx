@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import { deleteUserAttendance, getUserAttendance, markAttendance } from "../../services/attendance.services"
 import { decryptData } from "../../utils/security"
@@ -24,6 +24,14 @@ const Attendance = () => {
     { label: "Actions", field: "actions", enable: "delete" },
   ]
   const myToken = JSON.parse(decryptData("userData", null))
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/attendance",
+      title: "Attendance",
+    })
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)

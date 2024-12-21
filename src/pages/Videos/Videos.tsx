@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { getAllIframeVideos } from "../../services/iframeVideos.service"
 
 function Videos() {
@@ -14,6 +15,14 @@ function Videos() {
       setIframeVideos(data)
     }
     fetchVideos()
+  }, [])
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/videos",
+      title: "Videos Page",
+    })
   }, [])
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

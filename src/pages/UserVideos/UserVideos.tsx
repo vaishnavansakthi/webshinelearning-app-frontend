@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from 'react-ga4';
 import Table from "../../components/moleclues/Table/Table"
 import { decryptData } from "../../utils/security"
 import { Field, Formik, ErrorMessage, Form } from "formik"
@@ -33,6 +34,14 @@ const UserVideos = () => {
     { label: "Actions", field: "actions", enable: "delete" },
   ]
   const myToken = JSON.parse(decryptData("userData", null))
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/uservideos",
+      title: "User Videos Page",
+    })
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)

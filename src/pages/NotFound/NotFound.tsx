@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom'
+import ReactGA from 'react-ga4';
 import notFound from '../../assets/undraw_page_not_found_re_e9o6.svg'
+import { useEffect } from 'react';
 
 const NotFound = () => {
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "*",
+      title: "Page Not Found",
+    })
+  }, [])
+
   return (
     <div className="h-screen w-screen flex items-center">
       <div className="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { getAllAttendance } from "../../services/attendance.services"
 import Table from "../../components/moleclues/Table/Table"
 import withProtectedRoute from "../../hoc/ProductedRoute"
@@ -14,6 +15,14 @@ const UserAttendance = () => {
     { label: "Date", field: "createdAt" },
   ]
   const { setIsLoading } = useContext(loaderContext)
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/userattendance",
+      title: "User Attendance Page",
+    })
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)

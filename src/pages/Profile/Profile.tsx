@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-
+import ReactGA from "react-ga4";
 import dayjs from "dayjs"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { decryptData } from "../../utils/security"
@@ -35,6 +35,14 @@ const Profile = () => {
       .catch((error: any) => {
         console.error("Error fetching user data:", error)
       })
+  }, [])
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/profile",
+      title: "Profile",
+    })
   }, [])
 
   const handleOpenModal = () => {

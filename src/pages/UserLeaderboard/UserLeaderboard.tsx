@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import withProtectedRoute from "../../hoc/ProductedRoute"
 import { userLeaderboardFormSchema } from "../../schema/userLeaderboardFormSchema"
@@ -38,6 +39,14 @@ const UserLeaderboard = () => {
   ]
 
   const { setIsLoading } = useContext(loaderContext)
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/userleaderboard",
+      title: "User Leaderboard Page",
+    })
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)
