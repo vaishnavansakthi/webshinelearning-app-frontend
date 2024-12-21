@@ -1,5 +1,5 @@
-import { useState } from "react"
-
+import { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import axios from "axios"
 import { Formik, Form, FormikProps, FormikHelpers } from "formik"
 import { Alert, Button, LinkText } from "../../components/atoms"
@@ -22,6 +22,14 @@ const ResetPassword = () => {
   const [message, setsMessage] = useState("")
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/reset-password",
+      title: "Reset Password",
+    })
+  }, [])
 
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
     formikHelpers.resetForm()

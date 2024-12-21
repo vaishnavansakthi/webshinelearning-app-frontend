@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { createMemes, getAllMemes, deleteMemes } from "../../services/memes.services"
 import { decryptData } from "../../utils/security"
 import { Modal } from "../../components/moleclues"
@@ -18,6 +19,14 @@ const UserMemes = () => {
     const res = getAllMemes()
     res.then((meme: any) => {
       setMemesData(meme)
+    })
+  }, [])
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/userMemes",
+      title: "User Memes Page",
     })
   }, [])
 

@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
+import ReactGA from "react-ga4";
 import { Alert, Button } from "../../components/atoms"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
@@ -22,6 +23,10 @@ const SendOtp = () => {
 
     return maskedEmail
   }
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/verify-otp", title: "Verify OTP Page" });
+  }, [])
 
   const handleChange = (index: number, value: string) => {
     if (value.length === 1 && index < otpDigits.length - 1) {

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import {
   createTaskTracker,
@@ -42,6 +43,14 @@ const TaskTracker = () => {
   const [taskIdToDelete, settaskIdToDelete] = useState("")
 
   const myToken = JSON.parse(decryptData("userData", null))
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/tasktracker",
+      title: "Task Tracker Page",
+    })
+  }, [])
 
   useEffect(() => {
     const res = getUserTaskTracker(myToken.user.id)

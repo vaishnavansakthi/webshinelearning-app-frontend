@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ReactGA from "react-ga4";
 import { studyplanData } from "../../common/studyplan";
 import Timeline from "../../components/moleclues/Timeline/Timeline";
 import withProtectedRoute from "../../hoc/ProductedRoute";
@@ -6,6 +7,10 @@ import withProtectedRoute from "../../hoc/ProductedRoute";
 const StudyPlan = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const timelineRefs = useRef<any>([]);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/studyplan", title: "Study Plan Page" });
+  }, [])
 
   useEffect(() => {
     timelineRefs.current = Array(studyplanData.length)

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import { Alert, Button, LinkText } from "../../components/atoms"
 import { InputBlock } from "../../components/moleclues"
 import axios from "axios"
@@ -18,6 +19,14 @@ const initialValues: User = {
 const ForgotPassword = () => {
   const [message, setsMessage] = useState("")
   const navigate = useNavigate()
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/forgot-password",
+      title: "Forgot Password",
+    })
+  }, [])
   
   const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
     axios.post('https://webshinelearning-app-backend.vercel.app/auth/forgot-password', {email: values.email}, {

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import ReactGA from "react-ga4";
 import Table from "../../components/moleclues/Table/Table"
 import { createTask, deleteUserTask, getUserTaks, updateUserTask } from "../../services/task.services"
 import { decryptData } from "../../utils/security"
@@ -23,6 +24,10 @@ const Task = () => {
   const [taskIdToDelete, settaskIdToDelete] = useState("")
 
   const { setIsLoading } = useContext(loaderContext)
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/tasks", title: "Tasks Page" });
+  }, [])
 
   const columns = [
     { label: "Title", field: "title" },

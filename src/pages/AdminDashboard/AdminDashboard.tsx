@@ -3,6 +3,7 @@ import withProtectedRoute from "../../hoc/ProductedRoute" // Fixed typo in the i
 import { getAllUsers } from "../../services/user.services"
 import { getAllTasks } from "../../services/task.services"
 import { getAllTaskTracker } from "../../services/taskTracker.services"
+import ReactGA from "react-ga4";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -10,6 +11,14 @@ const AdminDashboard = () => {
     totalTasks: 0,
     totalTrackingTasks: 0,
   })
+
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/dashboard",
+      title: "Admin Dashboard",
+    })
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
