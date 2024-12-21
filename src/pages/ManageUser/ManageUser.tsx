@@ -34,7 +34,6 @@ const ManageUser = () => {
     }
   }, [])
 
-  useEffect(() => {
     useEffect(() => {
       ReactGA.send({
         hitType: "pageview",
@@ -42,7 +41,6 @@ const ManageUser = () => {
         title: "Manage User",
       })
     }, [])
-  }, [])
 
   const fetchUserData = async () => {
     try {
