@@ -51,33 +51,42 @@ const Home = () => {
     seconds: 0,
   })
 
-  const [startDate, setStats] = useState<any>("")
-
-  const courseStartDate: any = new Date("2025-01-06")
+  const courseStartDate: any = new Date("2025-06-06")
 
   function updateCountdown() {
-    const currentDate: any = new Date()
-    const timeDifference = courseStartDate - currentDate
-
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000)
-
-    // Function to add leading zeros
-    const addLeadingZero = (value: number) => {
-      return value < 10 ? `0${value}` : value
+    const currentDate: any = new Date();
+    const timeDifference = courseStartDate - currentDate;
+  
+    // If the course has already started
+    if (timeDifference <= 0) {
+      setCountValues({
+        days: "00",
+        hours: "00",
+        minutes: "00",
+        seconds: "00",
+      });
+      return; // Stop further execution
     }
-
+  
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  
+    const addLeadingZero = (value: number) => {
+      return value < 10 ? `0${value}` : `${value}`;
+    };
+  
     setCountValues({
       days: addLeadingZero(days),
       hours: addLeadingZero(hours),
       minutes: addLeadingZero(minutes),
       seconds: addLeadingZero(seconds),
-    })
-
-    setTimeout(updateCountdown, 1000)
+    });
+  
+    setTimeout(updateCountdown, 1000);
   }
+  
 
   const toggleAccordion = (id: number) => {
     setAccordionItems((prevItems) =>
